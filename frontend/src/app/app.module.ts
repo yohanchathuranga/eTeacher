@@ -12,6 +12,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
+import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TestingPageComponent } from './Pages/testing-page/testing-page.componen
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    TestingPageComponent
+    TestingPageComponent,
+    TestingpagetwoComponent
   ],
   imports: [
     BrowserModule,
