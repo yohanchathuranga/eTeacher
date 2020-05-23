@@ -13,6 +13,7 @@ import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
 import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.component';
+import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.compone
     NavbarComponent,
     FooterComponent,
     TestingPageComponent,
-    TestingpagetwoComponent
+    TestingpagetwoComponent,
+    TestingpagethreeComponent
   ],
   imports: [
     BrowserModule,
