@@ -12,8 +12,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
-import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.component';
-import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.component';
+import { TestingpagetwoComponent } from './Pages/testingpagetwo/testingpagetwo.component';
+import { TestingpagethreeComponent } from './Pages/testingpagethree/testingpagethree.component';
 
 
 @NgModule({
