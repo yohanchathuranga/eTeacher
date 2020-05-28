@@ -12,8 +12,18 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
-import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.component';
-import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.component';
+import { TestingpagetwoComponent } from '../app/Pages/testingpagetwo/testingpagetwo.component';
+import { TestingpagethreeComponent } from '../app/Pages/testingpagethree/testingpagethree.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { CreateThreadComponent } from './Pages/testingpagetwo/create-thread/create-thread.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 
 
 @NgModule({
@@ -23,7 +33,8 @@ import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.c
     FooterComponent,
     TestingPageComponent,
     TestingpagetwoComponent,
-    TestingpagethreeComponent
+    TestingpagethreeComponent,
+    CreateThreadComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +44,12 @@ import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.c
     ComponentsModule,
     ExamplesModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
