@@ -1,10 +1,16 @@
 const express = require('express')
+const bodyParser=require('body-parser');
 const mongoose = require('mongoose')
-const router = express.Router()
+//const router = express.Router()
 const cors = require('cors')
-const app = express()
+
+var forumController = require('./controller/forumController')
+var app = express()
 
 const PORT = 3000;
+
+app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -14,12 +20,13 @@ app.listen(PORT, () => {
   console.log('Example app listening on port ' + PORT)
 });
 
+app.use('/forums',forumController)
+
 
 // create the db constant to connect
 const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net/test?retryWrites=true&w=majority"
 
 //setup cors
-app.use(cors())
 
 //connect to the database
 mongoose.connect(db, {
@@ -32,4 +39,4 @@ mongoose.connect(db, {
     }
 })
 
-module.exports = router
+//module.exports = router
