@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Form } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import {Forum} from '../models/forum-thread'
 
 
 @Injectable({
@@ -8,19 +9,24 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FourmServiceService {
 
-baseURL = "http://localhost:3200/forum"; 
+baseURL = "http://localhost:3000/forums"; 
   constructor(
     private http : HttpClient
   ) { }
-form:FormGroup = new FormGroup({
+  
+form = new FormGroup({
   id : new FormControl(null),
   title : new FormControl(''),
   body : new FormControl('')
 
 });
 
-regForum(emp){
+regForum(emp:Forum){
   return this.http.post(this.baseURL,emp);
+}
+
+getAll(){
+  return this.http.get(this.baseURL)
 }
 
 
