@@ -22,7 +22,7 @@ onSubmit(){
     title : this.formControls.title.value,
     body : this.formControls.body.value
   }
- console.log(emp);
+ //console.log(emp);
   this.forumService.regForum(emp).subscribe(()=>{
     this.forumService.form.reset()
   });

@@ -21,6 +21,8 @@ import { CreateThreadComponent } from './Pages/testingpagetwo/create-thread/crea
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 
@@ -49,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,8 +16,10 @@ baseURL = "http://localhost:3000/forums";
   
 form = new FormGroup({
   id : new FormControl(null),
+  onwer: new FormControl(''),
   title : new FormControl(''),
-  body : new FormControl('')
+  body : new FormControl(''),
+  forum_type:new FormControl('')
 
 });
 
