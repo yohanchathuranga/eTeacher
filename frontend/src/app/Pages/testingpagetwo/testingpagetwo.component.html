@@ -19,8 +19,9 @@
           <mat-card class="example-card">
             <mat-card-header>
               <mat-card-title>
-                DISCUSSION FORUMS
+                DISCUSSION FORUMS - 
               </mat-card-title>   
+              <p>types of forums.</p>
             </mat-card-header>
             <mat-card-content>    
               <ul class="list-group">
@@ -59,7 +60,31 @@
           </mat-card>
         </div>
       </mat-tab>
-      <mat-tab label="All threds"> <app-create-thread></app-create-thread> </mat-tab>
+      <mat-tab label="All threds">
+        <div class="container-1"> 
+        <mat-card>
+          <mat-card-content>
+        <div *ngIf="child">
+          <ul *ngFor="let property of child">
+            <a href="http://localhost:4200/#/forum/{{property._id}}"><li class="list-group-item">
+             <div>
+                <h3><strong><span>Title: </span></strong><span>{{property.title}}</span></h3>                   
+                <span>Created by: </span><span>{{property.owner}}</span>
+             </div> 
+                </li>
+           </a>
+         </ul>
+        </div>
+          </mat-card-content>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" > </mat-paginator>
+
+      </mat-card>
+        </div>
+      </mat-tab>
+    
+      <mat-tab label="create+">
+          <app-create-thread (childEvent)="getChlid($event)"></app-create-thread>
+      </mat-tab>
     </mat-tab-group>
         
       </div>

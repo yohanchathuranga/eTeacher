@@ -22,6 +22,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+
+
 
 
 
@@ -52,7 +56,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
