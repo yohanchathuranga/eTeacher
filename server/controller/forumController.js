@@ -14,7 +14,10 @@ router.get('/',(req,res)=>{
 router.post('/',(req,res)=>{
     var emp = Forum({
         title : req.body.title,
-        body : req.body.body
+        body : req.body.body,
+        timestamps: req.body.timestamps,
+        views: req.body.views,
+        owner : req.body.owner
     });
     emp.save((err,doc)=>{
         if(!err){res.send(doc);}
