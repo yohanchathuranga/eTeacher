@@ -13,8 +13,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SchedulerComponent } from './components/scheduler/scheduler.component';
 
-// import { ComponentsModule } from './components/components.module';
-// import { ExamplesModule } from './examples/examples.module';
+import { ComponentsModule } from './components/components.module';
+import { ExamplesModule } from './examples/examples.module';
  import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
 
 
@@ -33,8 +33,8 @@ import { SchedulerComponent } from './components/scheduler/scheduler.component';
     NgbModule,
     FormsModule,
     RouterModule,
-    // ComponentsModule,
-    // ExamplesModule,
+    ComponentsModule,
+    ExamplesModule,
     AppRoutingModule,
     FullCalendarModule
   ],
