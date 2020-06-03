@@ -15,7 +15,7 @@ import { SchedulerComponent } from './components/scheduler/scheduler.component';
 
 // import { ComponentsModule } from './components/components.module';
 // import { ExamplesModule } from './examples/examples.module';
-// import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
+ import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { SchedulerComponent } from './components/scheduler/scheduler.component';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    // TestingPageComponent,
+    TestingPageComponent,
      SchedulerComponent
     
   ],
