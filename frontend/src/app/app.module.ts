@@ -15,10 +15,7 @@ import { SchedulerComponent } from './components/scheduler/scheduler.component';
 
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
- import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
- // import { ExamplesModule } from './examples/examples.module';
-// import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.component';
-// import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.component';
+
 
 
 @NgModule({
@@ -27,10 +24,9 @@ import { ExamplesModule } from './examples/examples.module';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    TestingPageComponent,
+   
      SchedulerComponent,
-    //  TestingpagetwoComponent,
-    // TestingpagethreeComponent
+ 
     
   ],
   imports: [
