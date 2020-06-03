@@ -30,7 +30,7 @@ import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.c
     TestingPageComponent,
     TestingpagetwoComponent,
     TestingpagethreeComponent
-   ],
+  ],
   imports: [
     BrowserModule,
     NgbModule,
