@@ -11,6 +11,11 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
+
+// export class AppComponent {
+//     title = 'Sch';
+//   }
+  
 export class AppComponent implements OnInit {
     private _router: Subscription;
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
@@ -53,7 +58,7 @@ export class AppComponent implements OnInit {
     removeFooter() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice( 1 );
-        if(titlee === 'signup' || titlee === 'nucleoicons'){
+        if(titlee === 'signup' || titlee === 'nucleoicons'|| titlee==='calander'){
             return false;
         }
         else {
