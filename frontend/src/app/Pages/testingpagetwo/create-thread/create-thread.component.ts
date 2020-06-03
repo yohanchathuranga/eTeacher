@@ -1,7 +1,9 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
 import {FourmServiceService} from '../service/fourm-service.service';
 //import { EventEmitter } from 'protractor';
-//import {Forum} from '../models/forum-thread';
+import {Forum} from '../models/forum-thread';
+import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-create-thread',
@@ -10,7 +12,9 @@ import {FourmServiceService} from '../service/fourm-service.service';
 })
 export class CreateThreadComponent implements OnInit {
 
-  constructor( public forumService : FourmServiceService) { }
+  constructor( public forumService : FourmServiceService,
+    private matdialogRef:MatDialogRef<CreateThreadComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Forum) { }
 
   formControls = this.forumService.form.controls;
   public threadList: any;
@@ -30,16 +34,23 @@ onSubmit(){
     body : this.formControls.body.value,
     timestamps: new Date(),
     views: 0,
-    owner:this.name  
+    owner:this.name,
+    timeAgo:''  
   }
  //console.log(emp);
   this.forumService.regForum(emp).subscribe(()=>{
     this.forumService.form.reset();
     this.getThreds();
   });
+  this.onNoClick();
   
-  this.forumService.form.reset();
 }
+
+onNoClick(): void {
+  this.forumService.form.reset();
+  this.matdialogRef.close();
+}
+
 
 getThreds(){
   this.forumService.getAll().subscribe((res)=>{

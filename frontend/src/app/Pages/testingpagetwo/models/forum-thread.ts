@@ -5,4 +5,5 @@ export interface Forum {
     timestamps: Date;
     views: number;
     owner: string;
+    timeAgo:string;
   }

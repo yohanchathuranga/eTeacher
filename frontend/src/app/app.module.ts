@@ -22,8 +22,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatPaginatorModule} from '@angular/material/paginator';
+//import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -57,10 +60,15 @@ import {MatSortModule} from '@angular/material/sort';
     ReactiveFormsModule,
     HttpClientModule,
     MatTabsModule,
-    MatPaginatorModule,
-    MatSortModule
+   // MatPaginatorModule,
+    MatSortModule,
+    NgxPaginationModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CreateThreadComponent
+  ]
 })
 export class AppModule { }

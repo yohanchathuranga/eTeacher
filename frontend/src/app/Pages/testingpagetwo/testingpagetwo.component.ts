@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import {FourmServiceService } from './service/fourm-service.service';
-import { MatPaginator } from '@angular/material/paginator';
+import * as moment from 'moment';
+import {MatDialog} from '@angular/material/dialog';
+import { CreateThreadComponent } from './create-thread/create-thread.component';
+
+
 
 @Component({
   selector: 'app-testingpagetwo',
@@ -8,21 +12,41 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./testingpagetwo.component.css']
 })
 export class TestingpagetwoComponent implements OnInit {
-@ViewChild(MatPaginator) paginator : MatPaginator;
-  //@Input() public forumThreads;
- child : any;
 
-  constructor(private forumService: FourmServiceService) { }
+ child : any;
+ p: number = 1;
+ timeArray =[];
+
+constructor(private forumService: FourmServiceService,
+  private matDialog: MatDialog) { }
 
   ngOnInit(): void {
-   // this.getChlid
-   // console.log(this.child)
+    this.forumService.getAll().subscribe((res)=>{
+      this.child = res;
+      this.timeAgo(this.child)
+    });
+    
   }
-getChlid(event:any){
-  this.child = event;
-  //console.log(this.child);
-  this.child.paginator = this.paginator;
-}
+// getChlid(event:any){
+ 
+//   this.child = event;
+  
+// }
+
+timeAgo(event){
+  let list = event;
+  for(let i in list){
+    list[i].timeAgo= moment(event[i].timestamps).fromNow();
+  } 
+  this.child = list
+  }
+
+  onCreate(){
+    this.matDialog.open(CreateThreadComponent,{
+      width: '50%'
+    });
+  }
+
 }
 
 
