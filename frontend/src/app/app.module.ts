@@ -28,7 +28,6 @@ import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.c
     NavbarComponent,
     FooterComponent,
     TestingPageComponent,
-    SchedulerComponent,
     TestingpagetwoComponent,
     TestingpagethreeComponent
 
