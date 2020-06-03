@@ -17,7 +17,8 @@ router.post('/',(req,res)=>{
         body : req.body.body,
         timestamps: req.body.timestamps,
         views: req.body.views,
-        owner : req.body.owner
+        owner : req.body.owner,
+        timeAgo: req.body.timeAgo
     });
     emp.save((err,doc)=>{
         if(!err){res.send(doc);}

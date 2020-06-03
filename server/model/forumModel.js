@@ -5,6 +5,7 @@ const Forum = mongoose.model('Forum',{
     body:String,
     timestamps: Date,
     views: Number,
-    owner : String
+    owner : String,
+    timeAgo: String
 });
 module.exports={Forum};
