@@ -31,8 +31,7 @@ import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.c
     SchedulerComponent,
     TestingpagetwoComponent,
     TestingpagethreeComponent
-
-  ],
+],
   imports: [
     BrowserModule,
     NgbModule,
