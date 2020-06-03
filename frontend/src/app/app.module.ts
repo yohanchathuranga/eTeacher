@@ -17,8 +17,8 @@ import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
  import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
  // import { ExamplesModule } from './examples/examples.module';
-import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.component';
-import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.component';
+// import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.component';
+// import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.component';
 
 
 @NgModule({
@@ -29,8 +29,8 @@ import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.c
     FooterComponent,
     TestingPageComponent,
      SchedulerComponent,
-     TestingpagetwoComponent,
-    TestingpagethreeComponent
+    //  TestingpagetwoComponent,
+    // TestingpagethreeComponent
     
   ],
   imports: [
