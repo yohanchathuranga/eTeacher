@@ -3,14 +3,19 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { AppComponent } from './app.component';
+
+
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { SchedulerComponent } from './components/scheduler/scheduler.component';
 
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
+
 import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
 import { TestingpagetwoComponent } from './testingpagetwo/testingpagetwo.component';
 import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.component';
@@ -18,6 +23,7 @@ import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.c
 
 @NgModule({
   declarations: [
+
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -33,6 +39,7 @@ import { TestingpagethreeComponent } from './testingpagethree/testingpagethree.c
     ComponentsModule,
     ExamplesModule,
     AppRoutingModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
