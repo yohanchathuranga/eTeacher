@@ -1,8 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
 import {FourmServiceService } from './service/fourm-service.service';
 import * as moment from 'moment';
 import {MatDialog} from '@angular/material/dialog';
 import { CreateThreadComponent } from './create-thread/create-thread.component';
+import {Forum} from './models/forum-thread';
+
+
 
 
 
@@ -21,11 +24,10 @@ constructor(private forumService: FourmServiceService,
   private matDialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.forumService.getAll().subscribe((res)=>{
+    this.forumService.getAll().subscribe( res=>{
       this.child = res;
       this.timeAgo(this.child)
     });
-    
   }
 // getChlid(event:any){
  
@@ -46,7 +48,6 @@ timeAgo(event){
       width: '50%'
     });
   }
-
 }
 
 

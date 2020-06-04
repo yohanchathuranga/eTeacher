@@ -71,10 +71,10 @@
             </div>
           </mat-card-header>
           <mat-card-content>
-        <div *ngIf="child">
+        <div >
           <ul >
             <a href="http://localhost:4200/#/forum/{{property._id}}" 
-            *ngFor="let property of child | paginate: { itemsPerPage: 6, currentPage: p }">
+            *ngFor="let property of child |paginate: { itemsPerPage: 6, currentPage: p }">
             <li class="list-group-item">
              <div>
                 <h3><strong><span>Title: </span><span>{{property.title}}</span></strong></h3>                   

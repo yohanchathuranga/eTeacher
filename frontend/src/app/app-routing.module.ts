@@ -10,6 +10,8 @@ import { ComponentsComponent } from './components/components.component';
 import { LandingComponent } from './examples/landing/landing.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 // import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
+import {TestingpagetwoComponent} from './Pages/testingpagetwo/testingpagetwo.component';
+
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +22,8 @@ const routes: Routes =[
     // { path: 'landing',          component: LandingComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
     // { path: 'testingpage',      component: TestingPageComponent }
+    { path: 'forum',      component: TestingpagetwoComponent }
+
 ];
 
 @NgModule({

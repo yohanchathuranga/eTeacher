@@ -59,7 +59,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     ComponentsModule,
     ExamplesModule,
     AppRoutingModule,
-<<<<<<< HEAD
     BrowserAnimationsModule,
     MatCardModule,
     MatToolbarModule,
@@ -70,10 +69,8 @@ import {MatDialogModule} from '@angular/material/dialog';
    // MatPaginatorModule,
     MatSortModule,
     NgxPaginationModule,
-    MatDialogModule
-=======
+    MatDialogModule,
     FullCalendarModule
->>>>>>> master
   ],
   providers: [],
   bootstrap: [AppComponent],

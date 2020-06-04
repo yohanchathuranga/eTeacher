@@ -12,8 +12,8 @@ import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class CreateThreadComponent implements OnInit {
 
-  constructor( public forumService : FourmServiceService,
-    private matdialogRef:MatDialogRef<CreateThreadComponent>,
+  constructor( public forumService : FourmServiceService, 
+     private matdialogRef:MatDialogRef<CreateThreadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Forum) { }
 
   formControls = this.forumService.form.controls;
@@ -21,14 +21,14 @@ export class CreateThreadComponent implements OnInit {
 
   @Output() public childEvent = new EventEmitter();
   ngOnInit(): void {
-    this.getThreds();    
-    console.log(this.threadList)
+    // this.getThreds();    
+    // console.log(this.threadList)
   }
 
  name = "Banura Hettiarachchi";
 
 onSubmit(){
-  const emp = {
+  const emp : Forum = {
     id : null,
     title : this.formControls.title.value,
     body : this.formControls.body.value,
@@ -40,7 +40,7 @@ onSubmit(){
  //console.log(emp);
   this.forumService.regForum(emp).subscribe(()=>{
     this.forumService.form.reset();
-    this.getThreds();
+   // this.getThreds();
   });
   this.onNoClick();
   

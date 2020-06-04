@@ -43,11 +43,8 @@
     "jw-bootstrap-switch-ng2": "2.0.1",
     "moment": "^2.26.0",
     "ng2-nouislider": "1.7.12",
-<<<<<<< HEAD
     "ngx-pagination": "^5.0.0",
-=======
     "ngx": "^2.4.0",
->>>>>>> master
     "nouislider": "9.2.0",
     "popper.js": "1.14.4",
     "rxjs": "6.5.4",

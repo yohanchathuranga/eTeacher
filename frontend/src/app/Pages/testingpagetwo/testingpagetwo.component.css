@@ -61,3 +61,6 @@ li {
 .aling-left{
   margin-left: 525px;
 }
+a:link {
+  text-decoration: none;
+}

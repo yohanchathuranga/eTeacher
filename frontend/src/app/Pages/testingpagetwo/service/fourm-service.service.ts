@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Form } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Forum} from '../models/forum-thread'
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -26,7 +27,7 @@ regForum(emp:Forum){
 }
 
 getAll(){
-  return this.http.get(this.baseURL)
+  return this.http.get<Forum>(this.baseURL)
 }
 
 
