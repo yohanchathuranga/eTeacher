@@ -3,19 +3,13 @@ const bodyParser=require('body-parser');
 const mongoose = require('mongoose')
 //const router = express.Router()
 const cors = require('cors')
-<<<<<<< HEAD
 
 var forumController = require('./controller/forumController')
 var app = express()
 
-const PORT = 3000;
-
 app.use(bodyParser.json())
 app.use(cors())
-=======
-const app = express()
 const path = require('path');
-const bodyParser = require('body-parser')
 const passport = require('passport');
 
 
@@ -33,7 +27,6 @@ app.use('/user', user);
 app.use('/booking', booking);
 
 
->>>>>>> master
 
 app.get('/', (req, res) => {
   res.send("hello world");
