@@ -1,10 +1,15 @@
 const express = require('express')
+const bodyParser=require('body-parser');
 const mongoose = require('mongoose')
-const router = express.Router()
+//const router = express.Router()
 const cors = require('cors')
-const app = express()
+
+var forumController = require('./controller/forumController')
+var app = express()
+
+app.use(bodyParser.json())
+app.use(cors())
 const path = require('path');
-const bodyParser = require('body-parser')
 const passport = require('passport');
 
 
@@ -31,13 +36,14 @@ app.listen(PORT, () => {
   console.log('Example app listening on port ' + PORT)
 });
 
+app.use('/forums',forumController)
+
 
 
 // create the db constant to connect
 const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net/E-teacher?retryWrites=true&w=majority"
 
 //setup cors
-app.use(cors())
 
 //connect to the database
 mongoose.connect(db, {
@@ -71,4 +77,4 @@ passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
   });
 }));
 
-module.exports = router
+//module.exports = router
