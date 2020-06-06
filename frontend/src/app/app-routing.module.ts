@@ -11,6 +11,8 @@ import { LandingComponent } from './examples/landing/landing.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 // import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
 import {TestingpagetwoComponent} from './Pages/testingpagetwo/testingpagetwo.component';
+import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
+
 
 
 const routes: Routes =[
@@ -22,7 +24,8 @@ const routes: Routes =[
     // { path: 'landing',          component: LandingComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
     // { path: 'testingpage',      component: TestingPageComponent }
-    { path: 'forum',      component: TestingpagetwoComponent }
+    { path: 'forum',      component: TestingpagetwoComponent },
+    { path: 'forum/:id',      component: ViewThreadComponent }
 
 ];
 

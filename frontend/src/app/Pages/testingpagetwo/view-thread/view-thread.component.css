@@ -1,0 +1,11 @@
+.container{
+    width: 60%;
+    margin-top: 10px;
+    border: 0.25px solid rgb(219, 214, 214)
+}
+.col{
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}

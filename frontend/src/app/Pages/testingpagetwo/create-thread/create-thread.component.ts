@@ -3,6 +3,9 @@ import {FourmServiceService} from '../service/fourm-service.service';
 //import { EventEmitter } from 'protractor';
 import {Forum} from '../models/forum-thread';
 import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+
+
 
 
 @Component({
@@ -58,6 +61,72 @@ getThreds(){
     this.childEvent.emit(this.threadList);
     //console.log(this.threadList)
   });
-
 }
+
+editorConfig: AngularEditorConfig = {
+  editable: true,
+    spellcheck: true,
+    height: '150px',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'providing suppoting details or context...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      {class: 'arial', name: 'Arial'},
+      {class: 'times-new-roman', name: 'Times New Roman'},
+      {class: 'calibri', name: 'Calibri'},
+      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+    ],
+    customClasses: [
+    {
+      name: 'quote',
+      class: 'quote',
+    },
+    {
+      name: 'redText',
+      class: 'redText'
+    },
+    {
+      name: 'titleText',
+      class: 'titleText',
+      tag: 'h1',
+    },
+  ],
+  sanitize: true,
+  toolbarPosition: 'bottom',
+  toolbarHiddenButtons: [
+    [
+      'redo',    
+      'strikeThrough',
+      'subscript',
+      'superscript',
+      'justifyLeft',
+      'justifyCenter',
+      'justifyRight',
+      'justifyFull',
+      'indent',
+      'outdent',     
+      'heading',
+      'fontName'
+    ],
+    [      
+      'textColor',
+      'backgroundColor',
+      'customClasses',     
+      'unlink',
+      'insertImage',
+      'insertVideo',
+      'insertHorizontalRule',
+      'removeFormat'     
+    ]
+  ]
+};
+
 }
