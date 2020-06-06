@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl, Form } from '@angular/forms';
+import { FormGroup, FormControl, Form, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Forum} from '../models/forum-thread'
 import { Observable } from 'rxjs';
@@ -17,8 +17,8 @@ baseURL = "http://localhost:3000/forums";
   
 form = new FormGroup({
   id : new FormControl(null),
-  title : new FormControl(''),
-  body : new FormControl(''),
+  title : new FormControl('', Validators.required),
+  body : new FormControl('', Validators.required),
   forum_type:new FormControl('')
 });
 
@@ -29,6 +29,8 @@ regForum(emp:Forum){
 getAll(){
   return this.http.get<Forum>(this.baseURL)
 }
-
+getThread(id){
+  return this.http.get(this.baseURL + '/' + id);
+}
 
 }

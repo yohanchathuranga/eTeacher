@@ -1,0 +1,25 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <span><strong><h3>
+                        {{getThread.title}}
+                    </h3></strong></span>
+                </mat-card-title>
+                <br>
+                <mat-card-subtitle>
+                    <span style="color:rgb(84, 84, 219)">{{getThread.owner}}</span> - <span>{{getThread.timeAgo}}</span>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div [innerHTML]="threadBody"></div>
+                <!-- <ng-bind-html
+                ng-bind-html="expression"></ng-bind-html> -->
+            </mat-card-content>
+        </mat-card>
+        </div>
+      </div>
+</div>

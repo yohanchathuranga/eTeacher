@@ -15,7 +15,7 @@
        
     <mat-tab-group>
       <mat-tab label="Forums">
-        <div class="container-1">
+        <div class="container">
           <mat-card class="example-card">
             <mat-card-header>
               <mat-card-title>
@@ -61,19 +61,21 @@
         </div>
       </mat-tab>
       <mat-tab label="All threds">
-        <div class="container-1"> 
+        <div class="container"> 
         <mat-card>
           <mat-card-header>
+            <div class="container">
             <div class="row">
               <div class="aling-left">
             <button class="button button2" (click)="onCreate()">New Thread</button>
               </div>
             </div>
+            </div>
           </mat-card-header>
           <mat-card-content>
         <div >
           <ul >
-            <a href="http://localhost:4200/#/forum/{{property._id}}" 
+            <a href="forum/{{property._id}}" 
             *ngFor="let property of child |paginate: { itemsPerPage: 6, currentPage: p }">
             <li class="list-group-item">
              <div>

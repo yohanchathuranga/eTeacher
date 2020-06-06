@@ -31,6 +31,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSortModule} from '@angular/material/sort';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
+import { CommentThreadComponent } from './Pages/testingpagetwo/view-thread/comment-thread/comment-thread.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
+
+
 
 
 
@@ -49,7 +55,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     TestingPageComponent,
     TestingpagetwoComponent,
     TestingpagethreeComponent,
-    CreateThreadComponent
+    CreateThreadComponent,
+    ViewThreadComponent,
+    CommentThreadComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +78,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSortModule,
     NgxPaginationModule,
     MatDialogModule,
-    FullCalendarModule
+    FullCalendarModule,
+    AngularEditorModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent],

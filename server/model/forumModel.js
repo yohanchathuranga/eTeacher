@@ -5,6 +5,7 @@ const Forum = mongoose.model('Forum',{
     body:String,
     timestamps: Date,
     views: Number,
+    replies: Number,
     owner : String,
     timeAgo: String
 });

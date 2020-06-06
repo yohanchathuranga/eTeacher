@@ -3,10 +3,10 @@
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
-.container{
+/* .container{
   border: 0.25px solid rgb(219, 214, 214);
     margin:100px;
-}
+} */
 
 .container-1{
   margin-top: 10px;

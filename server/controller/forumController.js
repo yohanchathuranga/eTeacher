@@ -26,4 +26,15 @@ router.post('/',(req,res)=>{
     });
 });
 
+router.get('/:id', (req,res)=>{
+    Forum.findById(req.params.id,(err,result)=>{
+        if(!err){
+            res.send(result)
+        }
+        else{
+            console.log('Error in retriving Employees :'+JSON.stringify(err,undefined,2))
+        }
+    })
+})
+
 module.exports = router
