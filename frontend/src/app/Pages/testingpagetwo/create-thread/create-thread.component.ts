@@ -28,6 +28,7 @@ export class CreateThreadComponent implements OnInit {
     // console.log(this.threadList)
   }
 
+ attempted = true;
  name = "Banura Hettiarachchi";
 
 onSubmit(){

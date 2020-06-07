@@ -32,8 +32,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
-import { CommentThreadComponent } from './Pages/testingpagetwo/view-thread/comment-thread/comment-thread.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ReplyCommentComponent } from './Pages/testingpagetwo/view-thread/reply-comment/reply-comment.component';
 
 
 
@@ -57,7 +57,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     TestingpagethreeComponent,
     CreateThreadComponent,
     ViewThreadComponent,
-    CommentThreadComponent
+    ReplyCommentComponent,
   ],
   imports: [
     BrowserModule,

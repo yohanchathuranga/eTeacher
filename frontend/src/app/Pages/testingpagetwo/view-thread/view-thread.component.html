@@ -14,6 +14,7 @@
                     <span style="color:rgb(84, 84, 219)">{{getThread.owner}}</span> - <span>{{getThread.timeAgo}}</span>
                 </mat-card-subtitle>
             </mat-card-header>
+            <hr>
             <mat-card-content>
                 <div [innerHTML]="threadBody"></div>
                 <!-- <ng-bind-html
@@ -22,4 +23,32 @@
         </mat-card>
         </div>
       </div>
-</div>
+  </div>
+  <br>
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <!-- <app-comment-thread></app-comment-thread> -->
+              <div class="container-fuild">
+                <div class="input">
+                  <angular-editor [placeholder]="'Reply'" [(ngModel)]="comment.comment" [config]="editorConfig" required></angular-editor>
+                     <div class="float-md-right">
+                        <button class="button button2"  (click)="on(comment)">Reply</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <div *ngFor="let cmt of comments">
+                <span>{{cmt.owner}}</span>: <span>{{cmt.date}}</span><br>
+                <p>{{cmt.comment}}</p>
+                <hr>
+              </div>
+        </div>         
+      </div>
+     
+  </div>

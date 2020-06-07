@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 //const router = express.Router()
 const cors = require('cors')
 
-var forumController = require('./controller/forumController')
+var forumController = require('./controller/forumController');
+var cmtThreadController = require('./controller/cmtThreadController');
 var app = express()
 
 app.use(bodyParser.json())
@@ -36,7 +37,8 @@ app.listen(PORT, () => {
   console.log('Example app listening on port ' + PORT)
 });
 
-app.use('/forums',forumController)
+app.use('/forums',forumController);
+app.use('/comments',cmtThreadController);
 
 
 
