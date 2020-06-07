@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Form, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Forum} from '../models/forum-thread'
 import { Observable } from 'rxjs';
+import { Reply } from '../models/comment'
 
 
 @Injectable({
@@ -10,7 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class FourmServiceService {
 
-baseURL = "http://localhost:3000/forums"; 
+baseURL = "http://localhost:3000/forums";
+baseURL2 = "http://localhost:3000/comments"; 
   constructor(
     private http : HttpClient
   ) { }
@@ -31,6 +33,14 @@ getAll(){
 }
 getThread(id){
   return this.http.get(this.baseURL + '/' + id);
+}
+
+submitCmt(cmt:Reply){
+  return this.http.post(this.baseURL2,cmt);
+}
+
+getComments(id){
+  return this.http.get(this.baseURL2 + '/'+ id);
 }
 
 }

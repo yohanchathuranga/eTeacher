@@ -8,7 +8,7 @@
               <label >Title*</label>
               <input type="text" class="form-control" formControlName="title" required>
               <div
-              *ngIf="formControls.title.errors"
+              *ngIf="attempted && formControls.title.errors"
               class="text-danger"
             >
               <span *ngIf="formControls.title.errors.required">
@@ -20,7 +20,7 @@
                 <label >Body*</label>
                 <angular-editor formControlName="body" [config]="editorConfig" required></angular-editor>
                 <div
-                *ngIf="formControls.body.errors"
+                *ngIf="attempted && formControls.body.errors"
                 class="text-danger"
               >
                 <span *ngIf="formControls.title.errors.required">
