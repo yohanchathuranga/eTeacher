@@ -32,5 +32,19 @@
     background-color: #008CBA;
     color: white;
   }
+ .lable{
+   padding: 0px 12px 0px 6px;
+   font-size: 12px;
+ } 
 
+.mat-button{
+  outline: 0;
+}
+.boder1{
+  margin-left: 16px;
+}
+
+.col{
+  margin: 0px 0px 0px 0px;
+}
  

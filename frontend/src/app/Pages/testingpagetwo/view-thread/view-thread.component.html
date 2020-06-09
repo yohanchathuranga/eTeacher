@@ -6,27 +6,42 @@
             <mat-card-header>
                 <mat-card-title>
                     <span><strong><h3>
-                        {{getThread.title}}
+                        {{getThread?.title}}
                     </h3></strong></span>
                 </mat-card-title>
                 <br>
                 <mat-card-subtitle>
-                    <span style="color:rgb(84, 84, 219)">{{getThread.owner}}</span> - <span>{{getThread.timeAgo}}</span>
+                    <span style="color:rgb(84, 84, 219)">{{getThread?.owner}}</span> - <span>{{getThread?.timeAgo}}</span><br>
+                    <span> {{getThread?.votes}} : Votes</span>
+                   
                 </mat-card-subtitle>
             </mat-card-header>
-            <hr>
             <mat-card-content>
-                <div [innerHTML]="threadBody"></div>
-                <!-- <ng-bind-html
-                ng-bind-html="expression"></ng-bind-html> -->
+               <div class="boder1"><p [innerHTML]="threadBody"></p></div>
             </mat-card-content>
+            <hr>
+            <mat-card-footer>
+         <div class="col">
+             <div>
+            <button mat-button color="primary" aria-label="Example icon button with a home icon" (click)="onChange()">
+                <mat-icon>chat_bubble_outline</mat-icon>Reply
+              </button> 
+              <button mat-button color="primary" aria-label="Example icon button with a home icon" (click)="voteUp(getThread)">
+                <mat-icon>arrow_drop_up</mat-icon>UpVote
+              </button> 
+              <button mat-button color="primary" aria-label="Example icon button with a home icon"(click)="voteDown(getThread)">
+                <mat-icon>arrow_drop_down</mat-icon>DownVote
+              </button> 
+                </div> 
+            </div>
+            </mat-card-footer>
         </mat-card>
         </div>
       </div>
   </div>
   <br>
   <div class="container">
-      <div class="row">
+      <div class="row" *ngIf="open">
           <div class="col">
               <!-- <app-comment-thread></app-comment-thread> -->
               <div class="container-fuild">
@@ -45,7 +60,7 @@
           <div class="col">
               <div *ngFor="let cmt of comments">
                 <span>{{cmt.owner}}</span>: <span>{{cmt.date}}</span><br>
-                <p>{{cmt.comment}}</p>
+                <p [innerHTML]="cmt.comment"></p>
                 <hr>
               </div>
         </div>         

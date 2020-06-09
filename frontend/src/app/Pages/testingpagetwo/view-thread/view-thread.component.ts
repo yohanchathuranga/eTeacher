@@ -24,6 +24,7 @@ export class ViewThreadComponent implements OnInit {
   threadBody : string;
   owner = "Yohan Chathuranga";
   comments : any;
+  open = false;
   
   ngOnInit(): void {
       this.route.params.subscribe(routerParam =>{
@@ -33,113 +34,148 @@ export class ViewThreadComponent implements OnInit {
         this.getThread = res;
         this.timeAgo(this.getThread);
         this.threadBody = this.getThread.body;
-        console.log(this.threadBody);
+        this.updateViwes(this.getThread);
+        this.forumService.setViwes(this.getThread).subscribe(()=>{      
+        });
      });
 
-    this.getComments();
-
+    this.getComments();  
     }
 
-    timeAgo(event:any){
-       event.timeAgo= moment(event.timestamps).fromNow();
-      }
-      editorConfig: AngularEditorConfig = {
-        editable: true,
-          spellcheck: true,
-          height: '150px',
-          minHeight: '0',
-          maxHeight: 'auto',
-          width: 'auto',
-          minWidth: '0',
-          translate: 'yes',
-          enableToolbar: true,
-          showToolbar: true,
-          placeholder: 'Reply',
-          defaultParagraphSeparator: '',
-          defaultFontName: '',
-          defaultFontSize: '',
-          fonts: [
-            {class: 'arial', name: 'Arial'},
-            {class: 'times-new-roman', name: 'Times New Roman'},
-            {class: 'calibri', name: 'Calibri'},
-            {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-          ],
-          customClasses: [
-          {
-            name: 'quote',
-            class: 'quote',
-          },
-          {
-            name: 'redText',
-            class: 'redText'
-          },
-          {
-            name: 'titleText',
-            class: 'titleText',
-            tag: 'h1',
-          },
-        ],
-        sanitize: true,
-        toolbarPosition: 'bottom',
-        toolbarHiddenButtons: [
-          [
-            'redo',    
-            'strikeThrough',
-            'subscript',
-            'superscript',
-            'justifyLeft',
-            'justifyCenter',
-            'justifyRight',
-            'justifyFull',
-            'indent',
-            'outdent',     
-            'heading',
-            'fontName'
-          ],
-          [      
-            'textColor',
-            'backgroundColor',
-            'customClasses',     
-            'unlink',
-            'insertImage',
-            'insertVideo',
-            'insertHorizontalRule',
-            'removeFormat'     
-          ]
-        ]
-      };
-    
-      comment : Reply ={
-        id : "",
-        threadId : "",
-        owner : this.owner,
-        date : new Date,
-        comment : ""
-      }
+timeAgo(event:any){
+    event.timeAgo= moment(event.timestamps).fromNow();
+                 }
+                 
+editorConfig: AngularEditorConfig = {
+  editable: true,
+  spellcheck: true,
+  height: '150px',
+  minHeight: '0',
+  maxHeight: 'auto',
+  width: 'auto',
+  minWidth: '0',
+  translate: 'yes',
+  enableToolbar: true,
+  showToolbar: true,
+  placeholder: 'Reply',
+  defaultParagraphSeparator: '',
+  defaultFontName: '',
+  defaultFontSize: '',
+  fonts: [
+    {class: 'arial', name: 'Arial'},
+    {class: 'times-new-roman', name: 'Times New Roman'},
+    {class: 'calibri', name: 'Calibri'},
+    {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+  ],                
+  customClasses: [
+    {
+      name: 'quote',
+      class: 'quote',
+    },
+    {
+      name: 'redText',
+      class: 'redText'
+    },
+    {
+      name: 'titleText',
+      class: 'titleText',
+      tag: 'h1',
+    },
+  ],
+  sanitize: true,
+  toolbarPosition: 'bottom',
+  toolbarHiddenButtons: [
+    [
+      'redo',    
+      'strikeThrough',
+      'subscript',
+      'superscript',
+      'justifyLeft',
+      'justifyCenter',
+      'justifyRight',
+      'justifyFull',
+      'indent',
+      'outdent',     
+      'heading',
+      'fontName'
+    ],
+    [      
+      'textColor',
+      'backgroundColor',
+      'customClasses',     
+      'unlink',
+      'insertImage',
+      'insertVideo',
+      'insertHorizontalRule',
+      'removeFormat'     
+    ]
+  ]
+};                                
 
-      relodeCmt(){
-        this. comment ={
-          id : "",
-          threadId : "",
-          owner : this.owner,
-          date : new Date,
-          comment : ""
+   
+comment : Reply ={
+    id : "",
+    threadId : "",
+    owner : this.owner,
+    date : new Date,
+    comment : ""
+                 }
+
+relodeCmt(){
+  this. comment ={
+    id : "",
+    threadId : "",
+    owner : this.owner,
+    date : new Date,
+    comment : ""     
         }
-      }
+    }
       
-      on(cmt : Reply){
-        cmt.threadId = this.threadId,
-        this.forumService.submitCmt(cmt).subscribe(()=>{
-        this.getComments();
-        this.relodeCmt();
-        });
+on(cmt : Reply){
+  cmt.threadId = this.threadId,
+  this.forumService.submitCmt(cmt).subscribe(()=>{
+  this.getComments();
+  this.relodeCmt();
+  });    
+}
+getComments(){
+  this.forumService.getComments(this.threadId).subscribe(res=>{
+    this.comments = res;        
+  });    
+}
+
+
+updateViwes(event: any){
+  event.views = event.views + 1;
+  this.getThread = event;
+ }
+
+ onChange(){
+      if(this.open == false){
+        this.open=true;
       }
-      getComments(){
-        this.forumService.getComments(this.threadId).subscribe(res=>{
-          this.comments = res;
-          console.log(this.comments);
-       });
+      else{
+        this.open=false;
       }
-      
+ }
+
+ voteUp(event: any){
+    event.votes = event.votes + 1;
+    this.getThread = event;
+    this.forumService.setVoteup(this.getThread).subscribe((res)=>{
+      this.getThread = res;
+      // console.log(this.getThread);
+    });
+ }
+
+ voteDown(event: any){
+  event.votes = event.votes - 1;
+  this.getThread = event;
+  this.forumService.setVotedown(this.getThread).subscribe((res)=>{  
+    this.getThread =res; 
+    // console.log(this.getThread);    
+  });
+
+}
 
 }

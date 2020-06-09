@@ -19,9 +19,9 @@
           <mat-card class="example-card">
             <mat-card-header>
               <mat-card-title>
-                DISCUSSION FORUMS - 
-              </mat-card-title>   
-              <p>types of forums.</p>
+                <span class="material-icons">forum</span>
+                <span>  DISCUSSION FORUMS </span>
+              </mat-card-title>  
             </mat-card-header>
             <mat-card-content>    
               <ul class="list-group">
@@ -64,12 +64,13 @@
         <div class="container"> 
         <mat-card>
           <mat-card-header>
-            <div class="container">
-            <div class="row">
-              <div class="aling-left">
+            <div class="float-md-left">
             <button class="button button2" (click)="onCreate()">New Thread</button>
-              </div>
-            </div>
+            </div> 
+            <div class="float-md-right">
+              <button mat-icon-button color="primary" (click)="getThreds()">
+                <mat-icon>sync</mat-icon>
+              </button> 
             </div>
           </mat-card-header>
           <mat-card-content>
@@ -78,9 +79,18 @@
             <a href="forum/{{property._id}}" 
             *ngFor="let property of child |paginate: { itemsPerPage: 6, currentPage: p }">
             <li class="list-group-item">
-             <div>
+             <div class="row">
+               <div class="col-8">
                 <h3><strong><span>Title: </span><span>{{property.title}}</span></strong></h3>                   
                 <span>Created by: </span><span>{{property.owner}}</span><span> .{{property.timeAgo}} </span>
+               </div>
+               <div class="col-4">
+                 <div class="row">
+                 <div class="col"><span>{{property.views}}</span><br><span>views</span></div>
+                 <div class="col"> <span>{{property.replies}}</span><br><span>replies</span></div>
+              </div>
+                
+               </div>
              </div> 
                 </li>
            </a>
@@ -93,8 +103,7 @@
       </mat-card>
         </div>
       </mat-tab>
-    
-      <!-- <mat-tab label="create+">
+      <!-- <mat-tab label="+create">
           <app-create-thread (childEvent)="getChlid($event)"></app-create-thread>
       </mat-tab> -->
     </mat-tab-group>
