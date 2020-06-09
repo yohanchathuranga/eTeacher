@@ -34,15 +34,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ReplyCommentComponent } from './Pages/testingpagetwo/view-thread/reply-comment/reply-comment.component';
-
-
-
-
-
-
-
-
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -79,7 +72,9 @@ import { ReplyCommentComponent } from './Pages/testingpagetwo/view-thread/reply-
     NgxPaginationModule,
     MatDialogModule,
     FullCalendarModule,
-    AngularEditorModule
+    AngularEditorModule,
+    MatButtonModule,
+    MatIconModule
    
   ],
   providers: [],

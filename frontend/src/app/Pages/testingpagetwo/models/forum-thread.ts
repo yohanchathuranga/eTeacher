@@ -6,4 +6,6 @@ export interface Forum {
     views: number;
     owner: string;
     timeAgo:string;
+    replies:number;
+    votes:number;
   }

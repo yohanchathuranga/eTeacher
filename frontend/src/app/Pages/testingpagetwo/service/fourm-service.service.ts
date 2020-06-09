@@ -43,4 +43,16 @@ getComments(id){
   return this.http.get(this.baseURL2 + '/'+ id);
 }
 
+setViwes(emp: any){
+  return this.http.put(this.baseURL + '/' + emp._id, emp);
+}
+
+setVoteup(emp:any){
+  return this.http.put(this.baseURL + '/' + emp._id, emp);
+}
+
+setVotedown(emp:any){
+  return this.http.put(this.baseURL + '/' + emp._id, emp);
+}
+
 }

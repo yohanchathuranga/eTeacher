@@ -50,7 +50,7 @@ const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net
 //connect to the database
 mongoose.connect(db, {
   useNewUrlParser: true
-}, err => {
+,useUnifiedTopology: true}, err => {
   if (err) {
     console.error('Error!' + err)
   } else {

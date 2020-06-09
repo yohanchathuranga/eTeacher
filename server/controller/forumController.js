@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+var objectId = require('mongoose').Types.ObjectId
+
 var {Forum} = require('../model/forumModel')
 
 router.get('/',(req,res)=>{
@@ -18,7 +20,9 @@ router.post('/',(req,res)=>{
         timestamps: req.body.timestamps,
         views: req.body.views,
         owner : req.body.owner,
-        timeAgo: req.body.timeAgo
+        timeAgo: req.body.timeAgo,
+        votes : req.body.votes,
+        replies : req.body.replies
     });
     emp.save((err,doc)=>{
         if(!err){res.send(doc);}
@@ -27,14 +31,34 @@ router.post('/',(req,res)=>{
 });
 
 router.get('/:id', (req,res)=>{
-    Forum.findById(req.params.id,(err,result)=>{
+    Forum.findById(req.params.id,(err,doc)=>{
         if(!err){
-            res.send(result)
+            res.send(doc)
         }
         else{
             console.log('Error in retriving Employees :'+JSON.stringify(err,undefined,2))
         }
-    })
+    });
+});
+
+router.put('/:id',(req,res)=>{
+    if(!objectId.isValid(req.params.id))
+    return res.status(400).send('no recode with given id : ${req.params.id}');
+    var emp = {
+        title : req.body.title,
+        body : req.body.body,
+        timestamps: req.body.timestamps,
+        views: req.body.views,
+        owner : req.body.owner,
+        timeAgo: req.body.timeAgo,
+        votes : req.body.votes,
+        replies : req.body.replies
+    };
+    Forum.findByIdAndUpdate(req.params.id,{$set:emp}, {new:true},(err,doc)=>{
+        if(!err){res.send(doc);}
+        else{console.log('Error in employee update :'+JSON.stringify(err,undefined,2))
+    }
+    });
 })
 
 module.exports = router

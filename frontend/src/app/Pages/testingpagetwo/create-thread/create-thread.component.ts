@@ -17,7 +17,7 @@ export class CreateThreadComponent implements OnInit {
 
   constructor( public forumService : FourmServiceService, 
      private matdialogRef:MatDialogRef<CreateThreadComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Forum) { }
+    @Inject(MAT_DIALOG_DATA) public data: Forum) {}
 
   formControls = this.forumService.form.controls;
   public threadList: any;
@@ -39,12 +39,14 @@ onSubmit(){
     timestamps: new Date(),
     views: 0,
     owner:this.name,
-    timeAgo:''  
+    timeAgo:'',
+    replies:0,
+    votes:0  
   }
  //console.log(emp);
   this.forumService.regForum(emp).subscribe(()=>{
     this.forumService.form.reset();
-   // this.getThreds();
+    this.getThreds();
   });
   this.onNoClick();
   

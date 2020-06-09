@@ -48,6 +48,14 @@ timeAgo(event){
       width: '50%'
     });
   }
+
+  getThreds(){
+    this.forumService.getAll().subscribe((res)=>{
+      this.child = res;
+    });
+}
+
+
 }
 
 
