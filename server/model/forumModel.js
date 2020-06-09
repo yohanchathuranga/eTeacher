@@ -7,6 +7,7 @@ const Forum = mongoose.model('Forum',{
     views: Number,
     replies: Number,
     owner : String,
-    timeAgo: String
+    timeAgo: String,
+    votes : Number
 });
 module.exports={Forum};
