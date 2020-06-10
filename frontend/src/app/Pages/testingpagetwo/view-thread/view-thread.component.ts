@@ -25,6 +25,8 @@ export class ViewThreadComponent implements OnInit {
   owner = "Yohan Chathuranga";
   comments : any;
   open = false;
+  selectCommentId : string;
+  viewReply = false;
   
   ngOnInit(): void {
       this.route.params.subscribe(routerParam =>{
@@ -140,7 +142,7 @@ on(cmt : Reply){
 }
 getComments(){
   this.forumService.getComments(this.threadId).subscribe(res=>{
-    this.comments = res;        
+    this.comments = res;      
   });    
 }
 
@@ -175,7 +177,14 @@ updateViwes(event: any){
     this.getThread =res; 
     // console.log(this.getThread);    
   });
+}
 
+getCommentId(ID:string){
+  this.selectCommentId = ID;
+}
+
+test(){
+  this.viewReply = !this.viewReply;
 }
 
 }

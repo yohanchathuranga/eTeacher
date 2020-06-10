@@ -6,6 +6,7 @@ const cors = require('cors')
 
 var forumController = require('./controller/forumController');
 var cmtThreadController = require('./controller/cmtThreadController');
+var replycController = require('./controller/replycController');
 var app = express()
 
 app.use(bodyParser.json())
@@ -39,6 +40,7 @@ app.listen(PORT, () => {
 
 app.use('/forums',forumController);
 app.use('/comments',cmtThreadController);
+app.use('/replyComments',replycController);
 
 
 

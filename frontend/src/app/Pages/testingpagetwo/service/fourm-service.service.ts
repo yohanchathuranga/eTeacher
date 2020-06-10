@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {Forum} from '../models/forum-thread'
 import { Observable } from 'rxjs';
 import { Reply } from '../models/comment'
+import {replyComment} from '../models/replyComment'
 
 
 @Injectable({
@@ -13,6 +14,7 @@ export class FourmServiceService {
 
 baseURL = "http://localhost:3000/forums";
 baseURL2 = "http://localhost:3000/comments"; 
+baseURL3 = "http://localhost:3000/replyComments"
   constructor(
     private http : HttpClient
   ) { }
@@ -53,6 +55,14 @@ setVoteup(emp:any){
 
 setVotedown(emp:any){
   return this.http.put(this.baseURL + '/' + emp._id, emp);
+}
+
+setReplyComment(replyComment : replyComment){
+  return this.http.post(this.baseURL3, replyComment)
+}
+
+getReplyComments(id){
+  return this.http.get(this.baseURL3 + '/' + id);
 }
 
 }

@@ -61,7 +61,15 @@
               <div *ngFor="let cmt of comments">
                 <span>{{cmt.owner}}</span>: <span>{{cmt.date}}</span><br>
                 <p [innerHTML]="cmt.comment"></p>
+               <button class="button" (click)="viewcReply = cmt._id; test(); getCommentId(cmt._id)"> Reply
+                </button>
+                <ng-template [ngIf] = "selectCommentId == cmt._id && viewReply">
+                    <div>
+                        <app-reply-comment [parentdocId]="selectCommentId"></app-reply-comment>
+                    </div>
+                </ng-template>
                 <hr>
+             
               </div>
         </div>         
       </div>

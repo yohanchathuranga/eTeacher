@@ -1,1 +1,16 @@
-<p>reply-comment works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div *ngFor="let reply of replyComments">
+                <span>{{reply.owner}}</span>: <span>{{reply.date}}</span><br>
+                <p [innerHTML]="reply.comment"></p>
+            </div>
+        </div>
+     </div>
+     <div class="input">
+        <angular-editor [placeholder]="'Reply'" [(ngModel)]="rComment.comment" [config]="editorConfig" required></angular-editor>
+        <div class="float-md-right">
+            <button class="button button2"  (click)="onComment(rComment)">Reply</button>
+        </div>
+     </div>       
+</div>
