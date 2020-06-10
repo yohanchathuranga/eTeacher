@@ -51,8 +51,8 @@ timeAgo(event){
 
   getThreds(){
     this.forumService.getAll().subscribe((res)=>{
-      this.child = res;
-    });
+      this.timeAgo(res);
+     });
 }
 
 

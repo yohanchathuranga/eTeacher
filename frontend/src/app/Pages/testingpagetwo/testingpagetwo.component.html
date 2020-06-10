@@ -65,12 +65,12 @@
         <mat-card>
           <mat-card-header>
             <div class="float-md-left">
-            <button class="button button2" (click)="onCreate()">New Thread</button>
+            <button mat-icon-button (click)="onCreate()" title="Add new Thread"><mat-icon>post_add</mat-icon></button>
             </div> 
             <div class="float-md-right">
-              <button mat-icon-button color="primary" (click)="getThreds()">
-                <mat-icon>sync</mat-icon>
-              </button> 
+              <button mat-icon-button color="primary" (click)="getThreds()" title="Refresh">
+                <mat-icon>refresh</mat-icon>
+              </button>
             </div>
           </mat-card-header>
           <mat-card-content>
