@@ -15,6 +15,10 @@ import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalComponent } from './modal/modal.component';
 import { NgbdModalContent } from './modal/modal.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NewbookingComponent } from './bookings/newbooking/newbooking.component';
 
 @NgModule({
     imports: [
@@ -34,7 +38,11 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
         NotificationComponent,
         NgbdModalComponent,
         NgbdModalContent,
-        SchedulerComponent
+        SchedulerComponent,
+        LoginComponent,
+        RegisterComponent,
+        ProfileComponent,
+        NewbookingComponent
     ],
     entryComponents: [NgbdModalContent],
     exports:[ ComponentsComponent ]

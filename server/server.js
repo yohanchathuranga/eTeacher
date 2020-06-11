@@ -22,6 +22,13 @@ app.use('/user', user);
 app.use('/booking', booking);
 
 
+app.use(cors());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,Content-Type, Accept,Authorization");
+  next();
+});
 
 app.get('/', (req, res) => {
   res.send("hello world");
@@ -37,7 +44,7 @@ app.listen(PORT, () => {
 const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net/E-teacher?retryWrites=true&w=majority"
 
 //setup cors
-app.use(cors())
+
 
 //connect to the database
 mongoose.connect(db, {
@@ -58,13 +65,13 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'secret';
 
 passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
-  User.findUserbyId({_id: jwt_payload._doc._id}, function (err, user) {
+  User.findUserbyId({ _id: jwt_payload._doc._id }, function (err, user) {
     if (err) {
       return done(err, false);
     }
     if (user) {
       return done(null, user);
-    } else { 
+    } else {
       return done(null, false);
       // or you could create a new account
     }
