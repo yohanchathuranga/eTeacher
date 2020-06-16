@@ -3,6 +3,7 @@
     <div class="row">
         <div class="col">
         <mat-card>
+            <span class="badge badge-pill badge-dark">Student</span>
             <mat-card-header>
                 <mat-card-title>
                     <span><strong><h3>
@@ -56,22 +57,16 @@
       </div>
   </div>
   <div class="container">
-      <div class="row">
-          <div class="col">
-              <div *ngFor="let cmt of comments">
-                <span>{{cmt.owner}}</span>: <span>{{cmt.date}}</span><br>
-                <p [innerHTML]="cmt.comment"></p>
-               <button class="button" (click)="viewcReply = cmt._id; test(); getCommentId(cmt._id)"> Reply
-                </button>
-                <ng-template [ngIf] = "selectCommentId == cmt._id && viewReply">
-                    <div>
-                        <app-reply-comment [parentdocId]="selectCommentId"></app-reply-comment>
-                    </div>
-                </ng-template>
-                <hr>
-             
-              </div>
-        </div>         
-      </div>
-     
-  </div>
+    <div class="row" *ngFor="let cmt of comments">
+        <div class="col">
+            <span>{{cmt.owner}}</span>: <span>{{cmt.date}}</span><br>
+            <p [innerHTML]="cmt.comment"></p>
+            <button mat-flat-button color="primary" (click)="viewcReply = cmt._id; test(); getCommentId(cmt._id)"> Reply
+            </button>
+                <ng-template [ngIf] = "selectCommentId == cmt._id && viewReply">                
+                        <app-reply-comment [parentdocId]="selectCommentId"></app-reply-comment>                
+                </ng-template><br>
+                <hr>    
+        </div>     
+    </div>
+</div>

@@ -12,6 +12,7 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 // import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
 import {TestingpagetwoComponent} from './Pages/testingpagetwo/testingpagetwo.component';
 import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
+import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
 
 
 
@@ -25,7 +26,9 @@ const routes: Routes =[
     { path: 'nucleoicons',      component: NucleoiconsComponent },
     // { path: 'testingpage',      component: TestingPageComponent }
     { path: 'forum',      component: TestingpagetwoComponent },
-    { path: 'forum/:id',      component: ViewThreadComponent }
+    { path: 'forum/:id',      component: ViewThreadComponent },
+    { path: ':type' , component:ForumTypeComponent},
+    { path: ':type/:id', component: ViewThreadComponent}
 
 ];
 

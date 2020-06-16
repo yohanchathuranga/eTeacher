@@ -46,6 +46,7 @@
     "ng2-nouislider": "1.7.12",
     "ngx": "^2.4.0",
     "ngx-pagination": "^5.0.0",
+    "ngx-toastr": "^12.1.0",
     "nouislider": "9.2.0",
     "popper.js": "1.14.4",
     "rxjs": "6.5.4",
