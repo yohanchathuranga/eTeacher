@@ -10,7 +10,7 @@
      <div class="input">
         <angular-editor [placeholder]="'Reply'" [(ngModel)]="rComment.comment" [config]="editorConfig" required></angular-editor>
         <div class="float-md-right">
-            <button class="button button2"  (click)="onComment(rComment)">Reply</button>
+            <button mat-flat-button color="primary"  (click)="onComment(rComment)">Reply</button>
         </div>
      </div>       
 </div>

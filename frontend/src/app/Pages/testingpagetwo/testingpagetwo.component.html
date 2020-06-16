@@ -1,18 +1,28 @@
 <div class="container">
-    <mat-toolbar>
-    <mat-toolbar-row>
-        <span class="text-center"><h3><strong>Discussion Forums!</strong></h3></span>
+    <!-- <mat-toolbar>
+    <mat-toolbar-row> -->
+      <div class="alert alert-primary" role="alert"  style="text-align: center; font-size: 24px;">  
+        Discussion Forums!
+        <!-- <div class="alert alert-primary" role="alert"  style="text-align: center; font-size: 18px;"> -->
+         <div style="text-align: center; font-size: 15px;"><span >Get help and discuss course material with the community.</span> 
+         </div>
+          <!-- </div> -->
+        <!-- <span style="text-align: center;">Get help and discuss course material with the community.</span> -->
+      </div>
+     
+      <!-- </mat-toolbar-row>
+      <mat-toolbar-row> -->
        
-      </mat-toolbar-row>
-      <mat-toolbar-row>
-        <span class="text-center">Get help and discuss course material with the community.</span>
-       
-      </mat-toolbar-row>
-    </mat-toolbar>
+      <!-- </mat-toolbar-row>
+    </mat-toolbar> -->
     <br>
     <div class="row">
       <div class="col-sm-8">
-       
+        <div class="d-flex justify-content-center" *ngIf="onSppiner">
+          <div class="spinner-border m-5 text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
     <mat-tab-group>
       <mat-tab label="Forums">
         <div class="container">
@@ -20,38 +30,38 @@
             <mat-card-header>
               <mat-card-title>
                 <span class="material-icons">forum</span>
-                <span>  DISCUSSION FORUMS </span>
+                <span>DISCUSSION FORUMS</span>
               </mat-card-title>  
             </mat-card-header>
             <mat-card-content>    
               <ul class="list-group">
-              <a href=""><li class="list-group-item">
+              <a href="{{types[0]}}"><li class="list-group-item">
                 <div class="col-sm-9">
-                  <h4>Genaral Discussions</h4>            
+                  <h4><strong> Genaral Discussions</strong></h4>            
                   <p>Use this forum to discuss things related to the course that dont belong to any other forums.</p>
                 </div>
               </li></a>
-              <a href=""><li class="list-group-item">
+              <a href="{{types[1]}}"><li class="list-group-item">
                 <div class="col-sm-9">
-                  <h4>Science</h4>            
+                  <h4><strong> Science</strong></h4>            
                   <p>This forum for any science subject related discussions.  </p>
                 </div>
               </li></a>
-              <a href=""><li class="list-group-item">
+              <a href="{{types[2]}}"><li class="list-group-item">
                 <div class="col-sm-9">
-                  <h4>Maths</h4>            
+                  <h4><strong> Maths</strong></h4>            
                   <p>This forum for any Maths subject related discussions. </p>
                 </div>
               </li></a>
-              <a href=""><li class="list-group-item">
+              <a href="{{types[3]}}"><li class="list-group-item">
                 <div class="col-sm-9">
-                  <h4>Computer Science</h4>            
+                  <h4><strong> Computer Science</strong></h4>            
                   <p>This forum for any computer science subject related discussions. </p>
                 </div>
               </li></a>
-              <a href=""><li class="list-group-item">
+              <a href="{{types[4]}}"><li class="list-group-item">
                 <div class="col-sm-9">
-                  <h4>Object oriented Programing</h4>            
+                  <h4><strong> Object oriented Programing</strong></h4>            
                   <p>This forum for any Object oriented Programing subject related discussions. </p>
                 </div>
               </li></a>  
@@ -64,19 +74,20 @@
         <div class="container"> 
         <mat-card>
           <mat-card-header>
-            <div class="float-md-left">
-            <button mat-icon-button (click)="onCreate()" title="Add new Thread"><mat-icon>post_add</mat-icon></button>
-            </div> 
             <div class="float-md-right">
               <button mat-icon-button color="primary" (click)="getThreds()" title="Refresh">
                 <mat-icon>refresh</mat-icon>
               </button>
             </div>
+            <div style="text-align:right; width:100%; padding:0;">
+            <button mat-flat-button color="primary" (click)="onCreate()" title="Add new Thread"><mat-icon>post_add</mat-icon>New thread</button>
+            </div> 
+        
           </mat-card-header>
           <mat-card-content>
-        <div >
+        <div *ngIf="!onSppiner">
           <ul >
-            <a href="forum/{{property._id}}" 
+            <a (click) = "onSelect(property)" 
             *ngFor="let property of child |paginate: { itemsPerPage: 6, currentPage: p }">
             <li class="list-group-item">
              <div class="row">
@@ -95,7 +106,7 @@
                 </li>
            </a>
          </ul>
-         <div class="container-2">
+         <div style="text-align:right; width:100%; padding:0;">
          <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </div>
         </div>
@@ -103,16 +114,13 @@
       </mat-card>
         </div>
       </mat-tab>
-      <!-- <mat-tab label="+create">
-          <app-create-thread (childEvent)="getChlid($event)"></app-create-thread>
-      </mat-tab> -->
     </mat-tab-group>
         
       </div>
       <div class="col-sm-4">        
         <mat-card>
           <div>
-          <mat-card-header>DESCRIPTION!</mat-card-header>
+          <mat-card-header><strong>DESCRIPTION!</strong></mat-card-header>
           <hr>
           <mat-card-content>
             <p>Welcome to the E-teacher discussion forums! Ask questions, debate ideas, and find classmates who share your goals. Browse popular threads below or other forums in the sidebar.</p>  
@@ -123,7 +131,7 @@
         <br>
         <mat-card>
           <mat-card-header>
-            MODERATORS
+           <strong>MODERATORS</strong> 
           </mat-card-header>
           <hr>
           <mat-card-content>

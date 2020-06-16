@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import {MatDialog} from '@angular/material/dialog';
 import { CreateThreadComponent } from './create-thread/create-thread.component';
 import {Forum} from './models/forum-thread';
+import { Router } from '@angular/router';
 
 
 
@@ -18,22 +19,22 @@ export class TestingpagetwoComponent implements OnInit {
 
  child : any;
  p: number = 1;
- timeArray =[];
+ onSppiner = true;
+ types = ["Genaral Discussions","Science","Maths","Computer Science","Object oriented Programing"];
+ 
 
 constructor(private forumService: FourmServiceService,
-  private matDialog: MatDialog) { }
+  private matDialog: MatDialog,
+  private router : Router) { }
 
   ngOnInit(): void {
     this.forumService.getAll().subscribe( res=>{
       this.child = res;
-      this.timeAgo(this.child)
+      // console.log(res)
+      this.timeAgo(this.child);
+      this.onSppiner = !this.onSppiner;
     });
   }
-// getChlid(event:any){
- 
-//   this.child = event;
-  
-// }
 
 timeAgo(event){
   let list = event;
@@ -43,6 +44,10 @@ timeAgo(event){
   this.child = list
   }
 
+  onSelect(property){
+      this.router.navigate(['/forum',property._id])
+  }
+
   onCreate(){
     this.matDialog.open(CreateThreadComponent,{
       width: '50%'
@@ -50,9 +55,12 @@ timeAgo(event){
   }
 
   getThreds(){
+    this.onSppiner = true;
     this.forumService.getAll().subscribe((res)=>{
       this.timeAgo(res);
+      this.onSppiner = !this.onSppiner;
      });
+   
 }
 
 

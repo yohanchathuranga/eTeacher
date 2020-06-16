@@ -17,6 +17,7 @@ router.post('/',(req,res)=>{
     var emp = Forum({
         title : req.body.title,
         body : req.body.body,
+        type : req.body.type,
         timestamps: req.body.timestamps,
         views: req.body.views,
         owner : req.body.owner,
@@ -47,6 +48,7 @@ router.put('/:id',(req,res)=>{
     var emp = {
         title : req.body.title,
         body : req.body.body,
+        type : req.body.type,
         timestamps: req.body.timestamps,
         views: req.body.views,
         owner : req.body.owner,
@@ -59,6 +61,6 @@ router.put('/:id',(req,res)=>{
         else{console.log('Error in employee update :'+JSON.stringify(err,undefined,2))
     }
     });
-})
+});
 
 module.exports = router

@@ -36,6 +36,13 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ReplyCommentComponent } from './Pages/testingpagetwo/view-thread/reply-comment/reply-comment.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSelectModule} from '@angular/material/select';
+import { ToastrModule } from 'ngx-toastr';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
+
+
 
 
 
@@ -51,6 +58,7 @@ import {MatIconModule} from '@angular/material/icon';
     CreateThreadComponent,
     ViewThreadComponent,
     ReplyCommentComponent,
+    ForumTypeComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +82,11 @@ import {MatIconModule} from '@angular/material/icon';
     FullCalendarModule,
     AngularEditorModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    ToastrModule.forRoot(),
+    MatSnackBarModule
    
   ],
   providers: [],

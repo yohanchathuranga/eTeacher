@@ -64,3 +64,19 @@ li {
 a:link {
   text-decoration: none;
 }
+a,
+a label {
+    cursor: pointer;
+}
+
+/* snack-bar-container.success{
+  background-color: aqua;
+  color:white;
+}
+snack-bar-container.notification simple-snack-bar{
+  font-size: 18px !important;
+  font-weight: bold;
+} */
+/* .success{
+  background-color: rgb(24, 226, 57);
+} */
