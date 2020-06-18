@@ -16,7 +16,7 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
   "dependencies": {
-   "@angular-devkit/schematics": "^9.1.7",
+    "@angular-devkit/schematics": "^9.1.7",
     "@angular/cdk": "^9.2.4",
     "@angular/animations": "9.1.9",
     "@angular/common": "9.1.9",
