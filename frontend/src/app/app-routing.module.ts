@@ -7,6 +7,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ComponentsComponent } from './components/components.component';
 import {NewbookingComponent } from './components/bookings/newbooking/newbooking.component';
+import {TeacherbookingsComponent } from './components/bookings/teacherbookings/teacherbookings.component';
+import {UserbookingsComponent } from './components/bookings/userbookings/userbookings.component';
 import { LandingComponent } from './examples/landing/landing.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 
@@ -16,6 +18,8 @@ const routes: Routes =[
     { path: 'scheduler',        component: SchedulerComponent },
     { path: 'profile',     component: ProfileComponent },
     { path: 'newbooking',     component: NewbookingComponent },
+    { path: 'teacherbooking',     component: TeacherbookingsComponent },
+    { path: 'userbooking',     component: UserbookingsComponent },
     { path: 'login',           component: LoginComponent },
     { path: 'register',          component: RegisterComponent },
     

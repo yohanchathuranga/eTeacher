@@ -1,0 +1,156 @@
+<div class="row" style="justify-content: center; align-items: center;">
+   <h2>My Bookings</h2>
+</div>
+<hr>
+<div class="row" style="padding: 50px;border: 5px solid gray; margin: 15px; background-color: rgb(181, 187, 192);">
+   <div class="col-sm-3"
+      style="border: 2px solid gray; padding: 10px; text-align: center; background-color: lightgrey;">
+
+      <h2 style="text-align: center;">Instructor Details</h2>
+      <form #form="ngForm" (ngSubmit)="onSubmitAddVideo(form.value)" class="well">
+         <div class="form-group">
+            <label>Name : Kasun</label>
+         </div>
+         <div class="form-group">
+            <label>Subject : Physics</label>
+         </div>
+         <div class="form-group">
+            <label>Email : k@gmail.com</label>
+         </div>
+         <div class="form-group">
+            <label>Rating : 4.7/5</label>
+         </div>
+         <div class="form-group">
+            <label>Qualification : University Student</label>
+         </div>
+         <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+
+      <div style="padding-top: 50px;">
+         <h1>
+            You have <div style="color: mediumblue; text-align: center; font-weight: bold;">{{bookingcount}} </div>
+            Bookings Today
+         </h1>
+      </div>
+
+   </div>
+   <div *ngIf="user">
+      <div>{{user.name}}</div>
+
+   </div>
+
+   <div class="col-sm-9" style="border: 2px solid gray; padding: 10px;">
+      <ngb-tabset [destroyOnHide]="false" activeIds="ngb-tab-1" type="pills" (selectChange)='onSelectChange($event)'>
+         <ngb-tab title="Confirmed Bookings">
+            <ng-template ngbTabContent>
+   
+               <table class="table table-striped table-secondary">
+                  <tr>
+                     <th>Date</th>
+                     <th> Time</th>
+                     <th>Subject</th>
+                     <th>Status</th>
+                     <th></th>
+                  </tr>
+                  <tr>
+                     <h3>Confirmed Bookings</h3>
+                  </tr>
+                  <ng-container
+                     *ngFor="let booking of bookings | slice: (conpage-1) * conpageSize : (conpage-1) * conpageSize + conpageSize">
+                     <tr *ngIf="booking.status=='confirm'">
+   
+                        <td>{{booking.date}}</td>
+                        <td>{{booking.start| date:'shortTime'}}</td>
+                        <td>{{booking.subject}}</td>
+                        <td>{{booking.status}}</td>
+                        <td><button class="btn btn-info" (click)="onSelect(booking)">View</button></td>
+   
+                     </tr>
+                  </ng-container>
+   
+               </table>
+               <ngb-pagination [collectionSize]="confirmsize" [(page)]="conpage" aria-label="Default pagination"
+                  [pageSize]="conpageSize">
+               </ngb-pagination>
+   
+            </ng-template>
+         </ngb-tab>
+         <ngb-tab title="Pending Bookings">
+            <ng-template ngbTabContent>
+               <table class="table table-striped table-secondary">
+                  <tr>
+                     <th>Date</th>
+                     <th> Time</th>
+                     <th>Subject</th>
+                     <th>Status</th>
+                     <th></th>
+                  </tr>
+   
+                  <tr>
+                     <h3>Pending Bookings</h3>
+                  </tr>
+                  <ng-container
+                     *ngFor="let booking of bookings | slice: (penpage-1) * penpageSize : (penpage-1) * penpageSize + penpageSize ">
+                     <tr *ngIf="booking.status=='pending'">
+                        <td>{{booking.date}}</td>
+                        <td>{{booking.start| date:'shortTime'}}</td>
+                        <td>{{booking.subject}}</td>
+                        <td>{{booking.status}}</td>
+                        <td><button class="btn btn-info" (click)="onSelect(booking)">View</button></td>
+   
+                     </tr>
+                  </ng-container>
+   
+               </table>
+               <ngb-pagination [collectionSize]="pendingsize" [(page)]="penpage"  aria-label="Default pagination"
+                  [pageSize]="penpageSize" >
+               </ngb-pagination>
+         
+            </ng-template>
+         </ngb-tab>
+         <ngb-tab title="Simple3">
+            <ng-template ngbTabContent>
+               <div>
+                  <div class='app'>
+                    <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" 
+                    theme="true"
+                    [weekends]="true" 
+                    [header]="{
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                      }"
+                    deepChangeDetection="true"
+                    [events]="calendarEvents"
+                    minTime= "05:00:00"
+                    maxTime="23:00:00"
+                    navLinks="true"
+                    ([options])="options"
+                    businessHours=
+                   " {
+                            start: '08:00:00',
+                            end:   '18:00:00',
+                            dow: [ 1, 2, 3, 4, 5]
+                    }"
+                    eventRender="eventRender(info,element)"
+                    validRange= "{
+                      start: '2017-05-01',
+                      end: '2021-06-01'
+                    }"
+                    
+                    
+                  ></full-calendar>
+                  </div>
+                </div>
+            </ng-template>
+         </ngb-tab>
+      </ngb-tabset>
+   </div>
+   <div>
+      <app-bookingdetailuser [booking]="SelectedBooking">
+      </app-bookingdetailuser>
+   </div>
+
+
+</div>
+

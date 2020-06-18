@@ -19,6 +19,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewbookingComponent } from './bookings/newbooking/newbooking.component';
+import { UserbookingsComponent } from './bookings/userbookings/userbookings.component';
+import { TeacherbookingsComponent } from './bookings/teacherbookings/teacherbookings.component';
+import { BookingdetailteacherComponent } from './bookings/bookingdetailteacher/bookingdetailteacher.component';
+import { BookingdetailuserComponent } from './bookings/bookingdetailuser/bookingdetailuser.component';
 
 @NgModule({
     imports: [
@@ -42,7 +46,11 @@ import { NewbookingComponent } from './bookings/newbooking/newbooking.component'
         LoginComponent,
         RegisterComponent,
         ProfileComponent,
-        NewbookingComponent
+        NewbookingComponent,
+        UserbookingsComponent,
+        TeacherbookingsComponent,
+        BookingdetailteacherComponent,
+        BookingdetailuserComponent
     ],
     entryComponents: [NgbdModalContent],
     exports:[ ComponentsComponent ]
