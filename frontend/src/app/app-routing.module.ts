@@ -37,7 +37,7 @@ const routes: Routes =[
     { path: 'forum/:id',      component: ViewThreadComponent },
     { path: ':type' , component:ForumTypeComponent},
     { path: ':type/:id', component: ViewThreadComponent}
-    
+
 ];
 
 @NgModule({
