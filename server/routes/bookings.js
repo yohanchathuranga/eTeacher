@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router();
 const mongoose = require('mongoose');
 const Booking = require('../models/booking')
-const server = require('../server')
+const server = require('../server');
+const { exec } = require('child_process');
 mongoose.set('useFindAndModify', false);
 
 router.post("/newbooking", function (req, res) {
@@ -52,9 +53,37 @@ router.get('/booking', function (req, res) {
         });
 });
 
-//view booking by date
-router.get('/bookingbydate', function (req, res) {
-    const date = req.body.date;
+//view booking by date user
+router.get('/bookingbydateuser', function (req, res) {
+    const date = req.query.date;
+    const studentid=req.query.studentid
+    console.log('Get request for a bookings'+date);
+    Booking.find({date: date,studentid:studentid}).sort({date:-1}).exec(function(err, bookings) {
+        if (err) {
+            console.log("Error retrieving")
+        } else {
+            res.json(bookings);
+        }
+      });
+});
+
+//view booking by date teacher
+router.get('/bookingbydateteacher', function (req, res) {
+    const date = req.query.date;
+    const teacherid=req.query.teacherid
+    console.log('Get request for a bookings'+date);
+    Booking.find({date: date,teacherid:teacherid}, function(err, bookings) {
+        if (err) {
+            console.log("Error retrieving")
+        } else {
+            res.json(bookings);
+        }
+      });
+});
+
+//booking count date
+router.get('/bookingbydaycount:date', function (req, res) {
+    const date = req.params.date;
     console.log('Get request for a bookings'+date);
     Booking.find({date: date}, function(err, bookings) {
         if (err) {
@@ -66,10 +95,11 @@ router.get('/bookingbydate', function (req, res) {
 });
 
 //view bookings by teacher
-router.get('/bookingbyteacher', function (req, res) {
-    const teacherid = req.body.teacherid;
-    console.log('Get request for a bookings'+teacherid);
-    Booking.find({teacherid: teacherid}, function(err, bookings) {
+router.get('/bookingbyteacher:teacherid', function (req, res) {
+    const teacherid = req.params.teacherid;
+    const sort1={date:-1}
+    console.log('Get request for a bookings '+teacherid);
+    Booking.find({teacherid: teacherid}).sort(sort1).exec(function(err, bookings) {
         if (err) {
             console.log("Error retrieving")
         } else {
@@ -79,10 +109,10 @@ router.get('/bookingbyteacher', function (req, res) {
 });
 
 //view bookings by student
-router.get('/bookingbystudent', function (req, res) {
-    const studentid = req.body.studentid;
+router.get('/bookingbystudent/:studentid', function (req, res) {
+    const studentid = req.params.studentid;
     console.log('Get request for a bookings'+studentid);
-    Booking.find({studentid: studentid}, function(err, bookings) {
+    Booking.find({studentid: studentid}).sort({date:-1,start:-1}).exec(function(err, bookings) {
         if (err) {
             console.log("Error retrieving")
         } else {
@@ -92,9 +122,25 @@ router.get('/bookingbystudent', function (req, res) {
 });
 
 
-//update video
-router.put('/editbooking', function (req, res) {
-    const id = req.body.id; 
+router.get('/bookingbyteacherdate:booking', function (req, res) {
+    const teacherid = req.params.booking.teacherid;
+    const date=req.params.booking.date;
+    console.log('Get request for a bookingsq ');
+    Booking.find({teacherid: teacherid,date:date}).exec(function(err, bookings) {
+        if (err) {
+            console.log("Error retrieving")
+        } else {
+            res.json(bookings);
+        }
+      });
+});
+
+
+
+
+//update booking
+router.put('/editbooking:id', function (req, res) {
+    const id = req.params.id; 
     console.log('Update a booking');
     Booking.findByIdAndUpdate(id,
         {
@@ -122,10 +168,10 @@ router.put('/editbooking', function (req, res) {
 });
 
 //delete booking
-router.delete('/deletebooking',function(req,res){
-    const id = req.body.id; 
+router.delete('/deletebooking:id',function(req,res){
+    const id = req.params.id; 
     console.log('delete booking');
-    Video.findByIdAndRemove(id,
+    Booking.findByIdAndRemove(id,
         function(err,deletedBooking){
             if(err){
                res.send('Error delete Booking');

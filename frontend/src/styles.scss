@@ -1,3 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
-// @import '~@fullcalendar/core/main.css';  
-// @import '~@fullcalendar/daygrid/main.css';  
+@import '~@fullcalendar/core/main.css';  
+@import '~@fullcalendar/daygrid/main.css'; 
+
+// snack-bar-container.success{
+//     background-color: green($color: #14ec5c);
+//     color: white;
+// }
+// snack-bar-container.notification simple-snack-bar{
+//     font-size: 18px !important;
+//     font-weight: bold;
+// }
+// .success{
+//     background-color: rgb(24, 226, 57);
+//  }
+::ng-deep snack-bar-container.success{
+    background: yellow;
+  }
+  ::ng-deep .custom-class .mat-simple-snackbar {
+    color: green;
+  }
