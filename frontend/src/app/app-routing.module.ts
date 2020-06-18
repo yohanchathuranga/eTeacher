@@ -16,6 +16,8 @@ import {TestingpagetwoComponent} from './Pages/testingpagetwo/testingpagetwo.com
 import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
 import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
 
+
+
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home',             component: ComponentsComponent},
