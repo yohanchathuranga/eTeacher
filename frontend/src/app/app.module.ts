@@ -83,7 +83,6 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     ViewThreadComponent,
     ReplyCommentComponent,
     ForumTypeComponent,
-    
   ],
   imports: [
     BrowserModule,
