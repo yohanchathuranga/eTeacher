@@ -59,6 +59,16 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     ViewThreadComponent,
     ReplyCommentComponent,
     ForumTypeComponent,
+    SchedulerComponent,
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent,
+    NewbookingComponent,
+    ComponentsComponent,
+    UserbookingsComponent,
+    TeacherbookingsComponent,
+    BookingdetailteacherComponent,
+    BookingdetailuserComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +78,10 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     ComponentsModule,
     ExamplesModule,
     AppRoutingModule,
+    FullCalendarModule,
+    HttpModule,
+    HttpClientModule,
+    NgxPaginationModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatToolbarModule,
@@ -89,7 +103,7 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     MatSnackBarModule
    
   ],
-  providers: [],
+  providers: [UserService,BookingService,{provide: module, useClass: UserService}],
   bootstrap: [AppComponent],
   entryComponents: [
     CreateThreadComponent
