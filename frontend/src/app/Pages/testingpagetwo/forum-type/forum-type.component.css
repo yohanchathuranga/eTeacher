@@ -1,0 +1,16 @@
+
+li:hover {
+    background-color: rgb(236, 234, 234);
+  }
+  
+  li {
+   
+    color: rgb(0, 0, 0);
+  }
+a:link {
+    text-decoration: none;
+  }
+  a,
+  a label {
+      cursor: pointer;
+  }

@@ -1,1 +1,144 @@
-<p>this is testing page two!</p>
+<div class="container">
+    <!-- <mat-toolbar>
+    <mat-toolbar-row> -->
+      <div class="alert alert-primary" role="alert"  style="text-align: center; font-size: 24px;">  
+        Discussion Forums!
+        <!-- <div class="alert alert-primary" role="alert"  style="text-align: center; font-size: 18px;"> -->
+         <div style="text-align: center; font-size: 15px;"><span >Get help and discuss course material with the community.</span> 
+         </div>
+          <!-- </div> -->
+        <!-- <span style="text-align: center;">Get help and discuss course material with the community.</span> -->
+      </div>
+     
+      <!-- </mat-toolbar-row>
+      <mat-toolbar-row> -->
+       
+      <!-- </mat-toolbar-row>
+    </mat-toolbar> -->
+    <br>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="d-flex justify-content-center" *ngIf="onSppiner">
+          <div class="spinner-border m-5 text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+    <mat-tab-group>
+      <mat-tab label="Forums">
+        <div class="container">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>
+                <span class="material-icons">forum</span>
+                <span>DISCUSSION FORUMS</span>
+              </mat-card-title>  
+            </mat-card-header>
+            <mat-card-content>    
+              <ul class="list-group">
+              <a href="{{types[0]}}"><li class="list-group-item">
+                <div class="col-sm-9">
+                  <h4><strong> Genaral Discussions</strong></h4>            
+                  <p>Use this forum to discuss things related to the course that dont belong to any other forums.</p>
+                </div>
+              </li></a>
+              <a href="{{types[1]}}"><li class="list-group-item">
+                <div class="col-sm-9">
+                  <h4><strong> Science</strong></h4>            
+                  <p>This forum for any science subject related discussions.  </p>
+                </div>
+              </li></a>
+              <a href="{{types[2]}}"><li class="list-group-item">
+                <div class="col-sm-9">
+                  <h4><strong> Maths</strong></h4>            
+                  <p>This forum for any Maths subject related discussions. </p>
+                </div>
+              </li></a>
+              <a href="{{types[3]}}"><li class="list-group-item">
+                <div class="col-sm-9">
+                  <h4><strong> Computer Science</strong></h4>            
+                  <p>This forum for any computer science subject related discussions. </p>
+                </div>
+              </li></a>
+              <a href="{{types[4]}}"><li class="list-group-item">
+                <div class="col-sm-9">
+                  <h4><strong> Object oriented Programing</strong></h4>            
+                  <p>This forum for any Object oriented Programing subject related discussions. </p>
+                </div>
+              </li></a>  
+              </ul>
+            </mat-card-content>        
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="All threds">
+        <div class="container"> 
+        <mat-card>
+          <mat-card-header>
+            <div class="float-md-right">
+              <button mat-icon-button color="primary" (click)="getThreds()" title="Refresh">
+                <mat-icon>refresh</mat-icon>
+              </button>
+            </div>
+            <div style="text-align:right; width:100%; padding:0;">
+            <button mat-flat-button color="primary" (click)="onCreate()" title="Add new Thread"><mat-icon>post_add</mat-icon>New thread</button>
+            </div> 
+        
+          </mat-card-header>
+          <mat-card-content>
+        <div *ngIf="!onSppiner">
+          <ul >
+            <a (click) = "onSelect(property)" 
+            *ngFor="let property of child |paginate: { itemsPerPage: 6, currentPage: p }">
+            <li class="list-group-item">
+             <div class="row">
+               <div class="col-8">
+                <h3><strong><span>Title: </span><span>{{property.title}}</span></strong></h3>                   
+                <span>Created by: </span><span>{{property.owner}}</span><span> .{{property.timeAgo}} </span>
+               </div>
+               <div class="col-4">
+                 <div class="row">
+                 <div class="col"><span>{{property.views}}</span><br><span>views</span></div>
+                 <div class="col"> <span>{{property.replies}}</span><br><span>replies</span></div>
+              </div>
+                
+               </div>
+             </div> 
+                </li>
+           </a>
+         </ul>
+         <div style="text-align:right; width:100%; padding:0;">
+         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+          </mat-card-content>
+      </mat-card>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+        
+      </div>
+      <div class="col-sm-4">        
+        <mat-card>
+          <div>
+          <mat-card-header><strong>DESCRIPTION!</strong></mat-card-header>
+          <hr>
+          <mat-card-content>
+            <p>Welcome to the E-teacher discussion forums! Ask questions, debate ideas, and find classmates who share your goals. Browse popular threads below or other forums in the sidebar.</p>  
+          </mat-card-content>
+        </div>
+        </mat-card>
+       
+        <br>
+        <mat-card>
+          <mat-card-header>
+           <strong>MODERATORS</strong> 
+          </mat-card-header>
+          <hr>
+          <mat-card-content>
+            <p>Welcome to the E-teacher discussion forums! Ask questions, debate ideas, and find classmates who share your goals. Browse popular threads below or other forums in the sidebar.</p>  
+          </mat-card-content>
+        </mat-card>       
+      </div>
+    </div>
+</div>
+
