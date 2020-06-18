@@ -1,0 +1,71 @@
+<!-- <div style="text-align:center;">
+    <form (submit)="addBooking()">
+        <fieldset>
+            <legend>Add New Booking</legend>
+            <div class="form-group">
+                <label for="exampleName">Name</label>
+                <input type="text" class="form-controls"  name="name"
+                    placeholder="Enter Name" [(ngModel)]="name">
+            </div>
+    
+            <div class="form-group">
+                <label for="exampleUsername">User Name</label>
+                <input type="text" class="form-controls"  name="username"
+                    placeholder="Enter Username" [(ngModel)]="username">
+            </div>
+    
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-controls"  name="email"
+                    placeholder="Enter email" [(ngModel)]="email">
+            </div>
+    
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-controls"  placeholder="Password" name="password" [(ngModel)]="password"> 
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form> 
+</div> -->
+<div style="text-align:center">
+    <h1>
+       Welcome to {{ title }}!
+    </h1>
+     <div *ngIf="calendarOptions">
+        <full-calendar #ucCalendar defaultView="dayGridMonth" [plugins]="calendarPlugins" 
+        [weekends]="true" 
+        [header]="{
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          }"
+          [events]="calendarEvents"
+        [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+             (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></full-calendar>
+     </div>
+   </div>
+    <!-- The Modal -->
+     <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+       <div class="modal-dialog">
+         <div class="modal-content">
+         
+           <!-- Modal Header -->
+           <div class="modal-header">
+             <h4 class="modal-title">{{ name }}</h4>
+             <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+           </div>
+           
+           <!-- Modal body -->
+           <div class="modal-body">
+             Event Start From : {{ date }}
+           </div>
+           
+           <!-- Modal footer -->
+           <div class="modal-footer">
+             <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Close</button>
+           </div>
+           
+         </div>
+       </div>
+     </div>
