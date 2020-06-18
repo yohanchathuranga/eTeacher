@@ -62,7 +62,7 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
 
 @NgModule({
   declarations: [
-    
+
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -116,15 +116,10 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     MatSnackBarModule
    
   ],
-  providers: [],
+  providers: [UserService,BookingService,{provide: module, useClass: UserService}],
   bootstrap: [AppComponent],
   entryComponents: [
     CreateThreadComponent
   ]
-  
-    
-  ],
-  providers: [UserService,BookingService,{provide: module, useClass: UserService}],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }
