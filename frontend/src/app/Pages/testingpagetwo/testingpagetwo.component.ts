@@ -30,7 +30,7 @@ constructor(private forumService: FourmServiceService,
   ngOnInit(): void {
     this.forumService.getAll().subscribe( res=>{
       this.child = res;
-      // console.log(res)
+      console.log(res)
       this.timeAgo(this.child);
       this.onSppiner = !this.onSppiner;
     });

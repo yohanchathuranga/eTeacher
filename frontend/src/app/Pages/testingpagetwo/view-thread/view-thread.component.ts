@@ -18,15 +18,22 @@ export class ViewThreadComponent implements OnInit {
   constructor( public forumService : FourmServiceService,
     private route: ActivatedRoute ) { }
 
-  threadId : string;
-  getThread : any;
-  timeArray =[];
-  threadBody : string;
-  owner = "Yohan Chathuranga";
-  comments : any;
-  open = false;
-  selectCommentId : string;
-  viewReply = false;
+threadId : string;
+getThread : any;
+timeArray =[];
+threadBody : string;
+owner = "Yohan Chathuranga";
+comments : any;
+open = false;
+viewReply = false;
+replyCount = 0; 
+subReplys : any;
+subReplyCount =0; 
+selectCommentId :string;
+allsubReplys : any;
+thread :any
+
+
   
   ngOnInit(): void {
       this.route.params.subscribe(routerParam =>{
@@ -39,6 +46,11 @@ export class ViewThreadComponent implements OnInit {
         this.updateViwes(this.getThread);
         this.forumService.setViwes(this.getThread).subscribe(()=>{      
         });
+        this.forumService.getsubReplyC(this.threadId).subscribe((res)=>{
+          this.subReplys = res;
+          this.subReplyCount = this.subReplys.length;
+          // console.log(this.fala.length)
+        })
      });
 
     this.getComments();  
@@ -138,12 +150,36 @@ on(cmt : Reply){
   this.forumService.submitCmt(cmt).subscribe(()=>{
   this.getComments();
   this.relodeCmt();
+  this.setReplyCount()
   });    
 }
+
 getComments(){
   this.forumService.getComments(this.threadId).subscribe(res=>{
-    this.comments = res;      
+    this.comments = res;
   });    
+}
+
+setReplyCount(){
+  this.forumService.getsubReplyC(this.threadId).subscribe((res)=>{
+    this.allsubReplys = res;
+      this.subReplyCount = this.allsubReplys.length;
+    // console.log(this.subReplyCount) 
+        this.forumService.getComments(this.threadId).subscribe(res=>{
+        this.comments = res;
+        this.replyCount = this.comments.length;
+    // console.log(this.replyCount)
+    this.forumService.getThread(this.threadId).subscribe((res)=>{
+      this.thread = res;
+      // console.log('initial value :',this.thread.replies)
+      this.thread.replies = 0;
+      this.thread.replies =  this.subReplyCount +  this.replyCount; 
+      // console.log(this.thread.replies);
+      this.forumService.setReplycount(this.thread).subscribe(()=>{
+        }); 
+      });  
+    });
+  });
 }
 
 

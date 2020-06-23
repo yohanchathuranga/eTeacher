@@ -98,7 +98,7 @@
                <div class="col-4">
                  <div class="row">
                  <div class="col"><span>{{property.views}}</span><br><span>views</span></div>
-                 <div class="col"> <span>{{property.replies}}</span><br><span>replies</span></div>
+                 <div class="col"> <span>{{property?.replies}}</span><br><span>replies</span></div>
               </div>
                 
                </div>
@@ -118,7 +118,7 @@
         
       </div>
       <div class="col-sm-4">        
-        <mat-card>
+        <mat-card style="background-color: rgb(183, 253, 253);">
           <div>
           <mat-card-header><strong>DESCRIPTION!</strong></mat-card-header>
           <hr>
@@ -129,13 +129,15 @@
         </mat-card>
        
         <br>
-        <mat-card>
+        <mat-card  style="background-color: rgb(183, 253, 253);">
           <mat-card-header>
            <strong>MODERATORS</strong> 
           </mat-card-header>
           <hr>
           <mat-card-content>
-            <p>Welcome to the E-teacher discussion forums! Ask questions, debate ideas, and find classmates who share your goals. Browse popular threads below or other forums in the sidebar.</p>  
+            <img class="rounded-circle mr-3" height="50px" width="50px" alt="avatar"src=" http://localhost:4200/assets/img/faces/ayo-ogunseinde-2.jpg">
+            <img class="rounded-circle mr-3" height="50px" width="50px" alt="avatar"src=" http://localhost:4200/assets/img/faces/joe-gardner-2.jpg">
+            <img class="rounded-circle mr-3" height="50px" width="50px" alt="avatar"src=" http://localhost:4200/assets/img/faces/kaci-baum-2.jpg">
           </mat-card-content>
         </mat-card>       
       </div>

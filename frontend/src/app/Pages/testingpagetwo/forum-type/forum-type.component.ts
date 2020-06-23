@@ -43,17 +43,21 @@ timeAgo(event){
     list[i].timeAgo= moment(event[i].timestamps).fromNow();
   } 
   this.threads = list
+  console.log(list)
   }
 onSelect(property){
     this.router.navigate(['/' + property.type,property._id])
 } 
 count(event){
   let len = event.length;
-  // console.log(len);
+  //  console.log(len);
   if(len == 0){
-    this.flag = !this.flag;
+    this.flag = false;
     }
-  }
+  else{
+    this.flag = true;
+    }  
+}
 onCreate(){
   this.matDialog.open(CreateThreadComponent,{
     width: '50%',
@@ -61,13 +65,14 @@ onCreate(){
       type: this.type
     }
   });
-  // console.log(this.type)
 } 
 
 getThreds(type :string){
+  console.log(type);
   this.onSppiner = true;
   this.forumService.getType(type).subscribe((res)=>{
     this.timeAgo(res);
+    this.count(res);
     this.onSppiner =!this.onSppiner;
   })
 }

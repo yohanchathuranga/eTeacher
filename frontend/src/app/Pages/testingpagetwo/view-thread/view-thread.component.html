@@ -4,17 +4,18 @@
         <div class="col">
         <mat-card>
             <span class="badge badge-pill badge-dark">Student</span>
+            <br>
             <mat-card-header>
                 <mat-card-title>
-                    <span><strong><h3>
-                        {{getThread?.title}}
-                    </h3></strong></span>
+                    <img class="rounded-circle mr-3" height="30px" width="30px" alt="avatar"src=" http://localhost:4200/assets/img/faces/ayo-ogunseinde-2.jpg">
+                    <span style="color:rgb(84, 84, 219)">{{getThread?.owner}}</span> - <span>{{getThread?.timeAgo}}</span><br>
                 </mat-card-title>
                 <br>
                 <mat-card-subtitle>
-                    <span style="color:rgb(84, 84, 219)">{{getThread?.owner}}</span> - <span>{{getThread?.timeAgo}}</span><br>
                     <span> {{getThread?.votes}} : Votes</span>
-                   
+                    <span><strong><h3>
+                        {{getThread?.title}}
+                    </h3></strong></span>                   
                 </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
@@ -64,7 +65,7 @@
             <button mat-flat-button color="primary" (click)="viewcReply = cmt._id; test(); getCommentId(cmt._id)"> Reply
             </button>
                 <ng-template [ngIf] = "selectCommentId == cmt._id && viewReply">                
-                        <app-reply-comment [parentdocId]="selectCommentId"></app-reply-comment>                
+                        <app-reply-comment [Data]="selectCommentId" [Data2]="threadId" [Data3]="replyCount"></app-reply-comment>                
                 </ng-template><br>
                 <hr>    
         </div>     

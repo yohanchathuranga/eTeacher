@@ -54,7 +54,7 @@ onSubmit(){
     owner:this.name,
     timeAgo:'',
     replies:0,
-    votes:0  
+    votes:0
   }
  //console.log(emp);
   this.forumService.regForum(emp).subscribe(()=>{

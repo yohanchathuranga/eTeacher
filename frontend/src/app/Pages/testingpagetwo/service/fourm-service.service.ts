@@ -27,7 +27,7 @@ form = new FormGroup({
   id : new FormControl(null),
   title : new FormControl('', Validators.required),
   body : new FormControl('', Validators.required),
-  type:new FormControl('')
+  type:new FormControl('', Validators.required)
 });
 
 success(msg : string){
@@ -37,8 +37,8 @@ success(msg : string){
 
 config : MatSnackBarConfig={
   duration: 3000,
-  horizontalPosition: "right",
-  verticalPosition: "top"
+  horizontalPosition: "left",
+  verticalPosition: "bottom"
 
 }
 
@@ -82,6 +82,13 @@ getReplyComments(id){
 }
 getType(type:string){
   return this.http.get(this.baseURL4 + '/' + type)
+}
+setReplycount(emp: any){
+  return this.http.put(this.baseURL + '/' + emp._id, emp);
+}
+
+getsubReplyC(id :string){
+  return this.http.get(this.baseURL3 + '/'+ 'all' + '/' + id)
 }
 
 }
