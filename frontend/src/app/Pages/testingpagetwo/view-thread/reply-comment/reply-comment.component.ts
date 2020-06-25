@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { replyComment } from '../../models/replyComment';
-import  { FourmServiceService } from 'app/Pages/testingpagetwo/service/fourm-service.service'
+import  { FourmServiceService } from 'app/Pages/testingpagetwo/service/fourm-service.service';
+import {Forum} from 'app/Pages/testingpagetwo/models/forum-thread';
 
 
 @Component({
@@ -10,14 +11,28 @@ import  { FourmServiceService } from 'app/Pages/testingpagetwo/service/fourm-ser
   styleUrls: ['./reply-comment.component.css']
 })
 export class ReplyCommentComponent implements OnInit {
-  @Input('parentdocId') public paraentdocId: string;
+  @Input('Data') public commentId : string;
+  @Input('Data2') public threadId : string;
+  @Input('Data3') public commentCount : number;
+
 
 user = "Dasun Lahiru"
 replyComments:any;
+thread : any
+replycount = 0;
+fala :any;
+allsubReplys : any;
+subReplyCount =0;
+comments : any;
+replyCount = 0;
+replies : any; 
+
   constructor(public forumService : FourmServiceService) { }
 
   ngOnInit(): void {
-  this.getReply();
+    // console.log(this.commentId)
+    // console.log(this.threadId)
+    this.getReply();
   }
 
   editorConfig: AngularEditorConfig = {
@@ -87,7 +102,8 @@ replyComments:any;
   };
 
 rComment : replyComment={
-  parentCId : this.paraentdocId,
+  parentCId : this.commentId,
+  threadId : this.threadId,
   owner : this.user ,
   date : new Date,
   comment : ''
@@ -95,28 +111,55 @@ rComment : replyComment={
 
 onComment(event : replyComment){
  const rComment : replyComment={
-    parentCId : this.paraentdocId,
+    parentCId : this.commentId,
+    threadId : this.threadId,
     owner : this.user ,
     date : new Date,
     comment : event.comment
   }
-  console.log(rComment)
+  // console.log(rComment)
   this.forumService.setReplyComment(rComment).subscribe(()=>{
     this.refresh();
     this.getReply();
+    this.getAllSubreplys();
+    // this.getAllSubreplys()
   })
 }
 refresh(){
   this.rComment={
-    parentCId : this.paraentdocId,
+    parentCId : this.commentId,
+    threadId : this.threadId,
     owner : this.user ,
     date : new Date,
     comment : ''
   }
 }
 getReply(){
-  this.forumService.getReplyComments(this.paraentdocId).subscribe((res)=>{
+  this.forumService.getReplyComments(this.commentId).subscribe((res)=>{
     this.replyComments = res;
-  })
-}
+    // console.log(this.replyComments);
+  });
+  }
+getAllSubreplys(){
+    // get all replies  
+    this.forumService.getsubReplyC(this.threadId).subscribe((res)=>{
+      this.allsubReplys = res;
+      this.subReplyCount = this.allsubReplys.length;
+      // console.log(this.subReplyCount) 
+      this.forumService.getComments(this.threadId).subscribe(res=>{
+        this.comments = res;
+        this.replyCount = this.comments.length;
+      // console.log(this.replyCount)
+      this.forumService.getThread(this.threadId).subscribe((res)=>{
+        this.thread = res;
+        // console.log('initial value :',this.thread.replies)
+        this.thread.replies = 0;
+        this.thread.replies =  this.subReplyCount +  this.replyCount; 
+        // console.log(this.thread.replies);
+        this.forumService.setReplycount(this.thread).subscribe(()=>{
+          }); 
+        });  
+      });
+    });
+  }
 }

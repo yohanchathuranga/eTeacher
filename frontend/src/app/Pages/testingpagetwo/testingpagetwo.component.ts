@@ -5,6 +5,8 @@ import {MatDialog} from '@angular/material/dialog';
 import { CreateThreadComponent } from './create-thread/create-thread.component';
 import {Forum} from './models/forum-thread';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators'
+
 
 
 
@@ -21,20 +23,24 @@ export class TestingpagetwoComponent implements OnInit {
  p: number = 1;
  onSppiner = true;
  types = ["Genaral Discussions","Science","Maths","Computer Science","Object oriented Programing"];
- 
+ searchKey : string;
+
 
 constructor(private forumService: FourmServiceService,
   private matDialog: MatDialog,
   private router : Router) { }
 
   ngOnInit(): void {
+    this.getAllthreads();
+  }
+getAllthreads(){
+  this.onSppiner = true;
     this.forumService.getAll().subscribe( res=>{
       this.child = res;
-      // console.log(res)
       this.timeAgo(this.child);
       this.onSppiner = !this.onSppiner;
     });
-  }
+}      
 
 timeAgo(event){
   let list = event;
@@ -49,8 +55,9 @@ timeAgo(event){
   }
 
   onCreate(){
-    this.matDialog.open(CreateThreadComponent,{
-      width: '50%'
+    const dia = this.matDialog.open(CreateThreadComponent,{
+      width: '60%',
+      restoreFocus: false
     });
   }
 
@@ -62,7 +69,10 @@ timeAgo(event){
      });
    
 }
-
+onsearchClear(){
+  this.searchKey = "";
+  this.getAllthreads();
+}
 
 }
 

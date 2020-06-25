@@ -39,11 +39,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { CreateThreadComponent } from './Pages/testingpagetwo/create-thread/create-thread.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 //import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
-import {NgxPaginationModule} from 'ngx-pagination';
+// import {NgxPaginationModule} from 'ngx-pagination';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -55,6 +55,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
+import { MatInputModule} from '@angular/material/input';
+import { MyFilterPipe } from 'app/Pages/testingpagetwo/service/myFilter.pipe'
+
 
 
 
@@ -83,6 +86,7 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     TeacherbookingsComponent,
     BookingdetailteacherComponent,
     BookingdetailuserComponent,
+    MyFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -113,7 +117,8 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     MatProgressSpinnerModule,
     MatSelectModule,
     ToastrModule.forRoot(),
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatInputModule
    
   ],
   providers: [UserService,BookingService,{provide: module, useClass: UserService}],

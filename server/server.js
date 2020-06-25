@@ -7,10 +7,10 @@ const cors = require('cors')
 var forumController = require('./controller/forumController');
 var cmtThreadController = require('./controller/cmtThreadController');
 var replycController = require('./controller/replycController');
-var typeController = require('./controller/typeController')
+var typeController = require('./controller/typeController');
 var app = express()
 
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: "200mb" }))
 app.use(cors())
 const path = require('path');
 const passport = require('passport');
