@@ -22,6 +22,7 @@ threads : any;
 p: number = 1;
 flag = true;
 onSppiner = true;
+searchKey : string;
 
   ngOnInit(): void {
     this.route.params.subscribe(routerParam=>{

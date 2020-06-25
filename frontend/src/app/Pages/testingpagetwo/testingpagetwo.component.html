@@ -1,20 +1,9 @@
 <div class="container">
-    <!-- <mat-toolbar>
-    <mat-toolbar-row> -->
       <div class="alert alert-primary" role="alert"  style="text-align: center; font-size: 24px;">  
         Discussion Forums!
-        <!-- <div class="alert alert-primary" role="alert"  style="text-align: center; font-size: 18px;"> -->
          <div style="text-align: center; font-size: 15px;"><span >Get help and discuss course material with the community.</span> 
          </div>
-          <!-- </div> -->
-        <!-- <span style="text-align: center;">Get help and discuss course material with the community.</span> -->
       </div>
-     
-      <!-- </mat-toolbar-row>
-      <mat-toolbar-row> -->
-       
-      <!-- </mat-toolbar-row>
-    </mat-toolbar> -->
     <br>
     <div class="row">
       <div class="col-sm-8">
@@ -74,21 +63,28 @@
         <div class="container"> 
         <mat-card>
           <mat-card-header>
-            <div class="float-md-right">
-              <button mat-icon-button color="primary" (click)="getThreds()" title="Refresh">
-                <mat-icon>refresh</mat-icon>
+            <mat-form-field class="example-form-field" floatLabel = "never">
+              <input  matInput [(ngModel)] = "searchKey" type="text" placeholder="Search by title" autocomplete="off"> 
+              <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onsearchClear()">
+                <mat-icon>close</mat-icon>
               </button>
-            </div>
+            </mat-form-field>
             <div style="text-align:right; width:100%; padding:0;">
             <button mat-flat-button color="primary" (click)="onCreate()" title="Add new Thread"><mat-icon>post_add</mat-icon>New thread</button>
-            </div> 
+            <button mat-icon-button color="primary" (click)="getThreds()" title="Refresh">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
+            <!-- <div style="text-align:right; width:100%;">
+          
+            </div>  -->
         
           </mat-card-header>
           <mat-card-content>
         <div *ngIf="!onSppiner">
           <ul >
-            <a (click) = "onSelect(property)" 
-            *ngFor="let property of child |paginate: { itemsPerPage: 6, currentPage: p }">
+            <a (click) = "onSelect(property)" *ngFor="let property of child | myfilter : searchKey | paginate: { itemsPerPage: 7, currentPage: p }"
+            >
             <li class="list-group-item">
              <div class="row">
                <div class="col-8">

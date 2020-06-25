@@ -21,6 +21,7 @@ formControls = this.forumService.form.controls;
 public threadList: any;
 // count : number;  
 flag = true;
+image: string = '';
 
 constructor( public forumService : FourmServiceService, 
      private matdialogRef:MatDialogRef<CreateThreadComponent>,
@@ -42,6 +43,18 @@ ngOnInit(): void {
     // console.log(this.flag);
 
   }
+uplodeImage(event){
+  const img = (event.target as HTMLInputElement).files[0];  
+  const reader = new FileReader();
+  reader.onload = () => {
+    this.image = reader.result as string;
+    console.log(this.image)
+  };
+  reader.readAsDataURL(img);
+  console.log(img)
+  console.log(event)
+ 
+}  
 
 onSubmit(){
   const emp : Forum = {
@@ -49,6 +62,7 @@ onSubmit(){
     title : this.formControls.title.value,
     body : this.formControls.body.value,
     type : this.formControls.type.value,
+    image : this.image,
     timestamps: new Date(),
     views: 0,
     owner:this.name,
@@ -56,6 +70,7 @@ onSubmit(){
     replies:0,
     votes:0
   }
+  console.log(this.formControls.image.value)
  //console.log(emp);
   this.forumService.regForum(emp).subscribe(()=>{
     this.forumService.form.reset();
@@ -118,6 +133,7 @@ editorConfig: AngularEditorConfig = {
     defaultParagraphSeparator: '',
     defaultFontName: '',
     defaultFontSize: '',
+    uploadUrl: '',
     fonts: [
       {class: 'arial', name: 'Arial'},
       {class: 'times-new-roman', name: 'Times New Roman'},

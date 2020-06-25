@@ -27,6 +27,7 @@ form = new FormGroup({
   id : new FormControl(null),
   title : new FormControl('', Validators.required),
   body : new FormControl('', Validators.required),
+  image: new FormControl(''),
   type:new FormControl('', Validators.required)
 });
 

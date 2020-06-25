@@ -41,6 +41,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
+import { MatInputModule} from '@angular/material/input';
+import { MyFilterPipe } from 'app/Pages/testingpagetwo/service/myFilter.pipe'
+
 
 
 
@@ -59,6 +62,7 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     ViewThreadComponent,
     ReplyCommentComponent,
     ForumTypeComponent,
+    MyFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,8 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     MatProgressSpinnerModule,
     MatSelectModule,
     ToastrModule.forRoot(),
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatInputModule
    
   ],
   providers: [],

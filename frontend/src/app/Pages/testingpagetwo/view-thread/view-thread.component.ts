@@ -32,6 +32,7 @@ subReplyCount =0;
 selectCommentId :string;
 allsubReplys : any;
 thread :any
+threadImage : string;
 
 
   
@@ -41,8 +42,10 @@ thread :any
          });
      this.forumService.getThread(this.threadId).subscribe(res=>{
         this.getThread = res;
+        console.log(this.getThread);
         this.timeAgo(this.getThread);
         this.threadBody = this.getThread.body;
+        this.threadImage = this.getThread.image;
         this.updateViwes(this.getThread);
         this.forumService.setViwes(this.getThread).subscribe(()=>{      
         });

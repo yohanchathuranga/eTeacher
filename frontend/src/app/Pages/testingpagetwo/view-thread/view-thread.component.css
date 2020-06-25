@@ -47,4 +47,10 @@
 .col{
   margin: 0px 0px 0px 0px;
 }
+.imagePreview {
+  max-width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
  
