@@ -17,6 +17,7 @@ router.post('/',(req,res)=>{
     var emp = Forum({
         title : req.body.title,
         body : req.body.body,
+        image : req.body.image,
         type : req.body.type,
         timestamps: req.body.timestamps,
         views: req.body.views,
@@ -25,6 +26,7 @@ router.post('/',(req,res)=>{
         votes : req.body.votes,
         replies : req.body.replies
     });
+    console.log(req.body.body)
     emp.save((err,doc)=>{
         if(!err){res.send(doc);}
         else{console.log('Error in sending Threds details:'+JSON.stringify(err,undefined,2))}
