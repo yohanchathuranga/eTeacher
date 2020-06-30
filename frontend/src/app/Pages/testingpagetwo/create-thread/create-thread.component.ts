@@ -5,6 +5,7 @@ import {Forum} from '../models/forum-thread';
 import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ActivatedRoute } from '@angular/router';
+import { Types } from '../models/forumType'
 
 
 @Component({
@@ -15,44 +16,49 @@ import { ActivatedRoute } from '@angular/router';
 export class CreateThreadComponent implements OnInit {
 attempted = true;
 name = "Banura Hettiarachchi";
-forumTypes=["Genaral Discussion", "Science", "Maths", "Computer Science", "Object oriented Programing"];
+forumTypes=["Genaral Discussions", "Science", "Maths", "Computer Science", "Object oriented Programing"];
 type : string;
 formControls = this.forumService.form.controls;
+formControlsT = this.forumService.formType.controls;
 public threadList: any;
 // count : number;  
 flag = true;
 image: string = '';
+newForum = false;
+newThread = false;
+toppingList: string[] = ['Rajitha Gayashan', 'Nipuna Sarachchandra', 'Pasindu Bhashitha', 'Sasika Nawarathna', 'Vihaga Shamal', 'Tharindu Madhusanka'];
 
 constructor( public forumService : FourmServiceService, 
      private matdialogRef:MatDialogRef<CreateThreadComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Forum,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public route : ActivatedRoute) {}
 
 ngOnInit(): void {
-  // try{
-    this.type = this.data.type;
-    // }catch{
-    //   console.log("this is not error");
-    // }
+    try{
+      console.log(this.data)
+      this.type = this.data.type;
+      this.newForum = this.data.newForum,
+      this.newThread = this.data.newThread
+      console.log( this.newForum,this.newThread)
+    }catch{
+       console.log("this is not error");
+    }
 
-     console.log(this.type);
-     if(this.type){
+    if(this.type){
        this.flag = !this.flag;
      }
-    // this.onCheck(this.type);
-    // console.log(this.flag);
-
-  }
+}
+ 
 uplodeImage(event){
   const img = (event.target as HTMLInputElement).files[0];  
   const reader = new FileReader();
   reader.onload = () => {
     this.image = reader.result as string;
-    console.log(this.image)
+    // console.log(this.image)
   };
   reader.readAsDataURL(img);
-  console.log(img)
-  console.log(event)
+  // console.log(img)
+  // console.log(event)
  
 }  
 
@@ -70,7 +76,7 @@ onSubmit(){
     replies:0,
     votes:0
   }
-  console.log(this.formControls.image.value)
+  // console.log(this.formControls.image.value)
  //console.log(emp);
   this.forumService.regForum(emp).subscribe(()=>{
     this.forumService.form.reset();
@@ -79,6 +85,22 @@ onSubmit(){
 
   });
   this.onNoClick();
+}
+
+newType(){
+  const type : Types = {
+    type : this.formControlsT.type.value,
+    teachers : this.formControlsT.teachers.value,
+}
+// console.log(type)
+if(confirm('Are you sure to add this Forum type?')){
+this.forumService.setType(type).subscribe(res=>{
+  console.log(res)
+  this.forumService.formType.reset();
+  this.forumService.success("New Forum Type Successfully created!")
+})
+this.matdialogRef.close();
+}
 }
 
 onNoClick(): void {

@@ -24,6 +24,10 @@ export class TestingpagetwoComponent implements OnInit {
  onSppiner = true;
  types = ["Genaral Discussions","Science","Maths","Computer Science","Object oriented Programing"];
  searchKey : string;
+ flag = true;
+ user = "teacher";
+ newForum = false;
+ newThread = false;
 
 
 constructor(private forumService: FourmServiceService,
@@ -33,10 +37,21 @@ constructor(private forumService: FourmServiceService,
   ngOnInit(): void {
     this.getAllthreads();
   }
+count(event){
+    let len = event.length;
+      console.log(len);
+    if(len == 0){
+      this.flag = false;
+      }
+    else{
+      this.flag = true;
+      }  
+  }  
 getAllthreads(){
   this.onSppiner = true;
     this.forumService.getAll().subscribe( res=>{
       this.child = res;
+      this.count(this.child);
       this.timeAgo(this.child);
       this.onSppiner = !this.onSppiner;
     });
@@ -55,9 +70,15 @@ timeAgo(event){
   }
 
   onCreate(){
-    const dia = this.matDialog.open(CreateThreadComponent,{
+    this.newThread = true;
+    this.newForum = false;
+     this.matDialog.open(CreateThreadComponent,{
       width: '60%',
-      restoreFocus: false
+      restoreFocus: false,
+      data: {
+        newForum: this.newForum,
+        newThread:this.newThread
+      }
     });
   }
 
@@ -65,6 +86,7 @@ timeAgo(event){
     this.onSppiner = true;
     this.forumService.getAll().subscribe((res)=>{
       this.timeAgo(res);
+      this.count(res);
       this.onSppiner = !this.onSppiner;
      });
    
@@ -74,6 +96,18 @@ onsearchClear(){
   this.getAllthreads();
 }
 
+onCreateForum(){
+  this.newForum = true
+  this.newThread = false
+  this.matDialog.open(CreateThreadComponent,{
+    width: '55%',
+    // restoreFocus: false,
+    data: {
+      newForum: this.newForum,
+      newThread:this.newThread
+    }
+  });
+}
 }
 
 
