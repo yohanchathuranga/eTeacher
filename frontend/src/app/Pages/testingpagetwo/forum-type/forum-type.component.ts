@@ -23,6 +23,8 @@ p: number = 1;
 flag = true;
 onSppiner = true;
 searchKey : string;
+newForum = false;
+newThread = false;
 
   ngOnInit(): void {
     this.route.params.subscribe(routerParam=>{
@@ -60,10 +62,14 @@ count(event){
     }  
 }
 onCreate(){
+  this.newThread = true;
+  this.newForum = false;
   this.matDialog.open(CreateThreadComponent,{
     width: '50%',
     data: {
-      type: this.type
+      type: this.type,
+      newThread: this.newThread,
+      newForum: this.newForum
     }
   });
 } 

@@ -3,17 +3,17 @@ const router = express.Router();
 
 var objectId = require('mongoose').Types.ObjectId
 
-var {Forum} = require('../model/forumModel')
-
-router.get('/',(req,res)=>{
+var {Forum} = require('../model/forumModel');
+var {Type} = require('../model/forumType');
+router.route('/')
+.get((req,res)=>{
     Forum.find((err,docs)=>{
     if(!err){res.send(docs);}
      else{console.log('Error in retriving Threds :'+JSON.stringify(err,undefined,2));
     }
 });
-});
-
-router.post('/',(req,res)=>{
+})
+.post((req,res)=>{
     var emp = Forum({
         title : req.body.title,
         body : req.body.body,
@@ -32,8 +32,19 @@ router.post('/',(req,res)=>{
         else{console.log('Error in sending Threds details:'+JSON.stringify(err,undefined,2))}
     });
 });
-
-router.get('/:id', (req,res)=>{
+router.route('/type')
+.post((req,res , next)=>{
+    Type.create(req.body)
+    .then((type) => {
+        console.log('Type Created ', type);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(type);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
+router.route('/:id')
+.get((req,res)=>{
     Forum.findById(req.params.id,(err,doc)=>{
         if(!err){
             res.send(doc)
@@ -42,9 +53,8 @@ router.get('/:id', (req,res)=>{
             console.log('Error in retriving Employees :'+JSON.stringify(err,undefined,2))
         }
     });
-});
-
-router.put('/:id',(req,res)=>{
+})
+.put((req,res)=>{
     if(!objectId.isValid(req.params.id))
     return res.status(400).send('no recode with given id : ${req.params.id}');
     var emp = {

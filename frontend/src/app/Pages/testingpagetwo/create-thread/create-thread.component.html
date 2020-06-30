@@ -1,5 +1,6 @@
-<mat-dialog-content class="mat-typography">
-  <br>
+<div  *ngIf ="newThread">
+  <mat-dialog-content class="mat-typography">
+    <br>
 <mat-card>
     <mat-card-title>Create a thread</mat-card-title>
     <hr>
@@ -27,7 +28,9 @@
             <div class="form-group">
               <label>Images/Screenshots</label>
               <input type="file" (change)="uplodeImage($event)" formControlName="image">
-              <img class="imagePreview" [src]="image" />
+              <div class="w3-container">
+                <img [src]="image" class="w3-image" width="auto" height="auto">
+                 </div>
             </div>
               <div class="form-group" *ngIf ="flag ;  else elseBlock">
                 
@@ -66,3 +69,43 @@
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-flat-button color="primary" type="submit"[mat-dialog-close]="true" (click) = "onSubmit()" [disabled]="!this.forumService.form.valid">Submit</button>
 </mat-dialog-actions>
+</div>
+<div *ngIf ="newForum">
+  <mat-dialog-content class="mat-typography">
+    <br>
+  <mat-card>
+      <mat-card-title>Create new Forum type</mat-card-title>
+      <hr>
+      <mat-card-content> 
+          <form [formGroup]="this.forumService.formType" (ngSubmit)="newType()">
+              <div class="form-group"> 
+                <label >Type*</label>
+                <input type="text" class="form-control" formControlName="type" required [ngClass]="{'is-invalid':
+                this.forumService.formType.get('type').touched && this.forumService.formType.get('type').invalid}">
+                <div class="invalid-feedback">
+                    <div>Type is required!</div>
+                </div>
+              </div>
+              <div class="form-group"> 
+                <label >Select teachers for moderate your Forum</label><br>
+              <mat-form-field >
+                <mat-select class="form-control" formControlName="teachers"  multiple required [ngClass]="{'is-invalid':
+                this.forumService.formType.get('teachers').touched && this.forumService.formType.get('teachers').invalid}">
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+                <div class="invalid-feedback">
+                  <div>At least one moderater required</div>
+              </div>
+              </mat-form-field>
+      
+              </div>              
+              </form>
+        </mat-card-content>
+  </mat-card>
+  <br>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="primary" type="submit"[mat-dialog-close]="true" (click) = "newType()" [disabled]="!this.forumService.formType.valid">Submit</button>
+  </mat-dialog-actions>
+</div>

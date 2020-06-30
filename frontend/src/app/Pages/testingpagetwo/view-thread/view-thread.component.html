@@ -21,7 +21,9 @@
             <mat-card-content>
                <div class="boder1"><p [innerHTML]="threadBody"></p></div>
                <br>
-               <img class="imagePreview" [src]="threadImage">
+               <div class="w3-container">
+               <img [src]="threadImage" class="w3-image" width="auto" height="auto">
+                </div>
             </mat-card-content>
             <hr>
             <mat-card-footer>
