@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Reply } from '../models/comment'
 import {replyComment} from '../models/replyComment'
 import {MatSnackBar,MatSnackBarConfig} from '@angular/material/snack-bar';
+import { Types } from '../models/forumType'
 
 
 @Injectable({
@@ -31,9 +32,18 @@ form = new FormGroup({
   type:new FormControl('', Validators.required)
 });
 
+formType = new FormGroup({
+  type : new FormControl('', Validators.required),
+  teachers : new FormControl([], Validators.required)
+});
+
 success(msg : string){
-  this.config['panelClass'] = ['notification','success']
-  this.snackBar.open(msg,'',this.config)
+  // this.config['panelClass'] = ['notification','success']
+  this.snackBar.open(msg, '',{
+    duration: 3000,
+    horizontalPosition: "left",
+    verticalPosition: "bottom",  
+  panelClass: ['blue-snackbar']})
 }
 
 config : MatSnackBarConfig={
@@ -90,6 +100,9 @@ setReplycount(emp: any){
 
 getsubReplyC(id :string){
   return this.http.get(this.baseURL3 + '/'+ 'all' + '/' + id)
+}
+setType(type : Types){
+  return this.http.post(this.baseURL+'/type',type)
 }
 
 }
