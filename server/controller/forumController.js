@@ -33,6 +33,19 @@ router.route('/')
     });
 });
 router.route('/type')
+.get((req,res,next)=>{
+    Type.find()
+    .then((doc)=>{
+        if(doc){
+        res.send(doc)
+        }else{
+            res.statusCode = 404;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(doc);
+        }
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
 .post((req,res , next)=>{
     Type.create(req.body)
     .then((type) => {
