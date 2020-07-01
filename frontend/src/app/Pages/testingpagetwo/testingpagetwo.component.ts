@@ -25,9 +25,10 @@ export class TestingpagetwoComponent implements OnInit {
  types = ["Genaral Discussions","Science","Maths","Computer Science","Object oriented Programing"];
  searchKey : string;
  flag = true;
- user = "teacher";
+ user = "genaral";
  newForum = false;
  newThread = false;
+ allForumTypes : any;
 
 
 constructor(private forumService: FourmServiceService,
@@ -36,6 +37,9 @@ constructor(private forumService: FourmServiceService,
 
   ngOnInit(): void {
     this.getAllthreads();
+    this.forumService.getallForumType().subscribe(res=>{
+      this.allForumTypes = res
+    })
   }
 count(event){
     let len = event.length;

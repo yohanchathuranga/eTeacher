@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
 import { Reply } from '../models/comment'
 import {replyComment} from '../models/replyComment'
 import {MatSnackBar,MatSnackBarConfig} from '@angular/material/snack-bar';
-import { Types } from '../models/forumType'
+import { Types } from '../models/forumType';
+import { CheckForumTypeDirective } from '../service/check-forum-type.directive';
+
 
 
 @Injectable({
@@ -18,6 +20,10 @@ baseURL = "http://localhost:3000/forums";
 baseURL2 = "http://localhost:3000/comments"; 
 baseURL3 = "http://localhost:3000/replyComments";
 baseURL4 = "http://localhost:3000/type";
+existingTags : any;
+types = [];
+Tags = this.types;
+
 
   constructor(
     private http : HttpClient,
@@ -33,9 +39,25 @@ form = new FormGroup({
 });
 
 formType = new FormGroup({
-  type : new FormControl('', Validators.required),
+  _id : new FormControl(null),
+  forumOwner : new FormControl('', Validators.required),
+  type : new FormControl('', [Validators.required, CheckForumTypeDirective.checkDblicate(this.Tags)]),
+  description : new FormControl('',Validators.required),
   teachers : new FormControl([], Validators.required)
 });
+
+getForumtypes(){
+  this.getallForumType().subscribe(res=>{
+    this.existingTags = res
+    // console.log(this.existingTags.length)
+     for(let i in this.existingTags){
+          this.types[i] = this.existingTags[i].type
+          // console.log(this.Tags[i])
+     }
+
+    console.log(this.Tags)
+  })
+}
 
 success(msg : string){
   // this.config['panelClass'] = ['notification','success']
@@ -102,7 +124,10 @@ getsubReplyC(id :string){
   return this.http.get(this.baseURL3 + '/'+ 'all' + '/' + id)
 }
 setType(type : Types){
-  return this.http.post(this.baseURL+'/type',type)
+  return this.http.post(this.baseURL+'/type',type);
+}
+getallForumType(){
+  return this.http.get(this.baseURL + '/type');
 }
 
 }
