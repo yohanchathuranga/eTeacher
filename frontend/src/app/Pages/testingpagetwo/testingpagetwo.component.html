@@ -24,36 +24,12 @@
             </mat-card-header>
             <mat-card-content>    
               <ul class="list-group">
-              <a href="{{types[0]}}"><li class="list-group-item">
+              <a href="{{forum.type}}" *ngFor="let forum of allForumTypes"><li class="list-group-item">
                 <div class="col-sm-9">
-                  <h4><strong> Genaral Discussions</strong></h4>            
-                  <p>Use this forum to discuss things related to the course that dont belong to any other forums.</p>
+                  <h4><strong>{{forum.type}}</strong></h4>            
+                  <p>{{forum.description}}</p>
                 </div>
               </li></a>
-              <a href="{{types[1]}}"><li class="list-group-item">
-                <div class="col-sm-9">
-                  <h4><strong> Science</strong></h4>            
-                  <p>This forum for any science subject related discussions.  </p>
-                </div>
-              </li></a>
-              <a href="{{types[2]}}"><li class="list-group-item">
-                <div class="col-sm-9">
-                  <h4><strong> Maths</strong></h4>            
-                  <p>This forum for any Maths subject related discussions. </p>
-                </div>
-              </li></a>
-              <a href="{{types[3]}}"><li class="list-group-item">
-                <div class="col-sm-9">
-                  <h4><strong> Computer Science</strong></h4>            
-                  <p>This forum for any computer science subject related discussions. </p>
-                </div>
-              </li></a>
-              <a href="{{types[4]}}"><li class="list-group-item">
-                <div class="col-sm-9">
-                  <h4><strong> Object oriented Programing</strong></h4>            
-                  <p>This forum for any Object oriented Programing subject related discussions. </p>
-                </div>
-              </li></a>  
               </ul>
             </mat-card-content>        
           </mat-card>

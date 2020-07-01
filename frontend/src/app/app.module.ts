@@ -56,7 +56,8 @@ import { ToastrModule } from 'ngx-toastr';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
 import { MatInputModule} from '@angular/material/input';
-import { MyFilterPipe } from 'app/Pages/testingpagetwo/service/myFilter.pipe'
+import { MyFilterPipe } from 'app/Pages/testingpagetwo/service/myFilter.pipe';
+import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-forum-type.directive'
 
 
 
@@ -86,7 +87,8 @@ import { MyFilterPipe } from 'app/Pages/testingpagetwo/service/myFilter.pipe'
     TeacherbookingsComponent,
     BookingdetailteacherComponent,
     BookingdetailuserComponent,
-    MyFilterPipe
+    MyFilterPipe,
+    CheckForumTypeDirective
   ],
   imports: [
     BrowserModule,

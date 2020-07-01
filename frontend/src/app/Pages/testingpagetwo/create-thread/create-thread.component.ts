@@ -5,7 +5,7 @@ import {Forum} from '../models/forum-thread';
 import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ActivatedRoute } from '@angular/router';
-import { Types } from '../models/forumType'
+import { Types } from '../models/forumType';
 
 
 @Component({
@@ -27,6 +27,8 @@ image: string = '';
 newForum = false;
 newThread = false;
 toppingList: string[] = ['Rajitha Gayashan', 'Nipuna Sarachchandra', 'Pasindu Bhashitha', 'Sasika Nawarathna', 'Vihaga Shamal', 'Tharindu Madhusanka'];
+user = 'Rajitha Gayashan'
+tag = ''
 
 constructor( public forumService : FourmServiceService, 
      private matdialogRef:MatDialogRef<CreateThreadComponent>,
@@ -47,6 +49,7 @@ ngOnInit(): void {
     if(this.type){
        this.flag = !this.flag;
      }
+     this.forumService.getForumtypes();
 }
  
 uplodeImage(event){
@@ -89,18 +92,23 @@ onSubmit(){
 
 newType(){
   const type : Types = {
+    _id : null,
+    forumOwner : this.formControlsT.forumOwner.value,
+    description : this.formControlsT.description.value,
     type : this.formControlsT.type.value,
     teachers : this.formControlsT.teachers.value,
 }
 // console.log(type)
-if(confirm('Are you sure to add this Forum type?')){
-this.forumService.setType(type).subscribe(res=>{
-  console.log(res)
-  this.forumService.formType.reset();
-  this.forumService.success("New Forum Type Successfully created!")
+if(type._id == null){
+  if(confirm('Are you sure to add this Forum type?')){
+    this.forumService.setType(type).subscribe(res=>{
+    // console.log(res)
+     this.forumService.formType.reset();
+     this.forumService.success("New Forum Type Successfully created!")
 })
-this.matdialogRef.close();
-}
+     this.matdialogRef.close();
+    }
+  }
 }
 
 onNoClick(): void {
