@@ -95,8 +95,8 @@
         
       </div>
       <div class="col-sm-4">        
-        <mat-card style="background-color: rgb(183, 253, 253);">
-          <mat-card-header><strong>DESCRIPTION!</strong></mat-card-header>
+        <mat-card >
+          <mat-card-header style="background-color: rgb(183, 253, 253);"><strong>DESCRIPTION!</strong></mat-card-header>
           <hr>
           <mat-card-content>
             <p>Welcome to the E-teacher discussion forums! Ask questions, debate ideas, and find classmates who share your goals. Browse popular threads below or other forums in the sidebar.</p>  
@@ -104,8 +104,8 @@
         </mat-card>
        
         <br>
-        <mat-card  style="background-color: rgb(183, 253, 253);">
-          <mat-card-header>
+        <mat-card>
+          <mat-card-header style="background-color: rgb(183, 253, 253);">
            <strong>MODERATORS</strong> 
           </mat-card-header>
           <hr>
@@ -115,9 +115,10 @@
             <img class="rounded-circle mr-3" height="50px" width="50px" alt="avatar"src=" http://localhost:4200/assets/img/faces/kaci-baum-2.jpg">
           </mat-card-content>
         </mat-card> 
+        <br>
         <mat-card *ngIf = "user == 'teacher'">
           <div>
-          <mat-card-header><strong>Create New Forum</strong></mat-card-header>
+          <mat-card-header style="background-color: rgb(183, 253, 253);"><strong>Create New Forum</strong></mat-card-header>
           <hr>
           <mat-card-content>
             <button mat-flat-button color="primary" (click)="onCreateForum()" title="Create new Forum"><mat-icon>post_add</mat-icon>New Forum</button>

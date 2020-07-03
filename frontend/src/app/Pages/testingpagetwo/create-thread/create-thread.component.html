@@ -28,8 +28,8 @@
             <div class="form-group">
               <label>Images/Screenshots</label>
               <input type="file" (change)="uplodeImage($event)" formControlName="image">
-              <div class="w3-container">
-                <img [src]="image" class="w3-image" width="auto" height="auto">
+              <div class="srolling" *ngIf = "image">
+                <img [src]="image" width="auto" height="auto">
                  </div>
             </div>
               <div class="form-group" *ngIf ="flag ;  else elseBlock">

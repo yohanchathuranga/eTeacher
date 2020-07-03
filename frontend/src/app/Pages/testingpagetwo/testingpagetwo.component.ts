@@ -25,7 +25,7 @@ export class TestingpagetwoComponent implements OnInit {
  types = ["Genaral Discussions","Science","Maths","Computer Science","Object oriented Programing"];
  searchKey : string;
  flag = true;
- user = "genaral";
+ user = "teacher";
  newForum = false;
  newThread = false;
  allForumTypes : any;
