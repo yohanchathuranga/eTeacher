@@ -8,6 +8,7 @@ import {replyComment} from '../models/replyComment'
 import {MatSnackBar,MatSnackBarConfig} from '@angular/material/snack-bar';
 import { Types } from '../models/forumType';
 import { CheckForumTypeDirective } from '../service/check-forum-type.directive';
+import { VoteDetails } from '../models/voteDetails';
 
 
 
@@ -55,7 +56,7 @@ getForumtypes(){
           // console.log(this.Tags[i])
      }
 
-    console.log(this.Tags)
+    // console.log(this.Tags)
   })
 }
 
@@ -128,6 +129,15 @@ setType(type : Types){
 }
 getallForumType(){
   return this.http.get(this.baseURL + '/type');
+}
+getVoteDetails(id: string,user : string){
+  return this.http.get(this.baseURL + '/'+ id + '/' + user) 
+}
+updateVotedetails(id : string , voteId : string , voteUpdate : any){
+  return this.http.put(this.baseURL + '/' + id + '/vote/' + voteId, voteUpdate);
+}
+setVotDetails(id: string , vote : VoteDetails){
+  return this.http.post(this.baseURL + '/' + id, vote);
 }
 
 }

@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Forum } from '../models/forum-thread';
 import * as moment from 'moment';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { Reply} from 'app/Pages/testingpagetwo/models/comment'
+import { Reply} from 'app/Pages/testingpagetwo/models/comment';
+import {VoteDetails} from '../models/voteDetails'
 
 
 @Component({
@@ -19,24 +20,27 @@ export class ViewThreadComponent implements OnInit {
     private route: ActivatedRoute ) { }
 
 threadId : string;
+threadOwner : string;
 getThread : any;
 timeArray =[];
 threadBody : string;
-owner = "Yohan Chathuranga";
+owner = "yohan ttiarachchi";
 comments : any;
 open = false;
 viewReply = false;
 replyCount = 0; 
 subReplys : any;
-subReplyCount =0; 
+subReplyCount = 0; 
 selectCommentId :string;
 allsubReplys : any;
 thread :any
 threadImage : string;
+voteDetails : any;
+vUp = false;
+vDown = false;
+voteId : string;
 
-
-  
-  ngOnInit(): void {
+ngOnInit(): void {
       this.route.params.subscribe(routerParam =>{
         this.threadId = routerParam.id
          });
@@ -44,6 +48,7 @@ threadImage : string;
         this.getThread = res;
         console.log(this.getThread);
         this.timeAgo(this.getThread);
+        this.threadOwner = this.getThread.owner
         this.threadBody = this.getThread.body;
         this.threadImage = this.getThread.image;
         this.updateViwes(this.getThread);
@@ -52,11 +57,10 @@ threadImage : string;
         this.forumService.getsubReplyC(this.threadId).subscribe((res)=>{
           this.subReplys = res;
           this.subReplyCount = this.subReplys.length;
-          // console.log(this.fala.length)
         })
      });
-
-    this.getComments();  
+    this.getComments();
+    this.setVoteDetails();
     }
 
 timeAgo(event:any){
@@ -129,14 +133,32 @@ editorConfig: AngularEditorConfig = {
   ]
 };                                
 
-   
+setVoteDetails(){
+  this.forumService.getVoteDetails(this.threadId,this.owner).subscribe(res=>{
+    this.voteDetails = res
+    if(this.voteDetails.length != 0){
+    this.voteId = this.voteDetails[0]._id
+    }
+    if(this.voteDetails.length == 0){
+      this.vUp = false
+      this.vDown = false
+    }else if(this.voteDetails[0].voteUp){
+      this.vUp = true
+      this.vDown = false;
+    }else if(this.voteDetails[0].voteDown){
+      this.vUp = false
+      this.vDown = true
+    }
+  });  
+}
+
 comment : Reply ={
     id : "",
     threadId : "",
     owner : this.owner,
     date : new Date,
     comment : ""
-                 }
+  }
 
 relodeCmt(){
   this. comment ={
@@ -144,9 +166,9 @@ relodeCmt(){
     threadId : "",
     owner : this.owner,
     date : new Date,
-    comment : ""     
-        }
-    }
+    comment : ""
+  }
+}
       
 on(cmt : Reply){
   cmt.threadId = this.threadId,
@@ -167,17 +189,13 @@ setReplyCount(){
   this.forumService.getsubReplyC(this.threadId).subscribe((res)=>{
     this.allsubReplys = res;
       this.subReplyCount = this.allsubReplys.length;
-    // console.log(this.subReplyCount) 
         this.forumService.getComments(this.threadId).subscribe(res=>{
         this.comments = res;
         this.replyCount = this.comments.length;
-    // console.log(this.replyCount)
     this.forumService.getThread(this.threadId).subscribe((res)=>{
       this.thread = res;
-      // console.log('initial value :',this.thread.replies)
       this.thread.replies = 0;
       this.thread.replies =  this.subReplyCount +  this.replyCount; 
-      // console.log(this.thread.replies);
       this.forumService.setReplycount(this.thread).subscribe(()=>{
         }); 
       });  
@@ -192,29 +210,72 @@ updateViwes(event: any){
  }
 
  onChange(){
-      if(this.open == false){
-        this.open=true;
-      }
-      else{
+    if(this.open == false){
+      this.open=true;
+    }else{
         this.open=false;
       }
- }
+    }
 
- voteUp(event: any){
-    event.votes = event.votes + 1;
+voteUp(event: any){ 
+    this.vUp = true;
+    this.vDown = false  
+    const voteUp : VoteDetails = {
+      voteUp : true,
+      voteDown : false,
+      owner : this.owner
+    }
+    if(!this.vUp && !this.vDown){
+    this.forumService.setVotDetails(this.threadId , voteUp).subscribe((res)=>{
+      // this.setVoteDetails();
+    });
+  }else{
+    this.vUp = true;
+    this.vDown = false
+    const newvoteUp = {
+      voteUp : true,
+      voteDown : false
+    }
+    this.forumService.updateVotedetails(this.threadId, this.voteId , newvoteUp).subscribe((res=>{
+      // this.setVoteDetails();
+    }))
+
+  }
+     event.votes = event.votes + 1;
     this.getThread = event;
     this.forumService.setVoteup(this.getThread).subscribe((res)=>{
       this.getThread = res;
-      // console.log(this.getThread);
     });
  }
 
- voteDown(event: any){
+voteDown(event: any){
+  this.vUp = false;
+  this.vDown = true;
+  const voteDown : VoteDetails = {
+    voteUp : false,
+    voteDown : true,
+    owner : this.owner
+  }
+  if(!this.vUp && !this.vDown){
+    this.forumService.setVotDetails(this.threadId , voteDown).subscribe((res)=>{
+      // this.setVoteDetails();
+    });
+  }else{
+    this.vUp = false;
+    this.vDown = true;
+    const newvoteDown = {
+      voteUp : false,
+      voteDown : true
+    }
+    this.forumService.updateVotedetails(this.threadId, this.voteId , newvoteDown).subscribe((res=>{
+      // this.setVoteDetails();
+    }))
+
+  }
   event.votes = event.votes - 1;
   this.getThread = event;
   this.forumService.setVotedown(this.getThread).subscribe((res)=>{  
-    this.getThread =res; 
-    // console.log(this.getThread);    
+    this.getThread =res;   
   });
 }
 
