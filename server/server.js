@@ -5,6 +5,7 @@ const cors = require('cors')
 const app = express()
 
 const PORT = 3000;
+const UserRouter = require('./api/user')
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -16,7 +17,7 @@ app.listen(PORT, () => {
 
 
 // create the db constant to connect
-const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net/test?retryWrites=true&w=majority"
+const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net/E-teacher?retryWrites=true&w=majority"
 
 //setup cors
 app.use(cors())
@@ -31,5 +32,7 @@ mongoose.connect(db, {
         console.log('connected to database')
     }
 })
+
+app.use('/users', UserRouter)
 
 module.exports = router
