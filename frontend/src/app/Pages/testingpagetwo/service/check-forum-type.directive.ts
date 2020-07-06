@@ -17,7 +17,7 @@ export class CheckForumTypeDirective {
       // for(let i in tags){
       //   lowerTags.push(tags[i].toLowerCase());
       // }
-      // console.log(lowerTags)
+      // console.log(lowerTags)    
       const type : string = control.value; 
       const hashTag = tags.indexOf(type) > -1;
       // const hashTag =  JSON.stringify(tags).toLowerCase().indexOf(type.toLowerCase()) > -1

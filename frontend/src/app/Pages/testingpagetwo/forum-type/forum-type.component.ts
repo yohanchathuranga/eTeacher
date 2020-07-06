@@ -25,9 +25,13 @@ onSppiner = true;
 searchKey : string;
 newForum = false;
 newThread = false;
-user = "Yohan Chathuranga";
+updateForum = false;
+user = "Rajitha Gayashan";
 thread : any;
 threadImg : string;
+forumDetails : any;
+teachers : string[]
+forumOwner :string;
 
   ngOnInit(): void {
     this.route.params.subscribe(routerParam=>{
@@ -39,6 +43,12 @@ threadImg : string;
         this.count(this.threads);
         // console.log(res)
         this.timeAgo(this.threads);
+      });
+      this.forumService.getForumTypeDetails(this.type).subscribe((res)=>{
+        this.forumDetails = res;
+        console.log(res)
+        this.teachers = this.forumDetails[0].teachers;
+        this.forumOwner = this.forumDetails[0].forumOwner;
       })
 
     })
@@ -49,7 +59,7 @@ timeAgo(event){
     list[i].timeAgo= moment(event[i].timestamps).fromNow();
   } 
   this.threads = list
-  console.log(list)
+  // console.log(list)
   }
 onSelect(property){
     this.router.navigate(['/' + property.type,property._id])
@@ -81,7 +91,7 @@ onCreate(){
 } 
 
 getThreds(type :string){
-  console.log(type);
+  // console.log(type);
   this.onSppiner = true;
   this.forumService.getType(type).subscribe((res)=>{
     this.timeAgo(res);
@@ -90,7 +100,7 @@ getThreds(type :string){
   })
 }
 deleteThread(id : string){
-  console.log(id)
+  // console.log(id)
   this.forumService.deleteThread(id).subscribe(()=>{
     this.getThreds(this.type);
     this.forumService.success("Thread deleted Successfully")
@@ -116,6 +126,24 @@ edit(threadId: string){
   matdialogRef.afterClosed().subscribe(result => {  
     this.forumService.form.reset()})
 });
+}
+editForum(forumtype : string){
+  this.forumService.editForum(forumtype);
+  this.newThread = false;
+  this.newForum = false;
+  this.updateForum = true;
+  let matdialogRef = this.matDialog.open(CreateThreadComponent,{
+    width: '60%',
+    restoreFocus: false,
+    data: {
+      type : forumtype,
+      newForum: this.newForum,
+      newThread:this.newThread,
+      updateForum: this.updateForum
+    }
+  });
+  matdialogRef.afterClosed().subscribe(result => {  
+    this.forumService.formType.reset()})
 
 }
  

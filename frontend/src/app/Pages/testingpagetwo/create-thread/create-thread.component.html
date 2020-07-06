@@ -32,7 +32,7 @@
                 <img [src]="image" width="auto" height="auto">
                  </div>
             </div>
-              <div class="form-group" *ngIf ="flag ;  else elseBlock">
+              <div class="form-group" *ngIf="flag ;  else elseBlock">
                 
                 <mat-form-field>
                   <label >Forum Type</label>
@@ -83,7 +83,7 @@
               <input type="hidden" id="forumOwner" formControlName="forumOwner" [ngModel]="user" required>
               <span>Forum owner is <strong>{{user}}</strong></span>
               </div>
-              <div class="form-group"> 
+              <div class="form-group" *ngIf="!type ;  else elseBlock1"> 
                 <label >Type*</label>
                 <input  [(ngModel)]="tag" type="text" class="form-control" formControlName="type" required [ngClass]="{'is-invalid':  this.forumService.formType.get('type').errors &&
                 this.forumService.formType.get('type').touched && this.forumService.formType.get('type').invalid}">
@@ -98,6 +98,12 @@
                 </span>
                 </span>
               </div>
+              <ng-template #elseBlock1>
+                <div class="form-group">
+                <input type="hidden" id="type" formControlName="type" [ngModel]="type" required>
+                <span>Thread type is <strong>{{type}}</strong></span>
+                </div>
+              </ng-template>
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Add short description about Forum you Created*</label>
                  <textarea placeholder="description..."  formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3"required
@@ -133,3 +139,53 @@
     <button mat-flat-button color="primary" type="submit"[mat-dialog-close]="true" (click) = "newType()" [disabled]="!this.forumService.formType.valid">Submit</button>
   </mat-dialog-actions>
 </div>
+
+<div *ngIf ="updateForum">
+  <mat-dialog-content class="mat-typography">
+    <br>
+  <mat-card>
+      <mat-card-title>Update Forum </mat-card-title>
+      <hr>
+      <mat-card-content> 
+          <form [formGroup]="this.forumService.updateForm" (ngSubmit)="updateF()">
+            <input type="hidden" formControlName="_id" />             
+                <div class="form-group">
+                <span>Thread type is <strong>{{type}}</strong></span>
+                </div>
+  
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Add short description about Forum you Created*</label>
+                 <textarea placeholder="description..."  formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3"required
+                [ngClass]="{'is-invalid':
+                this.forumService.updateForm.get('description').touched && this.forumService.updateForm.get('description').invalid}"></textarea>
+                <div class="invalid-feedback">
+                  <div>Short description required!</div>
+              </div> 
+              </div>
+            <div class="row">
+              <div class="col-6">
+              <div class="form-group"> 
+                <label >Select teachers for moderate your Forum*</label>
+              <!-- <mat-form-field > -->
+                <mat-select class="form-control" formControlName="teachers"  multiple required [ngClass]="{'is-invalid':
+                this.forumService.updateForm.get('teachers').touched && this.forumService.updateForm.get('teachers').invalid}">
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+                 <div class="invalid-feedback">
+                    <div>At least one moderater required</div>
+                 </div>
+              <!-- </mat-form-field> -->      
+              </div>
+              </div>
+            </div>               
+              </form>
+        </mat-card-content>
+  </mat-card>
+  <br>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="primary" type="submit"[mat-dialog-close]="true" (click) = "updateF()" [disabled]="!this.forumService.updateForm.valid">Update</button>
+  </mat-dialog-actions>
+</div>
+

@@ -16,16 +16,18 @@ import { Types } from '../models/forumType';
 export class CreateThreadComponent implements OnInit {
 attempted = true;
 name = "Yohan Chathuranga";
-forumTypes=["Genaral Discussions", "Science", "Maths", "Computer Science", "Object oriented Programing"];
+forumTypes:string[];
 type : string;
 formControls = this.forumService.form.controls;
 formControlsT = this.forumService.formType.controls;
+formControlsU = this.forumService.updateForm.controls;
 public threadList: any;
 // count : number;  
 flag = true;
 image: string = '';
 newForum = false;
 newThread = false;
+updateForum = false;
 toppingList: string[] = ['Rajitha Gayashan', 'Nipuna Sarachchandra', 'Pasindu Bhashitha', 'Sasika Nawarathna', 'Vihaga Shamal', 'Tharindu Madhusanka'];
 user = 'Rajitha Gayashan'
 tag = ''
@@ -40,10 +42,12 @@ ngOnInit(): void {
     try{
       console.log(this.data)
       this.type = this.data.type;
+      this.forumTypes = this.data.types,
       this.image = this.data.threadImage
       this.newForum = this.data.newForum,
-      this.newThread = this.data.newThread
-      console.log( this.newForum,this.newThread)
+      this.newThread = this.data.newThread,
+      this.updateForum = this.data.updateForum,
+      console.log( this.newForum,this.newThread,this.updateForum)
     }catch{
        console.log("this is not error");
     }
@@ -106,6 +110,7 @@ onSubmit(){
 }
 
 newType(){
+  if(!this.formControlsT._id.value){
   const type : Types = {
     _id : null,
     forumOwner : this.formControlsT.forumOwner.value,
@@ -114,7 +119,6 @@ newType(){
     teachers : this.formControlsT.teachers.value,
 }
 // console.log(type)
-if(type._id == null){
   if(confirm('Are you sure to add this Forum type?')){
     this.forumService.setType(type).subscribe(res=>{
     // console.log(res)
@@ -124,6 +128,27 @@ if(type._id == null){
     
     this.matdialogRef.afterClosed().subscribe(result => {  
       this.forumService.formType.reset()
+    })
+    this.matdialogRef.close();
+    }
+  }
+}
+
+updateF(){
+  if(this.formControlsU._id.value){
+  const updatedForum = {  
+    description : this.formControlsU.description.value,
+    teachers : this.formControlsU.teachers.value
+  }
+  if(confirm('Are you sure to Update this Forum?')){
+    this.forumService.updateForum(this.formControlsU._id.value, updatedForum).subscribe(res=>{
+    // console.log(res)
+     this.forumService.updateForm.reset();
+     this.forumService.success("Forum is Successfully updated!")
+})
+    
+    this.matdialogRef.afterClosed().subscribe(result => {  
+      this.forumService.updateForm.reset()
     })
     this.matdialogRef.close();
     }

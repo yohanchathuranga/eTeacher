@@ -25,6 +25,7 @@ existingTags : any;
 types = [];
 Tags = this.types;
 thread : any;
+forumDetails : any;
 
 
   constructor(
@@ -47,6 +48,13 @@ formType = new FormGroup({
   teachers : new FormControl([], Validators.required)
 });
 
+updateForm = new FormGroup({
+  _id : new FormControl(null),
+  description : new FormControl('',Validators.required),
+  teachers : new FormControl([], Validators.required)
+});
+
+
 editThread(threadId : string){
 
   this.getThread(threadId).subscribe(res=>{
@@ -59,7 +67,16 @@ editThread(threadId : string){
       type:this.thread.type
     })
   })
-
+}
+editForum(type : string){
+  this.getForumTypeDetails(type).subscribe((res)=>{
+    this.forumDetails = res
+    this.updateForm.patchValue({
+      _id : this.forumDetails[0]._id,
+      description : this.forumDetails[0].description,
+      teachers : this.forumDetails[0].teachers
+    });
+  })
 }
 
 getForumtypes(){
@@ -160,6 +177,13 @@ setVotDetails(id: string , vote : VoteDetails){
 }
 updateThread(id : string, thread:any){
   return this.http.put(this.baseURL4 + '/type/' + id , thread);
+}
+// get forum details
+getForumTypeDetails(type : string){
+  return this.http.get(this.baseURL4 + '/forum/' + type);
+}
+updateForum(id : string, updateForum : any){
+  return this.http.put(this.baseURL4 + '/update/' + id,updateForum);
 }
 
 }
