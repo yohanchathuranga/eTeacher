@@ -114,7 +114,7 @@
                      </button>
 
            
-                   <button type="button" class="btn btn-danger" *ngIf ="user == forumOwner">
+                   <button type="button" (click)="deleteForum(type)" class="btn btn-danger" *ngIf ="user == forumOwner">
                     <i class="fa fa-trash" aria-hidden="true"></i>Delete
                    </button>
                

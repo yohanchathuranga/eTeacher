@@ -186,4 +186,10 @@ updateForum(id : string, updateForum : any){
   return this.http.put(this.baseURL4 + '/update/' + id,updateForum);
 }
 
+deleteForumType(type :string){
+  return this.http.delete(this.baseURL4 + '/' + type)
+}
+deleteThreads(type : string){
+  return this.http.delete(this.baseURL + '/type/' + type)
+}
 }

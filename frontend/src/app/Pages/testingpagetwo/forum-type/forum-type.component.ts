@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 
 
 
+
 @Component({
   selector: 'app-forum-type',
   templateUrl: './forum-type.component.html',
@@ -144,8 +145,20 @@ editForum(forumtype : string){
   });
   matdialogRef.afterClosed().subscribe(result => {  
     this.forumService.formType.reset()})
+  }
+  deleteForum(type : string){
+    if(confirm('Are you really want to delete this Forum?')){
+      this.forumService.deleteForumType(type).subscribe(()=>{
+   
+      });
+      this.forumService.deleteThreads(type).subscribe(()=>{
 
-}
+      })
+     
+      this.forumService.success("Successfully deleted Forum");
+      this.router.navigate(['/' + 'forum']);
+    }
+  }
  
 } 
 
