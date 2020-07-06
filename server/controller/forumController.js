@@ -7,7 +7,7 @@ var {Forum} = require('../model/forumModel');
 var {Type} = require('../model/forumType');
 router.route('/')
 .get((req,res)=>{
-    Forum.find((err,docs)=>{
+    Forum.find({},'title type timeAgo timestamps owner views replies',(err,docs)=>{
     if(!err){res.send(docs);}
      else{console.log('Error in retriving Threds :'+JSON.stringify(err,undefined,2));
     }
@@ -99,14 +99,31 @@ router.route('/:id')
         else{console.log('Error in employee update :'+JSON.stringify(err,undefined,2))
     }
     });
-});
+})
+
+.delete((req,res,next)=>{
+    Forum.findById(req.params.id)
+    .then((thread)=>{
+        if(thread !=null){
+            thread.remove((err,doc)=>{
+                if(!err){
+                    res.status = 200;
+                    res.send(doc)
+                }else{
+                    console.log('Error in delete this thread : '+JSON.stringify(err,undefined,2))
+                }
+            })
+        }
+    },(err) => next(err))
+    .catch((err) => next(err));
+})
 
 router.route('/:id/:voteOwner')
 .get((req,res,next)=>{
     Forum.findById(req.params.id)
     .then((vote)=>{
             var flag = -1;
-            if(vote.voteDetails != null){
+            if(vote.voteDetails[0] != null){
             for(let i in vote.voteDetails){
                 // console.log(req.params.voteOwner)
                 // console.log(vote.voteDetails[i].owner)
