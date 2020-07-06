@@ -172,6 +172,16 @@ router.route('/:id/vote/:voteId')
     },(err) => next(err))
     .catch((err) => next(err));
 })
+router.route('/type/:type')
+.delete((req,res)=>{
+    Forum.deleteMany({type:req.params.type}, (err,result)=>{
+        if(!err){
+            res.send(result);
+        }else{
+            res.send(err);
+        }
+    })
+})
 
 
 

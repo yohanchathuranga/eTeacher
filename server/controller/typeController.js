@@ -14,6 +14,16 @@ router.route('/:type')
             console.log('Error in retriving Threads :'+JSON.stringify(err,undefined,2))
         }
     });
+})
+.delete((req,res)=>{
+    Type.deleteOne({type : req.params.type},(err,result)=>{
+        if(!err){
+            res.send(result);
+        }else{
+            res.send(err);
+        }
+    })
+  
 });
 router.route('/type/:id')
 .put((req,res,next)=>{
