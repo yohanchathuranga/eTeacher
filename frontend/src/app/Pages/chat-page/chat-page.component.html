@@ -1,0 +1,48 @@
+<div class="App">
+    <aside class="sidebar left-sidebar">
+      <section>
+        <ul class="user-list">
+            <li>You : {{ currentUser }}</li>
+            <li>Guest : {{ searchedUser }}</li>
+        </ul>
+      </section>
+    </aside>
+  
+    <main class="chat-window">
+      <header class="chat-header">
+        <section>
+          <h4>{{chatName}}</h4>
+        </section>
+      </header>
+      <section class="chat-session">
+        <ul class="message-list">
+          <li class="user-message" *ngFor="let chatitems of chat | async">
+            <section class="user-message-sender" *ngIf="currentUser == chatitems.sender">
+                <span class="user-id-sender">{{ chatitems.sender }}</span>
+                <span class="user-message-content-sender">{{ chatitems.message }}</span>
+            </section>
+            <section class="user-message-reciever" *ngIf="currentUser != chatitems.sender">
+                <span class="user-id-reciever">{{ chatitems.sender }}</span>
+                <span class="user-message-content-reciever">{{ chatitems.message }}</span>
+            </section>
+          </li>
+        </ul>
+        
+            <!-- <pre *ngFor="let chatitems of chat | async">message : {{chatitems.message}} sender : {{chatitems.sender}}</pre> -->
+       
+      </section>
+      <footer class="chat-footer">
+        <form class="message-form" (ngSubmit)='onSubmit()'>
+          <label>
+            <input class="message-input" placeholder="Type a message......" type="text" name="message"
+              [(ngModel)]="newMessage" />
+          </label>
+          <button type="button" class="btn btn-outline-danger btn-round btn-sm" (click)=onSubmit()>Send</button>
+        </form>
+      </footer>
+    </main>
+  
+    <aside class="sidebar right-sidebar">
+        <button style="margin-top: 40px; margin-left: 20px; margin-right: 20px;" type="button" class="btn btn-default btn-round" routerLink="/pages/messagingpage">My messages</button>
+    </aside>
+  </div>

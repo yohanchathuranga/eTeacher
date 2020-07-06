@@ -3,12 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
+
+import { AppRoutingModule } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { HttpModule } from '@angular/http';
-import {HttpClientModule} from '@angular/common/http'
 import { NgxPaginationModule } from 'ngx-pagination';
 // import {FlashMessagesModule} from 'flash-messages';
+
 
 import { AppComponent } from './app.component';
 
@@ -31,6 +36,9 @@ import { BookingService } from './services/booking.service';
 
 // import { ComponentsModule } from './components/components.module';
 import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
+import { MessagingPageComponent } from './Pages/messaging-page/messaging-page.component';
+import { ChatPageComponent } from './Pages/chat-page/chat-page.component';
+import { TestingUserPageComponent } from './Pages/testing-user-page/testing-user-page.component';
 import { TestingpagetwoComponent } from '../app/Pages/testingpagetwo/testingpagetwo.component';
 import { TestingpagethreeComponent } from '../app/Pages/testingpagethree/testingpagethree.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -61,9 +69,6 @@ import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-fo
 
 
 
-
-
-
 @NgModule({
   declarations: [
 
@@ -73,6 +78,9 @@ import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-fo
     TestingPageComponent,
     TestingpagetwoComponent,
     TestingpagethreeComponent,
+    MessagingPageComponent,
+    ChatPageComponent,
+    TestingUserPageComponent,
     CreateThreadComponent,
     ViewThreadComponent,
     ReplyCommentComponent,
@@ -97,6 +105,8 @@ import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-fo
     // FlashMessagesModule.forRoot() ,
     RouterModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     FullCalendarModule,
     HttpModule,
     HttpClientModule,
@@ -121,7 +131,6 @@ import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-fo
     ToastrModule.forRoot(),
     MatSnackBarModule,
     MatInputModule
-   
   ],
   providers: [UserService,BookingService,{provide: module, useClass: UserService}],
   bootstrap: [AppComponent],

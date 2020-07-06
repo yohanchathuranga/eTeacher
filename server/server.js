@@ -20,6 +20,7 @@ const user = require('./routes/users')
 const booking = require('./routes/bookings')
 
 const PORT = 3000;
+const UserRouter = require('./api/user')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -90,4 +91,7 @@ passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
   });
 }));
 
+app.use('/users', UserRouter)
+
+module.exports = router
 //module.exports = router
