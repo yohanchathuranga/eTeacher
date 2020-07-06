@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router(); 
 
-var {Forum} = require('../model/forumModel')
+var {Forum} = require('../model/forumModel');
+var {Type} = require('../model/forumType');
 router.route('/:type')
 .get((req,res)=>{
     // console.log(req.params.type)
@@ -30,5 +31,33 @@ router.route('/type/:id')
         }
     },(err) => next(err))
     .catch((err) => next(err));
+})
+router.route('/forum/:type')
+.get((req,res,next)=>{
+    Type.find({'type': req.params.type})
+    .then((forum)=>{
+        if(forum != null){
+            res.sendStatus = 200;
+            res.send(forum);
+        }
+    },(err) => next(err))
+    .catch((err) => next(err));
+})
+router.route('/update/:id')
+.put((req,res,next)=>{
+    Type.findById(req.params.id)
+    .then((forum)=>{
+        if(forum != null){
+            forum.description = req.body.description
+            forum.teachers = req.body.teachers
+            forum.save()
+            .then((newForum)=>{
+                res.sendStatus = 200;
+                res.send(newForum);
+            },(err) => next(err))
+        }
+    },(err) => next(err))
+    .catch((err) => next(err));
+
 })
 module.exports = router
