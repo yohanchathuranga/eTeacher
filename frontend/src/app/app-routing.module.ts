@@ -11,7 +11,7 @@ import {TeacherbookingsComponent } from './components/bookings/teacherbookings/t
 import {UserbookingsComponent } from './components/bookings/userbookings/userbookings.component';
 import { LandingComponent } from './examples/landing/landing.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
-// import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
+import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
 import {TestingpagetwoComponent} from './Pages/testingpagetwo/testingpagetwo.component';
 import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
 import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
