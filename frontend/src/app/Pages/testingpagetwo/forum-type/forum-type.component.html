@@ -105,16 +105,14 @@
                   </li>
                 </ul>
                 <mat-card-footer>
-                  <button type="button" class="btn btn-success" >
+                  <button type="button" class="btn btn-success" title="View teacher Profile">
                     <i class="fa fa-eye" aria-hidden="true"></i>View Profile
                    </button>
         
-                    <button type="button" (click)="editForum(type)" class="btn btn-primary" *ngIf ="user == forumOwner">
+                    <button type="button" (click)="editForum(type)" class="btn btn-primary" *ngIf ="user == forumOwner" title="Edit Forum">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit
-                     </button>
-
-           
-                   <button type="button" (click)="deleteForum(type)" class="btn btn-danger" *ngIf ="user == forumOwner">
+                     </button>           
+                   <button type="button" (click)="deleteForum(type)" class="btn btn-danger" *ngIf ="user == forumOwner" title="Delete Forum">
                     <i class="fa fa-trash" aria-hidden="true"></i>Delete
                    </button>
                

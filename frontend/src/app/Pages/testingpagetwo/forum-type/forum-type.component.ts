@@ -27,7 +27,7 @@ searchKey : string;
 newForum = false;
 newThread = false;
 updateForum = false;
-user = "Rajitha Gayashan";
+user = "Yohan Chathuranga";
 thread : any;
 threadImg : string;
 forumDetails : any;
@@ -149,14 +149,14 @@ editForum(forumtype : string){
   deleteForum(type : string){
     if(confirm('Are you really want to delete this Forum?')){
       this.forumService.deleteForumType(type).subscribe(()=>{
-   
+        this.forumService.deleteThreads(type).subscribe(()=>{
+          this.forumService.success("Successfully deleted Forum");
+          this.router.navigate(['/' + 'forum']);
+        })
       });
-      this.forumService.deleteThreads(type).subscribe(()=>{
-
-      })
+ 
      
-      this.forumService.success("Successfully deleted Forum");
-      this.router.navigate(['/' + 'forum']);
+     
     }
   }
  
