@@ -24,6 +24,7 @@ baseURL4 = "http://localhost:3000/type";
 existingTags : any;
 types = [];
 Tags = this.types;
+thread : any;
 
 
   constructor(
@@ -32,10 +33,9 @@ Tags = this.types;
   ) { }
   
 form = new FormGroup({
-  id : new FormControl(null),
+  _id : new FormControl(null),
   title : new FormControl('', Validators.required),
   body : new FormControl('', Validators.required),
-  image: new FormControl(''),
   type:new FormControl('', Validators.required)
 });
 
@@ -46,6 +46,21 @@ formType = new FormGroup({
   description : new FormControl('',Validators.required),
   teachers : new FormControl([], Validators.required)
 });
+
+editThread(threadId : string){
+
+  this.getThread(threadId).subscribe(res=>{
+    this.thread = res;
+    // console.log(this.thread.image.data)
+    this.form.patchValue({
+      _id : this.thread._id,
+      title :this.thread.title,
+      body : this.thread.body,
+      type:this.thread.type
+    })
+  })
+
+}
 
 getForumtypes(){
   this.getallForumType().subscribe(res=>{
@@ -83,8 +98,12 @@ regForum(emp:Forum){
 getAll(){
   return this.http.get<Forum>(this.baseURL)
 }
-getThread(id){
+getThread(id : string){
   return this.http.get(this.baseURL + '/' + id);
+}
+
+deleteThread(id :string){
+  return this.http.delete(this.baseURL + '/' + id)
 }
 
 submitCmt(cmt:Reply){
@@ -138,6 +157,9 @@ updateVotedetails(id : string , voteId : string , voteUpdate : any){
 }
 setVotDetails(id: string , vote : VoteDetails){
   return this.http.post(this.baseURL + '/' + id, vote);
+}
+updateThread(id : string, thread:any){
+  return this.http.put(this.baseURL4 + '/type/' + id , thread);
 }
 
 }

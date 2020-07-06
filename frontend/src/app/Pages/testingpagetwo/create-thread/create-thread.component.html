@@ -6,7 +6,7 @@
     <hr>
     <mat-card-content> 
         <form [formGroup]="this.forumService.form" (ngSubmit)="onSubmit()">
-            <input type="hidden" id="custId" formControlName="id" >
+            <input type="hidden" id="_Id" formControlName="_id" >
             <div class="form-group"> 
               <label >Title*</label>
               <input type="text" class="form-control" formControlName="title" required [ngClass]="{'is-invalid':
@@ -26,9 +26,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Images/Screenshots</label>
-              <input type="file" (change)="uplodeImage($event)" formControlName="image">
-              <div class="srolling" *ngIf = "image">
+              <label>Image/Screenshot</label>
+              <input type="file" (change)="uplodeImage($event)" accept="image/x-png,image/gif,image/jpeg">
+              <div class="srolling" *ngIf = "image" >
                 <img [src]="image" width="auto" height="auto">
                  </div>
             </div>

@@ -76,7 +76,7 @@ timeAgo(event){
   onCreate(){
     this.newThread = true;
     this.newForum = false;
-     this.matDialog.open(CreateThreadComponent,{
+    let matdialogRef = this.matDialog.open(CreateThreadComponent,{
       width: '60%',
       restoreFocus: false,
       data: {
@@ -84,6 +84,8 @@ timeAgo(event){
         newThread:this.newThread
       }
     });
+    matdialogRef.afterClosed().subscribe(result => {  
+      this.forumService.form.reset()})
   }
 
   getThreds(){
@@ -103,7 +105,7 @@ onsearchClear(){
 onCreateForum(){
   this.newForum = true
   this.newThread = false
-  this.matDialog.open(CreateThreadComponent,{
+  let matdialogRef = this.matDialog.open(CreateThreadComponent,{
     width: '55%',
     // restoreFocus: false,
     data: {
@@ -111,6 +113,8 @@ onCreateForum(){
       newThread:this.newThread
     }
   });
+  matdialogRef.afterClosed().subscribe(result => {  
+    this.forumService.formType.reset()})
 }
 }
 

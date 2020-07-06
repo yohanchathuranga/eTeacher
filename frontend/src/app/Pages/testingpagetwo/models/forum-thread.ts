@@ -1,5 +1,5 @@
 export interface Forum {
-    id: string;
+    _id: string;
     title: string;
     body: string;
     image:string;

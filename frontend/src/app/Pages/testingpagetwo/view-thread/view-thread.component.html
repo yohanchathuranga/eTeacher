@@ -27,21 +27,24 @@
             </mat-card-content>
             <hr>
             <mat-card-footer>
-         <div class="col">
-             <div>
-            <button mat-button color="primary" aria-label="Example icon button with a home icon" (click)="onChange()">
-                <mat-icon>chat_bubble_outline</mat-icon>Reply
+                <div >
+            <button type="button" class="btn btn-primary" (click)="onChange()">
+               <i class="fa fa-comment" aria-hidden="true"></i>{{!open ? 'Reply' : 'Hide'}}
               </button> 
-              <button mat-button color="primary" aria-label="Example icon button with a home icon" [disabled] = "vUp || threadOwner == owner"
+              <button  type="button" class="btn btn-primary" [disabled] = "vUp || threadOwner == owner"
                (click)="voteUp(getThread)">
-                <mat-icon>arrow_drop_up</mat-icon>UpVote
+               <i class="fa fa-chevron-up" aria-hidden="true"></i>UpVote
               </button> 
-              <button mat-button color="primary" aria-label="Example icon button with a home icon" [disabled] = "vDown || threadOwner == owner"
+              <button  type="button" class="btn btn-primary" [disabled] = "vDown || threadOwner == owner"
               (click)="voteDown(getThread)">
-                <mat-icon>arrow_drop_down</mat-icon>DownVote
-              </button> 
-                </div> 
-            </div>
+              <i class="fa fa-chevron-down" aria-hidden="true"></i>DownVote
+              </button>
+              <button  type="button" class="btn btn-warning" *ngIf = "threadOwner == owner">
+              <i class="fa fa-window-close" aria-hidden="true"></i> Close
+                </button> 
+        
+                </div>
+             
             </mat-card-footer>
         </mat-card>
         </div>

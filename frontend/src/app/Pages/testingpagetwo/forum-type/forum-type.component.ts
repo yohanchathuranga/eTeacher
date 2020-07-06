@@ -25,6 +25,9 @@ onSppiner = true;
 searchKey : string;
 newForum = false;
 newThread = false;
+user = "Yohan Chathuranga";
+thread : any;
+threadImg : string;
 
   ngOnInit(): void {
     this.route.params.subscribe(routerParam=>{
@@ -64,7 +67,7 @@ count(event){
 onCreate(){
   this.newThread = true;
   this.newForum = false;
-  this.matDialog.open(CreateThreadComponent,{
+  let matdialogRef = this.matDialog.open(CreateThreadComponent,{
     width: '50%',
     data: {
       type: this.type,
@@ -72,6 +75,9 @@ onCreate(){
       newForum: this.newForum
     }
   });
+  matdialogRef.afterClosed().subscribe(result => {  
+    this.forumService.form.reset()})
+  
 } 
 
 getThreds(type :string){
@@ -82,6 +88,35 @@ getThreds(type :string){
     this.count(res);
     this.onSppiner =!this.onSppiner;
   })
+}
+deleteThread(id : string){
+  console.log(id)
+  this.forumService.deleteThread(id).subscribe(()=>{
+    this.getThreds(this.type);
+    this.forumService.success("Thread deleted Successfully")
+  })
+}
+edit(threadId: string){
+  // this.abc.editThread(threadId)
+  this.forumService.editThread(threadId);
+  this.forumService.getThread(threadId).subscribe(res=>{
+    this.thread = res;
+  this.newThread = true;
+  this.newForum = false;
+   let matdialogRef = this.matDialog.open(CreateThreadComponent,{
+    width: '60%',
+    restoreFocus: false,
+    data: {
+      type : this.thread.type,
+      threadImage :this.thread.image,
+      newForum: this.newForum,
+      newThread:this.newThread
+    }
+  });
+  matdialogRef.afterClosed().subscribe(result => {  
+    this.forumService.form.reset()})
+});
+
 }
  
 } 
