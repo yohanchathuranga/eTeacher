@@ -16,6 +16,8 @@ const cors = require('cors')
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+
+
 /**
  * Create HTTP server.
  */
@@ -29,6 +31,14 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS')
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,Content-Type, Accept");
+ next();
+});
 
 /**
  * Normalize a port into a number, string, or false.

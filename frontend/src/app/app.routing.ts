@@ -12,6 +12,7 @@ import { TestingPageComponent } from './Pages/testing-page/testing-page.componen
 import { MessagingPageComponent } from './Pages/messaging-page/messaging-page.component';
 import { ChatPageComponent } from './Pages/chat-page/chat-page.component';
 import { TestingUserPageComponent } from './Pages/testing-user-page/testing-user-page.component';
+import {TestingpagetwoComponent} from './Pages/testingpagetwo/testingpagetwo.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,6 +25,8 @@ const routes: Routes =[
     { path: 'pages/messagingpage',      component: MessagingPageComponent },
     { path: 'pages/chatpage', component: ChatPageComponent},
     { path: 'pages/testingUserPage', component : TestingUserPageComponent},
+    { path: 'forum',      component: TestingpagetwoComponent }
+
 ];
 
 @NgModule({

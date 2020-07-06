@@ -1,0 +1,59 @@
+<div class="container">
+    <!-- <div>
+        <span style="text-align: center;">Welcome to {{type}} Forum  </span>
+    </div> -->
+    <div class="alert alert-success" style="text-align: center; font-size: 18px;" role="alert">
+      Welcome to {{type}} Forum.
+    </div>
+    <div >
+      <div class="d-flex justify-content-center" *ngIf="onSppiner">
+        <div class="spinner-border m-5 text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+        <mat-card>
+            <mat-card-header>
+              <div class="active-cyan-3 active-cyan-4 mb-4">
+                <input class="form-control" [(ngModel)] = "searchKey" type="text" placeholder="Search by title" autocomplete="off" aria-label="Search">
+              </div>
+                <div style="text-align:right; width:100%; padding:0;">
+                    <button mat-flat-button color="primary" (click)="onCreate()" title="Add new Thread"><mat-icon>post_add</mat-icon>New thread</button>
+                    <button mat-icon-button color="primary" (click)="getThreds(type)" title="Refresh">
+                      <mat-icon>refresh</mat-icon>
+                    </button>
+                </div> 
+            </mat-card-header>
+        <mat-card-content>
+            <div *ngIf ="flag ;  else elseBlock" >
+                <ul *ngIf="!onSppiner" >
+                  <a (click) = "onSelect(property)" 
+                  *ngFor="let property of threads |myfilter : searchKey |paginate: { itemsPerPage: 6, currentPage: p }">
+                  <li class="list-group-item">
+                   <div class="row">
+                     <div class="col-8">
+                      <h3><strong><span>Title: </span><span>{{property.title}}</span></strong></h3>                   
+                      <span>Created by: </span><span>{{property.owner}}</span><span> .{{property.timeAgo}} </span>
+                     </div>
+                     <div class="col-4">
+                       <div class="row">
+                       <div class="col"><span>{{property.views}}</span><br><span>views</span></div>
+                       <div class="col"> <span>{{property.replies}}</span><br><span>replies</span></div>
+                    </div>
+                      
+                     </div>
+                   </div> 
+                      </li>
+                 </a>
+               </ul>
+               <div style="text-align:right; width:100%; padding:0;">
+               <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+        </mat-card-content>
+        </mat-card>
+    </div>
+      <ng-template #elseBlock><div class="alert alert-warning" style="text-align: center;" role="alert">
+        Sorry! No threads to find.
+      </div></ng-template>
+</div>
+

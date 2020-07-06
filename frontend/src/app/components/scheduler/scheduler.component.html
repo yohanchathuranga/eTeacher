@@ -1,0 +1,57 @@
+<div class='app'>
+    <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" 
+    theme="true"
+    [weekends]="true" 
+    [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      }"
+    (dateClick)="handleDateClick($event)"
+    (eventClick)="eventClick($event,$jsEvent,$view)"
+    deepChangeDetection="true"
+    [events]="calendarEvents"
+    minTime= "05:00:00"
+    maxTime="23:00:00"
+    navLinks="true"
+    [options]="options"
+    businessHours=
+   " {
+            start: '08:00:00',
+            end:   '18:00:00',
+            dow: [ 1, 2, 3, 4, 5]
+    }"
+    eventRender="eventRender(info,element)"
+    validRange= "{
+      start: '2017-05-01',
+      end: '2021-06-01'
+    }"
+    
+    
+  ></full-calendar>
+</div>
+
+ <!-- The Modal -->
+ <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{ title }}</h4>
+        <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        Event Start From : {{ date }}
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

@@ -1,1 +1,131 @@
-<p>this is testing page two!</p>
+<div class="container">
+      <div class="alert alert-primary" role="alert"  style="text-align: center; font-size: 24px;">  
+        Discussion Forums!
+         <div style="text-align: center; font-size: 15px;"><span >Get help and discuss course material with the community.</span> 
+         </div>
+      </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="d-flex justify-content-center" *ngIf="onSppiner">
+          <div class="spinner-border m-5 text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+    <mat-tab-group>
+      <mat-tab label="Forums">
+        <div class="container">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>
+                <span class="material-icons">forum</span>
+                <span>DISCUSSION FORUMS</span>
+              </mat-card-title>  
+            </mat-card-header>
+            <mat-card-content>    
+              <ul class="list-group">
+              <a href="{{forum.type}}" *ngFor="let forum of allForumTypes"><li class="list-group-item">
+                <div class="col-sm-9">
+                  <h4><strong>{{forum.type}}</strong></h4>            
+                  <p>{{forum.description}}</p>
+                </div>
+              </li></a>
+              </ul>
+            </mat-card-content>        
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="All threds">
+        <div class="container"> 
+        <mat-card>
+          <mat-card-header>
+            <mat-form-field class="example-form-field" floatLabel = "never">
+              <input  matInput [(ngModel)] = "searchKey" type="text" placeholder="Search by title" autocomplete="off"> 
+              <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onsearchClear()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+            <div style="text-align:right; width:100%; padding:0;">
+            <button mat-flat-button color="primary" (click)="onCreate()" title="Add new Thread"><mat-icon>post_add</mat-icon>New thread</button>
+            <button mat-icon-button color="primary" (click)="getThreds()" title="Refresh">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
+            <!-- <div style="text-align:right; width:100%;">
+          
+            </div>  -->
+        
+          </mat-card-header>
+          <mat-card-content >
+        <div *ngIf ="flag ;  else elseBlock">
+          <ul *ngIf="!onSppiner" >
+            <a (click) = "onSelect(property)" *ngFor="let property of child | myfilter : searchKey | paginate: { itemsPerPage: 7, currentPage: p }"
+            >
+            <li class="list-group-item">
+             <div class="row">
+               <div class="col-8">
+                <h3><strong><span>Title: </span><span>{{property.title}}</span></strong></h3>                   
+                <span>Created by: </span><span>{{property.owner}}</span><span> .{{property.timeAgo}} </span>
+               </div>
+               <div class="col-4">
+                 <div class="row">
+                 <div class="col"><span>{{property.views}}</span><br><span>views</span></div>
+                 <div class="col"> <span>{{property?.replies}}</span><br><span>replies</span></div>
+              </div>
+                
+               </div>
+             </div> 
+                </li>
+           </a>
+         </ul>
+         <div style="text-align:right; width:100%; padding:0;">
+         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+          </mat-card-content>
+          <mat-card-footer>
+            <ng-template #elseBlock><div class="alert alert-warning" style="text-align: center;" role="alert">
+              Sorry! No threads to find.
+            </div></ng-template>
+          </mat-card-footer>
+      </mat-card>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+        
+      </div>
+      <div class="col-sm-4">        
+        <mat-card >
+          <mat-card-header style="background-color: rgb(183, 253, 253);"><strong>DESCRIPTION!</strong></mat-card-header>
+          <hr>
+          <mat-card-content>
+            <p>Welcome to the E-teacher discussion forums! Ask questions, debate ideas, and find classmates who share your goals. Browse popular threads below or other forums in the sidebar.</p>  
+          </mat-card-content>
+        </mat-card>
+       
+        <br>
+        <mat-card>
+          <mat-card-header style="background-color: rgb(183, 253, 253);">
+           <strong>MODERATORS</strong> 
+          </mat-card-header>
+          <hr>
+          <mat-card-content>
+            <img class="rounded-circle mr-3" height="50px" width="50px" alt="avatar"src=" http://localhost:4200/assets/img/faces/ayo-ogunseinde-2.jpg">
+            <img class="rounded-circle mr-3" height="50px" width="50px" alt="avatar"src=" http://localhost:4200/assets/img/faces/joe-gardner-2.jpg">
+            <img class="rounded-circle mr-3" height="50px" width="50px" alt="avatar"src=" http://localhost:4200/assets/img/faces/kaci-baum-2.jpg">
+          </mat-card-content>
+        </mat-card> 
+        <br>
+        <mat-card *ngIf = "user == 'teacher'">
+          <div>
+          <mat-card-header style="background-color: rgb(183, 253, 253);"><strong>Create New Forum</strong></mat-card-header>
+          <hr>
+          <mat-card-content>
+            <button mat-flat-button color="primary" (click)="onCreateForum()" title="Create new Forum"><mat-icon>post_add</mat-icon>New Forum</button>
+          </mat-card-content>
+        </div>
+        </mat-card>
+      </div>
+    </div>
+</div>
+

@@ -1,0 +1,79 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+        <mat-card>
+            <span class="badge badge-pill badge-dark">Student</span>
+            <br>
+            <mat-card-header>
+                <mat-card-title>
+                    <img class="rounded-circle mr-3" height="30px" width="30px" alt="avatar"src=" http://localhost:4200/assets/img/faces/ayo-ogunseinde-2.jpg">
+                    <span style="color:rgb(84, 84, 219)">{{getThread?.owner}}</span> - <span>{{getThread?.timeAgo}}</span><br>
+                </mat-card-title>
+                <br>
+                <mat-card-subtitle>
+                    <span> {{getThread?.votes}} : Votes</span>
+                    <span><strong><h3>
+                        {{getThread?.title}}
+                    </h3></strong></span>                   
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+               <div class="boder1"><p [innerHTML]="threadBody"></p></div>
+               <br>
+            <div class="srolling" *ngIf = "threadImage">      
+                <img [src]="threadImage" width="auto" height="auto">
+            </div>
+            </mat-card-content>
+            <hr>
+            <mat-card-footer>
+         <div class="col">
+             <div>
+            <button mat-button color="primary" aria-label="Example icon button with a home icon" (click)="onChange()">
+                <mat-icon>chat_bubble_outline</mat-icon>Reply
+              </button> 
+              <button mat-button color="primary" aria-label="Example icon button with a home icon" [disabled] = "vUp || threadOwner == owner"
+               (click)="voteUp(getThread)">
+                <mat-icon>arrow_drop_up</mat-icon>UpVote
+              </button> 
+              <button mat-button color="primary" aria-label="Example icon button with a home icon" [disabled] = "vDown || threadOwner == owner"
+              (click)="voteDown(getThread)">
+                <mat-icon>arrow_drop_down</mat-icon>DownVote
+              </button> 
+                </div> 
+            </div>
+            </mat-card-footer>
+        </mat-card>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="container">
+      <div class="row" *ngIf="open">
+          <div class="col">
+              <!-- <app-comment-thread></app-comment-thread> -->
+              <div class="container-fuild">
+                <div class="input">
+                  <angular-editor [placeholder]="'Reply'" [(ngModel)]="comment.comment" [config]="editorConfig" required></angular-editor>
+                     <div class="float-md-right">
+                        <button class="button button2"  (click)="on(comment)">Reply</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
+  <div class="container">
+    <div class="row" *ngFor="let cmt of comments">
+        <div class="col">
+            <span>{{cmt.owner}}</span>: <span>{{cmt.date}}</span><br>
+            <p [innerHTML]="cmt.comment"></p>
+            <button mat-flat-button color="primary" (click)="viewcReply = cmt._id; test(); getCommentId(cmt._id)"> Reply
+            </button>
+                <ng-template [ngIf] = "selectCommentId == cmt._id && viewReply">                
+                        <app-reply-comment [Data]="selectCommentId" [Data2]="threadId" [Data3]="replyCount"></app-reply-comment>                
+                </ng-template><br>
+                <hr>    
+        </div>     
+    </div>
+</div>

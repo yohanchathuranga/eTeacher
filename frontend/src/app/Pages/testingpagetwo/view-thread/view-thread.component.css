@@ -1,0 +1,62 @@
+.container{
+    width: 60%;
+    margin-top: 10px;
+    border: 0.25px solid rgb(219, 214, 214)
+}
+.col{
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+.button {
+   
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .button2 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  .button2:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+ .lable{
+   padding: 0px 12px 0px 6px;
+   font-size: 12px;
+ } 
+
+.mat-button{
+  outline: 0;
+}
+.boder1{
+  margin-left: 16px;
+}
+
+.col{
+  margin: 0px 0px 0px 0px;
+}
+.imagePreview {
+  max-width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.srolling{
+  height: 200px;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+ 

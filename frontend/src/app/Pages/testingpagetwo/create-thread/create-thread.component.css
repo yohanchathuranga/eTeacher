@@ -1,0 +1,12 @@
+.imagePreview {
+    max-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+.srolling{
+  height: 200px;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  }  

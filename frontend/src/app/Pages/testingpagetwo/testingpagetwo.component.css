@@ -1,0 +1,74 @@
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+/* .container{
+  border: 0.25px solid rgb(219, 214, 214);
+    margin:100px;
+} */
+
+.container-1{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.container-2{
+  margin-left: 350px;
+  text-align: left;
+}
+
+.text-center {
+    margin: 0 auto;
+  }
+.span{
+    margin:auto;
+}
+
+li:hover {
+  background-color: rgb(236, 234, 234);
+}
+
+li {
+ 
+  color: rgb(0, 0, 0);
+}
+.button {
+  
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 0px 8px 8px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.aling-left{
+  margin-left: 525px;
+}
+a:link {
+  text-decoration: none;
+}
+a,
+a label {
+    cursor: pointer;
+}
+.active-cyan-3 input[type=text] {
+  border: 1px solid #4dd0e1;
+  box-shadow: 0 0 0 1px #4dd0e1;
+}
