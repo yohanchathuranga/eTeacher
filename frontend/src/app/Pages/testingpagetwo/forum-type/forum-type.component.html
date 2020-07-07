@@ -1,11 +1,13 @@
 <div class="container">
+  <div class="alert alert-success" style="text-align: center; font-size: 18px;" role="alert">
+    Welcome to {{type}} Forum.
+  </div>
+</div>
     <!-- <div>
         <span style="text-align: center;">Welcome to {{type}} Forum  </span>
     </div> -->
-    <div class="alert alert-success" style="text-align: center; font-size: 18px;" role="alert">
-      Welcome to {{type}} Forum.
-    </div>
-    <div >
+    <div class="row">
+    <div class="container" >
       <div class="d-flex justify-content-center" *ngIf="onSppiner">
         <div class="spinner-border m-5 text-primary" role="status">
           <span class="sr-only">Loading...</span>
@@ -26,24 +28,38 @@
         <mat-card-content>
             <div *ngIf ="flag ;  else elseBlock" >
                 <ul *ngIf="!onSppiner" >
-                  <a (click) = "onSelect(property)" 
-                  *ngFor="let property of threads |myfilter : searchKey |paginate: { itemsPerPage: 6, currentPage: p }">
-                  <li class="list-group-item">
-                   <div class="row">
-                     <div class="col-8">
+                  <!-- <div class="row" > -->
+                  <li class="list-group-item" *ngFor="let property of threads |myfilter : searchKey |paginate: { itemsPerPage: 6, currentPage: p }">
+                      <div class="row"> 
+                     <!-- <div class="col-6"> -->
+                       <div class="col-10">
+                        <a (click) = "onSelect(property)">
+                         <div class="row">
+                           <div class="col-10">
                       <h3><strong><span>Title: </span><span>{{property.title}}</span></strong></h3>                   
                       <span>Created by: </span><span>{{property.owner}}</span><span> .{{property.timeAgo}} </span>
-                     </div>
-                     <div class="col-4">
-                       <div class="row">
+                         </div>
+                         <div class="col-2">
+                           <div class="row">
                        <div class="col"><span>{{property.views}}</span><br><span>views</span></div>
-                       <div class="col"> <span>{{property.replies}}</span><br><span>replies</span></div>
+                      <div class="col"> <span>{{property?.replies}}</span><br><span>replies</span></div>
                     </div>
-                      
-                     </div>
-                   </div> 
+                  </div>                    
+                 </div>
+                    </a>
+                  </div>
+                <div class="col-2">
+                     <button type="button" (click)="edit(property._id)" class="btn btn-primary" [disabled] = "property.owner != user" >
+                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </button>
+                    <button type="button"  class="btn btn-danger" [disabled] = "property.owner != user" (click)="deleteThread(property._id)"> 
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                     </button>
+                    </div> 
+                    </div>
                       </li>
-                 </a>
+
+                <!-- </div>  -->
                </ul>
                <div style="text-align:right; width:100%; padding:0;">
                <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -55,5 +71,83 @@
       <ng-template #elseBlock><div class="alert alert-warning" style="text-align: center;" role="alert">
         Sorry! No threads to find.
       </div></ng-template>
-</div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="container">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Forum details and Moderators
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-subtitle>
+                  Lecturer/teacher details
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <img class="rounded-circle mr-3" height="30px" width="30px" alt="avatar"src=" http://localhost:4200/assets/img/faces/clem-onojeghuo-2.jpg"> - 
+                <span> {{forumOwner}} </span>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    Instutute - University of colombo school of computing
+                  </li>
+                  <li class="list-group-item">
+                   E-mail - abc@gmail.com
+                  </li>
+                  <li class="list-group-item">
+                   Qualifications - B.sc Hons in Computer Science
+                  </li>
+                </ul>
+                <mat-card-footer>
+                  <button type="button" class="btn btn-success" title="View teacher Profile">
+                    <i class="fa fa-eye" aria-hidden="true"></i>View Profile
+                   </button>
+        
+                    <button type="button" (click)="editForum(type)" class="btn btn-primary" *ngIf ="user == forumOwner" title="Edit Forum">
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit
+                     </button>           
+                   <button type="button" (click)="deleteForum(type)" class="btn btn-danger" *ngIf ="user == forumOwner" title="Delete Forum">
+                    <i class="fa fa-trash" aria-hidden="true"></i>Delete
+                   </button>
+               
+                </mat-card-footer>
+
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-subtitle>
+                  Instrctors/Moderators
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <strong><p>In any subject based problems or forum technical problems you can ask any support from them.</p></strong> 
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" *ngFor="let teacher of teachers">
+                    <div class="row">
+                    <img class="rounded-circle mr-3" height="30px" width="30px" alt="avatar"src=" http://localhost:4200/assets/img/faces/ayo-ogunseinde-2.jpg"> -
+                    {{teacher}}
+                  </div>
+                  </li>
+                </ul>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
 

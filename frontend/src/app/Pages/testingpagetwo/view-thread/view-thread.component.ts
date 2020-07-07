@@ -24,7 +24,8 @@ threadOwner : string;
 getThread : any;
 timeArray =[];
 threadBody : string;
-owner = "yohan ttiarachchi";
+// user = JSON.parse(localStorage.getItem('user'));
+owner = "Banura Hettiarachchi";
 comments : any;
 open = false;
 viewReply = false;
@@ -41,6 +42,7 @@ vDown = false;
 voteId : string;
 
 ngOnInit(): void {
+  // console.log(this.user.name)
       this.route.params.subscribe(routerParam =>{
         this.threadId = routerParam.id
          });
@@ -136,8 +138,10 @@ editorConfig: AngularEditorConfig = {
 setVoteDetails(){
   this.forumService.getVoteDetails(this.threadId,this.owner).subscribe(res=>{
     this.voteDetails = res
+    // console.log(res);
     if(this.voteDetails.length != 0){
     this.voteId = this.voteDetails[0]._id
+    // console.log(this.voteId)
     }
     if(this.voteDetails.length == 0){
       this.vUp = false
@@ -218,14 +222,15 @@ updateViwes(event: any){
     }
 
 voteUp(event: any){ 
-    this.vUp = true;
-    this.vDown = false  
+
     const voteUp : VoteDetails = {
       voteUp : true,
       voteDown : false,
       owner : this.owner
     }
     if(!this.vUp && !this.vDown){
+      this.vUp = true;
+      this.vDown = false  
     this.forumService.setVotDetails(this.threadId , voteUp).subscribe((res)=>{
       // this.setVoteDetails();
     });
@@ -249,14 +254,14 @@ voteUp(event: any){
  }
 
 voteDown(event: any){
-  this.vUp = false;
-  this.vDown = true;
   const voteDown : VoteDetails = {
     voteUp : false,
     voteDown : true,
     owner : this.owner
   }
   if(!this.vUp && !this.vDown){
+    this.vUp = false;
+    this.vDown = true;
     this.forumService.setVotDetails(this.threadId , voteDown).subscribe((res)=>{
       // this.setVoteDetails();
     });
