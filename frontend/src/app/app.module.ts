@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { HttpModule } from '@angular/http';
@@ -106,8 +106,8 @@ import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-fo
     // FlashMessagesModule.forRoot() ,
     RouterModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
+//     AngularFireModule.initializeApp(environment.firebase),
+//     AngularFireDatabaseModule,
     FullCalendarModule,
     HttpModule,
     HttpClientModule,
