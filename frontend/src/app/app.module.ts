@@ -40,7 +40,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { CreateThreadComponent } from './Pages/testingpagetwo/create-thread/create-thread.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 //import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
