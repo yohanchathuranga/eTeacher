@@ -38,9 +38,9 @@ app.listen(PORT, () => {
   console.log('Example app listening on port ' + PORT)
 });
 
-app.use('/forums', forumController);
-app.use('/comments', cmtThreadController);
-app.use('/replyComments', replycController);
+app.use('/forums',forumController);
+app.use('/comments',cmtThreadController);
+app.use('/replyComments',replycController);
 app.use('/type', typeController);
 
 
