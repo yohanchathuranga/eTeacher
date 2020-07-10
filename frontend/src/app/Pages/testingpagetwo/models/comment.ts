@@ -1,7 +1,7 @@
 export interface Reply {
-    id: string;
+    _id: string;
     threadId : string;
     owner : string;
     date : Date;
-    comment : string;
+    body : string;
   }

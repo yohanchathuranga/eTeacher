@@ -27,7 +27,7 @@ searchKey : string;
 newForum = false;
 newThread = false;
 updateForum = false;
-user = "Yohan Chathuranga";
+user = "Rajitha Gayashan";
 thread : any;
 threadImg : string;
 forumDetails : any;

@@ -10,4 +10,5 @@ export interface Forum {
     timeAgo:string;
     replies:number;
     votes:number;
+    status:boolean;
   }

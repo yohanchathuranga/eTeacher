@@ -15,7 +15,7 @@ import { Types } from '../models/forumType';
 })
 export class CreateThreadComponent implements OnInit {
 attempted = true;
-name = "Yohan Chathuranga";
+name = "Banura Hettiarachchi";
 forumTypes:string[];
 type : string;
 formControls = this.forumService.form.controls;
@@ -84,7 +84,8 @@ onSubmit(){
     owner:this.name,
     timeAgo:'',
     replies:0,
-    votes:0
+    votes:0,
+    status : false
   }
   this.forumService.regForum(emp).subscribe(()=>{
     this.forumService.form.reset();

@@ -130,6 +130,17 @@ submitCmt(cmt:Reply){
 getComments(id){
   return this.http.get(this.baseURL2 + '/'+ id);
 }
+deleteComment(id : string){
+  return this.http.delete(this.baseURL2 + '/'+ id );
+}
+
+editComment(id : string, comment : any){
+  return this.http.put(this.baseURL2 + '/' + id, comment)
+}
+
+deleteSubReply(id : string){
+  return this.http.delete(this.baseURL3 + '/' + id);
+}
 
 setViwes(emp: any){
   return this.http.put(this.baseURL + '/' + emp._id, emp);
@@ -191,5 +202,8 @@ deleteForumType(type :string){
 }
 deleteThreads(type : string){
   return this.http.delete(this.baseURL + '/type/' + type)
+}
+changeStatus(status:any , id:string){
+  return this.http.put(this.baseURL4 + '/status/' + id, status)
 }
 }

@@ -1,4 +1,5 @@
 <div class="container">
+    <div *ngIf="length != 0 ; else elseBlock">
     <div class="row">
         <div class="col">
             <div *ngFor="let reply of replyComments">
@@ -7,7 +8,13 @@
             </div>
         </div>
      </div>
-     <div class="input">
+    </div>
+    <ng-template #elseBlock>
+        <div class="alert alert-info" style="text-align: center;" role="alert">
+            No replies for this Comment!
+          </div>
+      </ng-template>
+     <div class="input" *ngIf="!status">
         <angular-editor [placeholder]="'Reply'" [(ngModel)]="rComment.comment" [config]="editorConfig" required></angular-editor>
         <div class="float-md-right">
             <button mat-flat-button color="primary"  (click)="onComment(rComment)">Reply</button>
