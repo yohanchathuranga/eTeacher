@@ -17,6 +17,10 @@
   },
   "dependencies": {
     "@angular-devkit/schematics": "^9.1.7",
+<<<<<<< HEAD
+=======
+    "@angular/cdk": "^9.2.4",
+>>>>>>> da49f410508b1493e6138fb9a9460a15e573c6e9
     "@angular/animations": "9.1.9",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "9.1.9",

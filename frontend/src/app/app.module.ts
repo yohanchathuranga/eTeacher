@@ -31,15 +31,49 @@ import { BookingService } from './services/booking.service';
 
 
 // import { ComponentsModule } from './components/components.module';
+import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
+import { TestingpagetwoComponent } from '../app/Pages/testingpagetwo/testingpagetwo.component';
+import { TestingpagethreeComponent } from '../app/Pages/testingpagethree/testingpagethree.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { CreateThreadComponent } from './Pages/testingpagetwo/create-thread/create-thread.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {MatTabsModule} from '@angular/material/tabs';
+//import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ReplyCommentComponent } from './Pages/testingpagetwo/view-thread/reply-comment/reply-comment.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSelectModule} from '@angular/material/select';
+import { ToastrModule } from 'ngx-toastr';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
+
+
 
 
 
 @NgModule({
   declarations: [
-    
+
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    TestingPageComponent,
+    TestingpagetwoComponent,
+    TestingpagethreeComponent,
+    CreateThreadComponent,
+    ViewThreadComponent,
+    ReplyCommentComponent,
+    ForumTypeComponent,
     SchedulerComponent,
     RegisterComponent,
     LoginComponent,
@@ -49,8 +83,7 @@ import { BookingService } from './services/booking.service';
     UserbookingsComponent,
     TeacherbookingsComponent,
     BookingdetailteacherComponent,
-    BookingdetailuserComponent
-    
+    BookingdetailuserComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,11 +96,37 @@ import { BookingService } from './services/booking.service';
     HttpModule,
     HttpClientModule,
     NgxPaginationModule,
+<<<<<<< HEAD
     RatingModule,
   
     
+=======
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatTabsModule,
+   // MatPaginatorModule,
+    MatSortModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    FullCalendarModule,
+    AngularEditorModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    ToastrModule.forRoot(),
+    MatSnackBarModule
+   
+>>>>>>> da49f410508b1493e6138fb9a9460a15e573c6e9
   ],
   providers: [UserService,BookingService,{provide: module, useClass: UserService}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CreateThreadComponent
+  ]
 })
 export class AppModule { }

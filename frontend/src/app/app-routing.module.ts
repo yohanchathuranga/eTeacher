@@ -11,6 +11,12 @@ import {TeacherbookingsComponent } from './components/bookings/teacherbookings/t
 import {UserbookingsComponent } from './components/bookings/userbookings/userbookings.component';
 import { LandingComponent } from './examples/landing/landing.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
+// import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
+import {TestingpagetwoComponent} from './Pages/testingpagetwo/testingpagetwo.component';
+import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
+import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
+
+
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,7 +28,16 @@ const routes: Routes =[
     { path: 'userbooking',     component: UserbookingsComponent },
     { path: 'login',           component: LoginComponent },
     { path: 'register',          component: RegisterComponent },
-    
+    // { path: 'user-profile',     component: ProfileComponent },
+    // { path: 'signup',           component: SignupComponent },
+    // { path: 'landing',          component: LandingComponent },
+    { path: 'nucleoicons',      component: NucleoiconsComponent },
+    // { path: 'testingpage',      component: TestingPageComponent }
+    { path: 'forum',      component: TestingpagetwoComponent },
+    { path: 'forum/:id',      component: ViewThreadComponent },
+    { path: ':type' , component:ForumTypeComponent},
+    { path: ':type/:id', component: ViewThreadComponent}
+
 ];
 
 @NgModule({

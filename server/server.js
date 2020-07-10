@@ -47,7 +47,6 @@ const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net
 
 //setup cors
 
-
 //connect to the database
 mongoose.connect(db, {
   useNewUrlParser: true
