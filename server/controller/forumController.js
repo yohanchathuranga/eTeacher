@@ -24,7 +24,8 @@ router.route('/')
         owner : req.body.owner,
         timeAgo: req.body.timeAgo,
         votes : req.body.votes,
-        replies : req.body.replies
+        replies : req.body.replies,
+        status : req.body.status
     });
     console.log(req.body.body)
     emp.save((err,doc)=>{
@@ -92,7 +93,8 @@ router.route('/:id')
         owner : req.body.owner,
         timeAgo: req.body.timeAgo,
         votes : req.body.votes,
-        replies : req.body.replies
+        replies : req.body.replies,
+        status : req.body.status
     };
     Forum.findByIdAndUpdate(req.params.id,{$set:emp}, {new:true},(err,doc)=>{
         if(!err){res.send(doc);}

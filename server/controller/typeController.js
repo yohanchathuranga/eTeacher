@@ -68,6 +68,20 @@ router.route('/update/:id')
         }
     },(err) => next(err))
     .catch((err) => next(err));
-
+});
+router.route('/status/:id')
+.put((req,res)=>{
+    Forum.findById(req.params.id)
+    .then((thread)=>{
+        if(thread != null){
+        thread.status = req.body.status;
+        thread.save()
+        .then((newThread)=>{
+            res.sendStatus = 200;
+            res.send(newThread);
+        },(err) => next(err))
+      }
+    },(err) => next(err))
+    .catch((err) => next(err));
 })
 module.exports = router
