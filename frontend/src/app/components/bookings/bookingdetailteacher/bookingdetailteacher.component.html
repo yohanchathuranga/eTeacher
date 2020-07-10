@@ -3,7 +3,7 @@
        dismiss-on-timeout="2000">{{messege}}</ngb-alert>
 </div> -->
 <div *ngIf="booking.date" >
-  <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal" id="myModal" [style.display]="showViewModal ? 'block' : 'none'">
     <div class="modal-dialog">
       <div class="modal-content">
 
@@ -37,7 +37,7 @@
           <div *ngIf="booking.status!='confirm'">
             <button type="button" (click)="confirmBooking(booking)" class="btn btn-primary">Confirm</button>
           </div>
-          <button type="button" (click)="deleteBookingEvent(booking)" class="btn btn-warning">Delete</button>
+          <button type="button" (click)="deleteBookingEvent(booking)" class="btn btn-warning">Cancel</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Close</button>
         </div>
 
@@ -47,7 +47,7 @@
 </div>
 
 
-  <div class="modal" id="deleteModal" [style.display]="deleteModal ? 'block' : 'none'" >
+  <div class="modal" id="deleteModal" [style.display]="showDeleteModal ? 'block' : 'none'" >
     <div class="modal-dialog" >
       <div class="modal-content">
 
@@ -59,7 +59,7 @@
 
         <!-- Modal body -->
         <div class="modal-body" style="background-color: rgb(253, 196, 186);">
-          <h4>You want to delete this Booking</h4>
+          <h4>You want to Cancel this Booking</h4>
         </div>
 
         <!-- Modal footer -->

@@ -7,6 +7,7 @@ import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for selectable
 import timeGrigPlugin from '@fullcalendar/timegrid';
+import { StarRatingComponent } from 'ng-starrating';
 import { DatePipe } from '@angular/common';
 
 
@@ -20,7 +21,8 @@ export class NewbookingComponent implements OnInit {
   showModal: boolean;
   title = 'ngularfullcalendarbootstrap';
   name:string;
-  date:string;
+  date: string;
+  currentRate = 4.25;
   calendarOptions: any;
   calendarVisible = true;
   calendarWeekends = true;
@@ -32,7 +34,7 @@ export class NewbookingComponent implements OnInit {
   }
   calendarPlugins = [dayGridPlugin,timeGrigPlugin, interactionPlugin];
 
-  constructor(private users:UserService,private router:Router, private datePipe:DatePipe) { }
+  constructor(private users:UserService,private router:Router) { }
   @ViewChild('calendar', { static: false }) calendarComponent: FullCalendarComponent; // the #calendar in the template  
   ngOnInit() {
     this.calendarOptions = {

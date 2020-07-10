@@ -1,71 +1,50 @@
-<!-- <div style="text-align:center;">
-    <form (submit)="addBooking()">
-        <fieldset>
-            <legend>Add New Booking</legend>
-            <div class="form-group">
-                <label for="exampleName">Name</label>
-                <input type="text" class="form-controls"  name="name"
-                    placeholder="Enter Name" [(ngModel)]="name">
-            </div>
-    
-            <div class="form-group">
-                <label for="exampleUsername">User Name</label>
-                <input type="text" class="form-controls"  name="username"
-                    placeholder="Enter Username" [(ngModel)]="username">
-            </div>
-    
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-controls"  name="email"
-                    placeholder="Enter email" [(ngModel)]="email">
-            </div>
-    
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-controls"  placeholder="Password" name="password" [(ngModel)]="password"> 
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </fieldset>
-    </form> 
-</div> -->
-<div style="text-align:center">
-    <h1>
-       Welcome to {{ title }}!
-    </h1>
-     <div *ngIf="calendarOptions">
-        <full-calendar #ucCalendar defaultView="dayGridMonth" [plugins]="calendarPlugins" 
-        [weekends]="true" 
-        [header]="{
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-          }"
-          [events]="calendarEvents"
-        [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
-             (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></full-calendar>
-     </div>
-   </div>
-    <!-- The Modal -->
-     <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
-       <div class="modal-dialog">
-         <div class="modal-content">
-         
-           <!-- Modal Header -->
-           <div class="modal-header">
-             <h4 class="modal-title">{{ name }}</h4>
-             <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
-           </div>
-           
-           <!-- Modal body -->
-           <div class="modal-body">
-             Event Start From : {{ date }}
-           </div>
-           
-           <!-- Modal footer -->
-           <div class="modal-footer">
-             <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Close</button>
-           </div>
-           
-         </div>
-       </div>
-     </div>
+<div class="row" style="justify-content: center; align-items: center;color: rgb(255, 255, 255);background-color: rgb(5, 87, 155); height: 100px;">
+</div>
+<div class="row" style="background-color: rgb(255, 255, 255);">
+    <div class="col-sm-3" style="padding-top: 20px; font-weight: bold;">
+        <h1 style="text-align: center; padding-bottom: 20px;font-weight: bold;">Instructor Details</h1>
+        <div class="profile" style="padding-left: 30px;">
+            <h2>Kasun Nisal</h2><br>
+            <table>
+                <tr>
+                    <td>Subject :</td>
+                    <td>Physics</td>
+                </tr>
+                <br>
+                <tr>
+                    <td>Email :</td>
+                    <td>kasun@gmail.com</td>
+                </tr>
+                <br>
+                <tr>
+                    <td>Qualifications :</td>
+                    <td> University Student</td>
+                </tr>
+            </table><br>
+            <h4>Rating</h4>
+            <ng-template #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                </span>
+            </ng-template>
+
+            <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating><br>
+            <h4>Reviews</h4><br>
+            <form>
+                <textarea></textarea><br>
+                <button class="btn btn-primary">Review</button>
+            </form>
+            <hr>
+            <p>Good teacher</p>
+            <p>well explained subject matter</p>
+        </div>
+
+    </div>
+    <div class="col-sm-9" style="border-left: solid #1e6ac2ce;">
+        <div style="text-align:center ; justify-content: center; align-content: center;">
+            <app-scheduler></app-scheduler>
+        </div>
+    </div>
+
+
+</div>
