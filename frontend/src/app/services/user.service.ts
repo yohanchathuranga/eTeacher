@@ -42,5 +42,8 @@ export class UserService {
     const token = localStorage.getItem("tokenId");
     this.authtoken=token;
   }
-
+  logout() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('tokenId');
+  }
 }

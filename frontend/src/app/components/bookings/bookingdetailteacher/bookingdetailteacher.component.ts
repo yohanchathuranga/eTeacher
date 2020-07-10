@@ -11,8 +11,8 @@ import { BookingService } from 'app/services/booking.service';
 
 export class BookingdetailteacherComponent implements OnInit {
   @Input() booking: Bookings;
-  showModal: boolean;
-  deleteModal:boolean=false;
+  showViewModal: boolean;
+  showDeleteModal:boolean=false;
   editTitle: boolean = false;
   updateBookingEvent = new EventEmitter();
   messege:String=""
@@ -22,11 +22,11 @@ export class BookingdetailteacherComponent implements OnInit {
   constructor(private bookingService: BookingService) { }
 
   ngOnInit(): void {
-    this.showModal = true
+    this.showViewModal = true
   }
   ngOnChanges() {
     this.editTitle = false;
-    this.showModal = true
+    this.showViewModal = true
 
   }
 
@@ -37,7 +37,6 @@ export class BookingdetailteacherComponent implements OnInit {
   }
 
   confirmBooking(booking) {
-    console.log(booking)
     const confirm = {
       _id:booking._id,
       date: booking.date,
@@ -50,19 +49,27 @@ export class BookingdetailteacherComponent implements OnInit {
     this.bookingService.updateBooking(confirm).subscribe(res => {
     })
     
-    // location.reload()
-    this.showModal = false;
+    location.reload()
+    this.showViewModal = false;
   }
 
   deleteBookingEvent(booking) {
-    console.log(booking)
-    this.deleteModal=true;
+
+    this.showDeleteModal=true;
   }
 
   deleteBooking(booking) {
-    console.log(booking)
-    this.deleteModal=false;
-    this.bookingService.deleteBooking(booking).subscribe(res => {
+    this.showDeleteModal = false;
+    const cancel= {
+      _id: booking._id,
+      date: booking.date,
+      start: booking.start,
+      endtime: booking.endtime,
+      studentid: booking.studentid,
+      teacherid: booking.teacherid,
+      status: "cancel"
+    }
+    this.bookingService.updateBooking(cancel).subscribe(res => {
       console.log(res)
     })
     location.reload()
@@ -70,9 +77,9 @@ export class BookingdetailteacherComponent implements OnInit {
 
   hide() {
     this.messege ="Warning";
-    this.showModal = false;
+    this.showViewModal = false;
   }
   hidedelete() {
-    this.deleteModal=false;
+    this.showDeleteModal=false;
   }
 }

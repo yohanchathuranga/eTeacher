@@ -1,0 +1,74 @@
+<div style="justify-content: center; align-items: center;color: rgb(0, 0, 0);">
+    <h2>Booking Calendar</h2><br>
+</div>
+<div class='app' style="padding-left: 10%;padding-right: 10%;">
+    Pending : <input style="background-color:'#6180fa' ;border: 0ch;" readonly=true>&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; Confirm : <input style="background-color:'#ffee52' ;border: 0ch;" readonly=true>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Not Available : <input style="background-color:'#63615a' ;border: 0ch;" readonly=true>
+    <div style="border-radius: 15px ; margin-top:50px">
+        <full-calendar style="border: black; border-width: thin;" #calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" theme="true" [weekends]="true" [header]="{
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                          }" (dateClick)="handleDateClick($event)" (eventClick)="eventClick($event)" deepChangeDetection="true" [events]="calendarEvents" minTime="05:00:00" maxTime="23:00:00" navLinks="true" ([options])="options" businessHours=" {
+                                start: '08:00:00',
+                                end:   '18:00:00',
+                                dow: [ 1, 2, 3, 4, 5]
+                        }" eventRender="eventRender(info,element)" validRange="{
+                          start: '2017-05-01',
+                          end: '2021-06-01'
+                        }">
+        </full-calendar>
+    </div>
+
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Time</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                That time already picked ! . Choose another time .
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="myModal" [style.display]="bookingModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: rgb(234, 235, 226);">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">New Booking</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Do you want to add a Booking on {{datebook}} at {{timebook}}
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addBooking(booking)">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
