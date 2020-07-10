@@ -26,7 +26,17 @@ replyRouter.route('/:id')
             console.log('Error in retriving Comments :'+JSON.stringify(err,undefined,2))
         }
     })
-});
+})
+.delete((req,res)=>{
+    replyComments.deleteMany({parentCId : req.params.id}, (err,result)=>{
+        if(!err){
+            res.send(result);
+        }else{
+            res.send(err);
+        }
+    });
+})
+
 replyRouter.route('/all/:id')
 .get((req,res)=>{
     replyComments.find({threadId: req.params.id},(err,result)=>{

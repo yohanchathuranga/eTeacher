@@ -14,6 +14,7 @@ export class ReplyCommentComponent implements OnInit {
   @Input('Data') public commentId : string;
   @Input('Data2') public threadId : string;
   @Input('Data3') public commentCount : number;
+  @Input('Data4') public status : boolean;
 
 
 user = "Dasun Lahiru"
@@ -25,7 +26,8 @@ allsubReplys : any;
 subReplyCount =0;
 comments : any;
 replyCount = 0;
-replies : any; 
+replies : any;
+length : number; 
 
   constructor(public forumService : FourmServiceService) { }
 
@@ -137,7 +139,7 @@ refresh(){
 getReply(){
   this.forumService.getReplyComments(this.commentId).subscribe((res)=>{
     this.replyComments = res;
-    // console.log(this.replyComments);
+    this.length = this.replyComments.length;
   });
   }
 getAllSubreplys(){

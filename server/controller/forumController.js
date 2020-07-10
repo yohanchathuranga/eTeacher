@@ -7,7 +7,7 @@ var {Forum} = require('../model/forumModel');
 var {Type} = require('../model/forumType');
 router.route('/')
 .get((req,res)=>{
-    Forum.find((err,docs)=>{
+    Forum.find({},'title type timeAgo timestamps owner views replies',(err,docs)=>{
     if(!err){res.send(docs);}
      else{console.log('Error in retriving Threds :'+JSON.stringify(err,undefined,2));
     }
@@ -24,7 +24,8 @@ router.route('/')
         owner : req.body.owner,
         timeAgo: req.body.timeAgo,
         votes : req.body.votes,
-        replies : req.body.replies
+        replies : req.body.replies,
+        status : req.body.status
     });
     console.log(req.body.body)
     emp.save((err,doc)=>{
@@ -92,21 +93,39 @@ router.route('/:id')
         owner : req.body.owner,
         timeAgo: req.body.timeAgo,
         votes : req.body.votes,
-        replies : req.body.replies
+        replies : req.body.replies,
+        status : req.body.status
     };
     Forum.findByIdAndUpdate(req.params.id,{$set:emp}, {new:true},(err,doc)=>{
         if(!err){res.send(doc);}
         else{console.log('Error in employee update :'+JSON.stringify(err,undefined,2))
     }
     });
-});
+})
+
+.delete((req,res,next)=>{
+    Forum.findById(req.params.id)
+    .then((thread)=>{
+        if(thread !=null){
+            thread.remove((err,doc)=>{
+                if(!err){
+                    res.status = 200;
+                    res.send(doc)
+                }else{
+                    console.log('Error in delete this thread : '+JSON.stringify(err,undefined,2))
+                }
+            })
+        }
+    },(err) => next(err))
+    .catch((err) => next(err));
+})
 
 router.route('/:id/:voteOwner')
 .get((req,res,next)=>{
     Forum.findById(req.params.id)
     .then((vote)=>{
             var flag = -1;
-            if(vote.voteDetails != null){
+            if(vote.voteDetails[0] != null){
             for(let i in vote.voteDetails){
                 // console.log(req.params.voteOwner)
                 // console.log(vote.voteDetails[i].owner)
@@ -154,6 +173,16 @@ router.route('/:id/vote/:voteId')
         }
     },(err) => next(err))
     .catch((err) => next(err));
+})
+router.route('/type/:type')
+.delete((req,res)=>{
+    Forum.deleteMany({type:req.params.type}, (err,result)=>{
+        if(!err){
+            res.send(result);
+        }else{
+            res.send(err);
+        }
+    })
 })
 
 

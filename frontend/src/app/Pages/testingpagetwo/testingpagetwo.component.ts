@@ -22,7 +22,7 @@ export class TestingpagetwoComponent implements OnInit {
  child : any;
  p: number = 1;
  onSppiner = true;
- types = ["Genaral Discussions","Science","Maths","Computer Science","Object oriented Programing"];
+ types = [];
  searchKey : string;
  flag = true;
  user = "teacher";
@@ -39,6 +39,11 @@ constructor(private forumService: FourmServiceService,
     this.getAllthreads();
     this.forumService.getallForumType().subscribe(res=>{
       this.allForumTypes = res
+      console.log(this.allForumTypes)
+      for(let i in this.allForumTypes){
+        console.log(this.allForumTypes[i])
+        this.types[i] = this.allForumTypes[i].type
+      }
     })
   }
 count(event){
@@ -58,6 +63,7 @@ getAllthreads(){
       this.count(this.child);
       this.timeAgo(this.child);
       this.onSppiner = !this.onSppiner;
+      console.log(this.child)
     });
 }      
 
@@ -76,14 +82,17 @@ timeAgo(event){
   onCreate(){
     this.newThread = true;
     this.newForum = false;
-     this.matDialog.open(CreateThreadComponent,{
+    let matdialogRef = this.matDialog.open(CreateThreadComponent,{
       width: '60%',
       restoreFocus: false,
       data: {
         newForum: this.newForum,
-        newThread:this.newThread
+        newThread:this.newThread,
+        types : this.types
       }
     });
+    matdialogRef.afterClosed().subscribe(result => {  
+      this.forumService.form.reset()})
   }
 
   getThreds(){
@@ -103,7 +112,7 @@ onsearchClear(){
 onCreateForum(){
   this.newForum = true
   this.newThread = false
-  this.matDialog.open(CreateThreadComponent,{
+  let matdialogRef = this.matDialog.open(CreateThreadComponent,{
     width: '55%',
     // restoreFocus: false,
     data: {
@@ -111,6 +120,8 @@ onCreateForum(){
       newThread:this.newThread
     }
   });
+  matdialogRef.afterClosed().subscribe(result => {  
+    this.forumService.formType.reset()})
 }
 }
 

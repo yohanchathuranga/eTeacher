@@ -17,7 +17,8 @@ const Forum = mongoose.model('Forum',{
     owner : String,
     timeAgo: String,
     votes : Number,
-    voteDetails : [Vote]
+    voteDetails : [Vote],
+    status : Boolean
 
 });
 module.exports={Forum};
