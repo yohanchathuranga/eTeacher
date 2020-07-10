@@ -8,6 +8,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { HttpModule } from '@angular/http';
 import {HttpClientModule} from '@angular/common/http'
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RatingModule } from 'ng-starrating';
 // import {FlashMessagesModule} from 'flash-messages';
 
 import { AppComponent } from './app.component';
@@ -16,7 +17,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ComponentsComponent } from './components/components.component';
-import { SchedulerComponent } from './components/scheduler/scheduler.component';
+import { SchedulerComponent } from './components/bookings/scheduler/scheduler.component';
 import {NewbookingComponent } from './components/bookings/newbooking/newbooking.component';
 import {TeacherbookingsComponent } from './components/bookings/teacherbookings/teacherbookings.component';
 import {UserbookingsComponent } from './components/bookings/userbookings/userbookings.component';
@@ -62,6 +63,7 @@ import { BookingService } from './services/booking.service';
     HttpModule,
     HttpClientModule,
     NgxPaginationModule,
+    RatingModule,
   
     
   ],

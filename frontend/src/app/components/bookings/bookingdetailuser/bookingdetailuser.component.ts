@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, ViewChild, Output } from '@angular/core';
 import { Bookings } from '../../../models/bookings'
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { EventInput } from '@fullcalendar/core';
@@ -15,10 +15,9 @@ import { BookingService } from 'app/services/booking.service';
 })
 export class BookingdetailuserComponent implements OnInit {
   @Input() booking: Bookings;
-  
-  showModal: boolean;
+  showViewModal: boolean;
   deleteModal:boolean=false;
-  updateBookingEvent = new EventEmitter();
+  showUpdateModal:boolean=false;
   messege:String=""
   date:String
   start:String
@@ -35,11 +34,16 @@ export class BookingdetailuserComponent implements OnInit {
 
 
   constructor(private bookingService: BookingService) { }
+  @ViewChild('calendar', { static: false }) calendarComponent: FullCalendarComponent; // the #calendar in the template  
+  toggleVisible() {
+    this.calendarVisible = !this.calendarVisible;
+  }
+  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
  
 
   ngOnInit(): void {
     console.log(this.booking);
-    this.showModal = true
+    this.showViewModal = true
 
     this.bookingService.getBookings().subscribe(res => {
       var i;
@@ -57,13 +61,20 @@ export class BookingdetailuserComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.showModal = true
+    this.showViewModal = true
 
   }
-
-
-  updateBooking(booking) {
-    console.log(booking)
+  @Output() updatebooking=new EventEmitter();
+  updateBookingEvent(booking) {
+    this.updatebooking=booking;
+    this.showUpdateModal=true;
+  }
+  
+  
+ 
+  updateBooking(booking) { 
+    
+    this.showUpdateModal=false;
     const updatedbooking = {
       _id:booking._id,
       date: this.date,
@@ -76,12 +87,11 @@ export class BookingdetailuserComponent implements OnInit {
     this.bookingService.updateBooking(updatedbooking).subscribe(res => {
     })
     
-    // location.reload()
-    this.showModal = false;
+    location.reload()
+    this.showViewModal = false;
   }
 
   cancelBooking(booking) {
-    console.log(booking)
     const cancelbooking = {
       _id:booking._id,
       date: booking.date,
@@ -94,30 +104,32 @@ export class BookingdetailuserComponent implements OnInit {
     this.bookingService.updateBooking(cancelbooking).subscribe(res => {
     })
     
-    // location.reload()
-    this.showModal = false;
+    location.reload()
+    this.showViewModal = false;
   }
 
   deleteBookingEvent(booking) {
-    console.log(booking)
+
     this.deleteModal=true;
   }
 
   deleteBooking(booking) {
-    console.log(booking)
     this.deleteModal=false;
     this.bookingService.deleteBooking(booking).subscribe(res => {
-      console.log(res)
     })
     location.reload()
   }
 
   hide() {
     this.messege ="Warning";
-    this.showModal = false;
+    this.showViewModal = false;
   }
   hidedelete() {
     this.deleteModal=false;
+  }
+
+  hideupdate() {
+    this.showUpdateModal=false;
   }
 
 }

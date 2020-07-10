@@ -2,6 +2,10 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import * as $ from 'jquery';
 import * as moment from 'moment';
+import { Router } from '@angular/router'
+import {UserService} from '../../services/user.service' 
+
+
 
 @Component({
     selector: 'app-navbar',
@@ -11,9 +15,13 @@ import * as moment from 'moment';
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    path='';
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(public location: Location, private element : ElementRef,private router: Router,private userService:UserService) {
         this.sidebarVisible = false;
+        this.router.events.subscribe((val) => {
+      this.path = this.location.path();
+    });
     }
 
     ngOnInit() {
@@ -72,5 +80,11 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+
+    logoutUser(){
+    this.userService.logout();
+        this.router.navigate(['/login']);
+ 
     }
 }

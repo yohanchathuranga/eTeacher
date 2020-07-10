@@ -1,4 +1,5 @@
 export class Bookings {
+    _id:String
     date: String;
     start: String;
     endtime: String;
