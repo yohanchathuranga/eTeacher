@@ -121,7 +121,6 @@ import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-fo
     ToastrModule.forRoot(),
     MatSnackBarModule,
     MatInputModule
-   
   ],
   providers: [UserService,BookingService,{provide: module, useClass: UserService}],
   bootstrap: [AppComponent],
