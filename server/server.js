@@ -4,8 +4,8 @@ const router = express.Router()
 const cors = require('cors')
 const app = express()
 const path = require('path');
-const bodyParser = require('body-parser')
-const passport = require('passport')
+const passport = require('passport');
+
 
 const user = require('./routes/users')
 const booking = require('./routes/bookings')
@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/', (req, res,next) => {
+app.get('/', (req, res, next) => {
   res.send("hello world");
 });
 
@@ -38,9 +38,12 @@ app.listen(PORT, () => {
   console.log('Example app listening on port ' + PORT)
 });
 
-app.post('/', function(req, res, next) {
-  // Handle the post for this route
-})
+app.use('/forums', forumController);
+app.use('/comments', cmtThreadController);
+app.use('/replyComments', replycController);
+app.use('/type', typeController);
+
+
 
 // create the db constant to connect
 const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net/E-teacher?retryWrites=true&w=majority"

@@ -46,5 +46,4 @@ export class UserService {
     localStorage.removeItem('user');
     localStorage.removeItem('tokenId');
   }
-
 }
