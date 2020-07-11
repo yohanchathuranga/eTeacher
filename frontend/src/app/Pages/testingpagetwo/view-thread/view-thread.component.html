@@ -4,6 +4,24 @@
         <div class="col">
         <mat-card>
             <span class="badge badge-pill badge-dark">Student</span>
+            <div class="float-md-right">
+                <button mat-icon-button color="primary" (click)="refreshThread(threadId)" title="Refresh" *ngIf="threadUpdate">
+                    <mat-icon>refresh</mat-icon>
+                  </button>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>expand_more</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item  (click)="edit(threadId)" [disabled] = "threadOwner != owner" >
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit</span>
+                    </button>
+                    <button mat-menu-item   (click)="deleteThread(threadId)"  [disabled] = "threadOwner != owner">
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete</span>
+                    </button>
+                  </mat-menu>
+            </div>
             <br>
             <mat-card-header>
                 <mat-card-title>
@@ -66,8 +84,7 @@
                 <div class="input">
                     <input type="hidden" id="id" [ngModel]="comment._id" >
                     <angular-editor [placeholder]="'Reply'" [(ngModel)]="comment.body" [config]="editorConfig" name="body" #body="ngModel" required
-                  [ngClass]="{'is-invalid':
-                  body.touched && body.invalid}"></angular-editor>
+                  [ngClass]="{'is-invalid': body.touched && body.invalid}"></angular-editor>
                      <div class="float-md-right">
                         <button type="button" class="btn btn-primary" [disabled]="body.invalid" (click)="on(comment)">{{!update ? 'Reply' : 'Update'}}</button>
                     </div>
@@ -82,20 +99,24 @@
           </div>
       </div>
   </div>
-  <div class="container">
-    <div class="row" *ngFor="let cmt of comments">
-        <div class="col">
+  <div class="container" *ngFor="let cmt of comments">
+    <div class="row" >
+        <div class="col" style="margin-bottom: 10px;">
             <span>{{cmt.owner}}</span>: <span>{{cmt.date}}</span><br>
             <p [innerHTML]="cmt.comment"></p>
-            <button  type="button" class="btn btn-primary"  (click)="viewcReply = cmt._id; test(); getCommentId(cmt._id)"> {{viewReply && cmt._id == selectCommentId ? 'Hide' : 'Show'}}
-            </button>
-            <button  type="button" class="btn btn-primary" (click)="editComment(cmt)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </button>
-            <button  type="button" class="btn btn-danger" (click)="deleteComment(cmt._id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+        <button  type="button" class="btn btn-primary"  (click)="viewcReply = cmt._id; test(); getCommentId(cmt._id)"> {{viewReply && cmt._id == selectCommentId ? 'Hide' : 'Show'}}
+        </button>
+        <button  type="button" class="btn btn-primary" (click)="editComment(cmt)" [disabled]="owner != cmt.owner" *ngIf="!status"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </button>
+        <button  type="button" class="btn btn-danger" (click)="deleteComment(cmt._id)" [disabled]="owner != cmt.owner" *ngIf="!status"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    </div>
+    </div>
+          <!-- <div class="row"> -->
                 <ng-template [ngIf] = "selectCommentId == cmt._id && viewReply">                
                         <app-reply-comment [Data]="selectCommentId" [Data2]="threadId" [Data3]="replyCount" [Data4]="status"></app-reply-comment>                
                 </ng-template><br>
                 <hr>    
-        </div>     
-    </div>
+        <!-- </div>      -->
+    <!-- </div> -->
 </div>

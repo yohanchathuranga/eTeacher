@@ -161,6 +161,15 @@ setReplyComment(replyComment : replyComment){
 getReplyComments(id){
   return this.http.get(this.baseURL3 + '/' + id);
 }
+
+deleteReply(id : string){
+  return this.http.delete(this.baseURL3 + '/reply/' + id);
+}
+
+ editReply(id:string, reply : any){
+   return this.http.put(this.baseURL3 + '/reply/' + id , reply);
+}
+
 getType(type:string){
   return this.http.get(this.baseURL4 + '/' + type)
 }
