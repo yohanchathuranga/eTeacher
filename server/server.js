@@ -56,7 +56,7 @@ app.use('/type', typeController);
 
 
 // create the db constant to connect
-const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net/E-teacher?retryWrites=true&w=majority"
+const db = "mongodb://localhost:27017/"
 
 //setup cors
 
