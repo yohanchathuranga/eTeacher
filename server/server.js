@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser=require('body-parser');
 const mongoose = require('mongoose')
-//const router = express.Router()
+const router = express.Router()
 const cors = require('cors')
 
 var forumController = require('./controller/forumController');
@@ -18,6 +18,8 @@ const passport = require('passport');
 
 const user = require('./routes/users')
 const booking = require('./routes/bookings')
+const adminRouter = require('./api/admin')
+
 
 const PORT = 3000;
 
@@ -50,6 +52,7 @@ app.use('/forums',forumController);
 app.use('/comments',cmtThreadController);
 app.use('/replyComments',replycController);
 app.use('/type', typeController);
+app.use('/admin', adminRouter);
 
 
 

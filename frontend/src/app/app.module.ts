@@ -57,8 +57,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
 import { MatInputModule} from '@angular/material/input';
 import { MyFilterPipe } from 'app/Pages/testingpagetwo/service/myFilter.pipe';
-import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-forum-type.directive'
-
+import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-forum-type.directive';
+import { AdminProfileComponent } from './Pages/Admin/admin-profile/admin-profile.component';
+import { ViewUsersComponent } from './Pages/Admin/view-users/view-users.component';
+import { DeletedusersComponent } from './Pages/Admin/deletedusers/deletedusers.component';
 
 
 
@@ -88,7 +90,10 @@ import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-fo
     BookingdetailteacherComponent,
     BookingdetailuserComponent,
     MyFilterPipe,
-    CheckForumTypeDirective
+    CheckForumTypeDirective,
+    AdminProfileComponent,
+    ViewUsersComponent,
+    DeletedusersComponent
   ],
   imports: [
     BrowserModule,

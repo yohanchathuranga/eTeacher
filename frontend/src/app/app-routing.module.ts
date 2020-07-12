@@ -15,6 +15,10 @@ import { TestingPageComponent } from './Pages/testing-page/testing-page.componen
 import {TestingpagetwoComponent} from './Pages/testingpagetwo/testingpagetwo.component';
 import { ViewThreadComponent } from './Pages/testingpagetwo/view-thread/view-thread.component';
 import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
+import { AdminProfileComponent } from './Pages/Admin/admin-profile/admin-profile.component';
+import { TestingpagethreeComponent } from './Pages/testingpagethree/testingpagethree.component';
+import { ViewUsersComponent } from './Pages/Admin/view-users/view-users.component';
+import { DeletedusersComponent } from './Pages/Admin/deletedusers/deletedusers.component';
 
 
 
@@ -28,16 +32,20 @@ const routes: Routes =[
     { path: 'userbooking',     component: UserbookingsComponent },
     { path: 'login',           component: LoginComponent },
     { path: 'register',          component: RegisterComponent },
-    // { path: 'user-profile',     component: ProfileComponent },
+    { path: 'user-profile',     component: ProfileComponent },
     // { path: 'signup',           component: SignupComponent },
     // { path: 'landing',          component: LandingComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
+    { path: 'admin',      component: AdminProfileComponent },
+    { path: 'admin/viewusers',  component: ViewUsersComponent},
+    { path: 'admin/deletedusers',  component: DeletedusersComponent},
     // { path: 'testingpage',      component: TestingPageComponent }
     { path: 'forum',      component: TestingpagetwoComponent },
     { path: 'forum/:id',      component: ViewThreadComponent },
     { path: ':type' , component:ForumTypeComponent},
-    { path: ':type/:id', component: ViewThreadComponent}
-
+    { path: ':type/:id', component: ViewThreadComponent},
+    // { path: 'testingpagethree', component: TestingpagethreeComponent},
+    
 ];
 
 @NgModule({
