@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import  { FourmServiceService } from '../service/fourm-service.service'
 import { HttpClient,HttpParams } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Forum } from '../models/forum-thread';
 import * as moment from 'moment';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Reply} from 'app/Pages/testingpagetwo/models/comment';
-import {VoteDetails} from '../models/voteDetails'
+import {VoteDetails} from '../models/voteDetails';
+import {MatDialog} from '@angular/material/dialog';
+import { CreateThreadComponent } from '../create-thread/create-thread.component';
 
 
 @Component({
@@ -17,7 +19,9 @@ import {VoteDetails} from '../models/voteDetails'
 export class ViewThreadComponent implements OnInit {
 
   constructor( public forumService : FourmServiceService,
-    private route: ActivatedRoute ) { }
+    private route: ActivatedRoute,
+    private router : Router,
+    private matDialog: MatDialog  ) { }
 
 threadId : string;
 threadOwner : string;
@@ -42,6 +46,9 @@ vDown = false;
 voteId : string;
 status = false;
 update = false;
+newForum = false;
+newThread = false;
+threadUpdate = false;
 
 ngOnInit(): void {
   // console.log(this.user.name)
@@ -349,6 +356,7 @@ changeStatus(){
 }
 
 deleteComment(commentId : string){
+  if(confirm("Are you sure to delete this Comment?")){
   this.forumService.deleteComment(commentId).subscribe(()=>{
     this.forumService.deleteSubReply(commentId).subscribe(()=>{
       this.forumService.success('Comment deleted Successfully')
@@ -356,6 +364,46 @@ deleteComment(commentId : string){
       this.setReplyCount();
     })
   })
+}
+}
+
+edit(threadId : string){
+  this.threadUpdate = true;
+  this.forumService.editThread(threadId);
+  this.forumService.getThread(threadId).subscribe(res=>{
+    this.thread = res;
+  this.newThread = true;
+  this.newForum = false;
+   let matdialogRef = this.matDialog.open(CreateThreadComponent,{
+    width: '60%',
+    restoreFocus: false,
+    data: {
+      type : this.thread.type,
+      threadImage :this.thread.image,
+      newForum: this.newForum,
+      newThread:this.newThread
+    }
+  });
+  matdialogRef.afterClosed().subscribe(result => {  
+    this.forumService.form.reset()
+  //  this.getThreadDetails(this.threadId)
+  })
+});
+
+}
+
+deleteThread(id : string){
+  if(confirm('Are you sure to delete this thread?')){
+  this.forumService.deleteThread(id).subscribe(()=>{
+    this.forumService.success("Thread deleted Successfully");
+    this.router.navigate(['/' + this.getThread.type])
+  })}
+}
+
+refreshThread(threadId : string){
+  this.getThreadDetails(threadId);
+  this.threadUpdate = false
+
 }
 
 }

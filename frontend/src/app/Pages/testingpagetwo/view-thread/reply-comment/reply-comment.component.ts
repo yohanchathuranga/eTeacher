@@ -17,7 +17,7 @@ export class ReplyCommentComponent implements OnInit {
   @Input('Data4') public status : boolean;
 
 
-user = "Dasun Lahiru"
+user = "Dasun Lahi"
 replyComments:any;
 thread : any
 replycount = 0;
@@ -28,6 +28,7 @@ comments : any;
 replyCount = 0;
 replies : any;
 length : number; 
+update = false;
 
   constructor(public forumService : FourmServiceService) { }
 
@@ -104,6 +105,7 @@ length : number;
   };
 
 rComment : replyComment={
+  _id : "",
   parentCId : this.commentId,
   threadId : this.threadId,
   owner : this.user ,
@@ -111,8 +113,21 @@ rComment : replyComment={
   comment : ''
 }
 
+refresh(){
+  this.rComment={
+    _id : "",
+    parentCId : this.commentId,
+    threadId : this.threadId,
+    owner : this.user ,
+    date : new Date,
+    comment : ''
+  }
+}
+
 onComment(event : replyComment){
+  if(!event._id){
  const rComment : replyComment={
+   _id : "",
     parentCId : this.commentId,
     threadId : this.threadId,
     owner : this.user ,
@@ -124,24 +139,31 @@ onComment(event : replyComment){
     this.refresh();
     this.getReply();
     this.getAllSubreplys();
-    // this.getAllSubreplys()
   })
-}
-refresh(){
-  this.rComment={
-    parentCId : this.commentId,
-    threadId : this.threadId,
-    owner : this.user ,
-    date : new Date,
-    comment : ''
+}else{
+  const updateReply = {
+    reply : event.comment
   }
+  this.forumService.editReply(event._id,updateReply).subscribe(()=>{
+    this.refresh()
+    this.update = false;
+    this.getReply();
+  })
+ }
 }
+
+cancelEdit(){
+  this.refresh();
+  this.update = false;
+}
+
 getReply(){
   this.forumService.getReplyComments(this.commentId).subscribe((res)=>{
     this.replyComments = res;
     this.length = this.replyComments.length;
   });
   }
+
 getAllSubreplys(){
     // get all replies  
     this.forumService.getsubReplyC(this.threadId).subscribe((res)=>{
@@ -164,4 +186,26 @@ getAllSubreplys(){
       });
     });
   }
+
+editComment(comment : any){
+  this.update = true;
+  this.rComment = {
+    _id : comment._id,
+    parentCId : comment.parentCId,
+    threadId : comment.threadId,
+    owner : comment.owner ,
+    date : comment.date,
+    comment : comment.comment
+  }
+}
+
+deleteComment(commentId : string){
+    if(confirm("Are you sure to delete this reply?")){
+      this.forumService.deleteReply(commentId).subscribe(()=>{
+        this.forumService.success("Reply is deleted Successfully");
+        this.getReply();
+        this.getAllSubreplys();
+      })
+    }
+}  
 }

@@ -49,5 +49,36 @@ replyRouter.route('/all/:id')
     })
 });
 
+replyRouter.route('/reply/:id')
+.delete((req,res,next)=>{
+    replyComments.findById(req.params.id)
+    .then((reply)=>{
+        if(reply!=null){
+            reply.remove((err,result)=>{
+                if(!err){
+                    res.send(result)
+                }else{
+                    res.send(err)
+                }
+            })
+        }
+    },(err)=>next(err))
+    .catch((err)=>next(err))
+})
+.put((req,res,next)=>{
+    replyComments.findById(req.params.id)
+    .then((reply)=>{
+        if(reply != null){
+            reply.comment = req.body.reply
+            reply.save()
+            .then((newReply)=>{
+                res.sendStatus = 200;
+                res.send(newReply);
+            },(err)=>next(err))
+        }
+    },(err)=>next(err))
+    .catch((err)=>next(err))
+})
+
 
 module.exports = replyRouter;

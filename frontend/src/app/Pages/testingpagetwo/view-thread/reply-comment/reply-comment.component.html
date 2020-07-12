@@ -1,12 +1,31 @@
-<div class="container">
+<div class="container-fluid">
     <div *ngIf="length != 0 ; else elseBlock">
-    <div class="row">
-        <div class="col">
-            <div *ngFor="let reply of replyComments">
+        
+    <div class="row" *ngFor="let reply of replyComments">
+        <!-- <div class="col"> -->
+            <div class="col-9">
+            <div class="container" style="margin-left: 10px; height: auto;">
                 <span>{{reply.owner}}</span>: <span>{{reply.date}}</span><br>
                 <p [innerHTML]="reply.comment"></p>
+               
             </div>
         </div>
+        <div class="col-3">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="!status">
+                <mat-icon>expand_more</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item  (click)="editComment(reply)" [disabled]="user != reply.owner">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="deleteComment(reply._id)"  [disabled]="user != reply.owner">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+        </div>
+        <!-- </div> -->
      </div>
     </div>
     <ng-template #elseBlock>
@@ -15,9 +34,16 @@
           </div>
       </ng-template>
      <div class="input" *ngIf="!status">
-        <angular-editor [placeholder]="'Reply'" [(ngModel)]="rComment.comment" [config]="editorConfig" required></angular-editor>
+        <angular-editor [placeholder]="'Reply'" [(ngModel)]="rComment.comment" [config]="editorConfig" name="comment" #comment="ngModel" required
+        [ngClass]="{'is-invalid': comment.touched && comment.invalid}"></angular-editor>
         <div class="float-md-right">
-            <button mat-flat-button color="primary"  (click)="onComment(rComment)">Reply</button>
+            <button type="button" class="btn btn-primary" [disabled]="comment.invalid" (click)="onComment(rComment)">{{!update ? 'Reply' : 'Update'}}</button>
+        </div>
+        <div class="float-md-right" *ngIf="update">
+            <button type="button" class="btn btn-primary" (click)="cancelEdit()">Cancel</button>
+        </div>
+        <div class="invalid-feedback">
+            <div>Content is required!</div>
         </div>
      </div>       
 </div>
