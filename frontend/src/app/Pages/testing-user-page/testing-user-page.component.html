@@ -1,0 +1,19 @@
+<div>
+    <div class="tim-title">
+        <h3>Teachers</h3>
+    </div>
+    <ul *ngFor="let user of users">
+        <li>
+            {{user.name}}
+            <button type="button" class="btn btn-danger btn-round" (click)=printTheButton(user.name) routerLink="/pages/chatpage">Chat</button>
+        </li>
+    </ul>
+</div>
+<div>
+    <input type="text" [(ngModel)] = "newMessage">
+    <button type="button" class="btn btn-danger btn-round" (click)=onSubmit()>submit</button>
+</div>
+<div>
+    <h3>content in the firebase</h3>
+    <pre *ngFor="let item of items | async">{{item.content}}</pre>
+</div>

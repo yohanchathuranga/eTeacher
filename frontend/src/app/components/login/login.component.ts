@@ -10,6 +10,7 @@ import {Router} from '@angular/router'
 export class LoginComponent implements OnInit {
   email: String;
   password: String;
+  alert: boolean=false;
 
   constructor(private userService:UserService, private router:Router) { }
 
@@ -26,13 +27,21 @@ export class LoginComponent implements OnInit {
       if(res.state){
         this.userService.storeData(res.token,res.user);
         // this.flashMessages.show("You are Login",{cssClass:'alert-success', timeout:3000});
-        this.router.navigate(['/profile']);
-      }else{
-        // this.flashMessages.show(res.msg,{cssClass:'alert-danger',timeout:3000});
+        this.router.navigate(['/home']);
+      } else {
+        console.log("error")
+        this.alert = true;
         this.router.navigate(['/login']);
       }
     })
 
+  }
+  close(alert) {
+  }
+
+  logoutUser(){
+      
+        this.router.navigate(['/login']);
   }
 
 }

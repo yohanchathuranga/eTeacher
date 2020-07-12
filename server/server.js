@@ -20,6 +20,7 @@ const user = require('./routes/users')
 const booking = require('./routes/bookings')
 
 const PORT = 3000;
+const UserRouter = require('./api/user')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -30,15 +31,16 @@ app.use('/user', user);
 app.use('/booking', booking);
 
 
-app.use(cors());
+app.use(cors("Access-Control-Allow-Origin", "*"));
 app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Credentials', true);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,Content-Type, Accept,Authorization");
+  res.header("Access-Control-Allow-Headers", " X-Requested-With,Content-Type, Accept,Authorization");
   next();
 });
 
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
   res.send("hello world");
 });
 
@@ -54,7 +56,7 @@ app.use('/type', typeController);
 
 
 // create the db constant to connect
-const db = "mongodb+srv://Eteacher:" + "Eteacher" + "@eteacher-vx2cz.mongodb.net/E-teacher?retryWrites=true&w=majority"
+const db = "mongodb://localhost:27017/"
 
 //setup cors
 
@@ -90,4 +92,7 @@ passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
   });
 }));
 
+app.use('/users', UserRouter)
+
+module.exports = router
 //module.exports = router

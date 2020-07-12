@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\app",
+    "\\frontend\\src\\app\\components",
+    "\\frontend\\src\\app\\components\\login",
+    "\\frontend\\src\\app\\components\\register",
+    "\\frontend\\src\\app\\services",
+    "\\frontend\\src\\app\\shared",
+    "\\frontend\\src\\app\\shared\\navbar"
+  ],
+  "SelectedNode": "\\frontend\\src\\app\\shared\\navbar\\navbar.component.html",
+  "PreviewInSolutionExplorer": false
+}

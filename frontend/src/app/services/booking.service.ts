@@ -3,6 +3,9 @@ import { Http, Headers } from '@angular/http';
 import {HttpClient,HttpParams, HttpHeaders} from '@angular/common/http'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/groupBy'
+import { Bookings } from 'app/models/bookings';
+import { Observable } from 'rxjs';
+
 
 
 @Injectable({
@@ -34,6 +37,7 @@ export class BookingService {
 
   getBookingbyDateTeacher(date,teacherid){
     let headers=new HttpHeaders();
+    headers.append("Access-Control-Allow-Origin", "*")
     headers.append('Content-Type','application/json');
     let params = new HttpParams().set("date",date).set("teacherid", teacherid);
     console.log(teacherid)
@@ -56,9 +60,10 @@ export class BookingService {
 
   getBookingbyteacherId(teacherid){
     let headers=new Headers();
+    headers.append("Access-Control-Allow-Origin", "*")
     headers.append('Content-Type','application/json');
     return this.http.get('http://localhost:3000/booking/bookingbyteacher'+teacherid,{ headers: headers})
-    .map(res => res.json());;
+    .map(res=>res.json());
   }
 
   getBookingbydateteacherid(booking){
@@ -69,10 +74,11 @@ export class BookingService {
   }
 
   updateBooking(booking){
+    console.log(booking)
     let headers=new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.put('http://localhost:3000/booking/editbooking'+booking._id,JSON.stringify(booking),{ headers: headers })
-    .map(res => res.json());
+    return this.http.put('http://localhost:3000/booking/editbooking'+booking._id,booking,{ headers: headers })
+    
   }
 
   deleteBooking(booking){
