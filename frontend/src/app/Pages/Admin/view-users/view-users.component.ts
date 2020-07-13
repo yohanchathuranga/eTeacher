@@ -50,7 +50,7 @@ export class ViewUsersComponent implements OnInit {
         console.log(err);
       }
     )
-    this.admin.delAvaiUser(user).subscribe(
+    this.admin.delAvaiUser(user._id).subscribe(
       result => {
         // console.log(result)
       },
@@ -59,6 +59,25 @@ export class ViewUsersComponent implements OnInit {
       }
     )
   }
+
+  // removeUser(user){
+  //   this.admin.setDeletedUser(user).subscribe(
+  //     result => {
+  //       // console.log(result)
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   )
+  //   this.admin.delAvaiUser(user).subscribe(
+  //     result => {
+  //       // console.log(result)
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   )
+  // }
 
   removeStudent(user){
     console.log("This is the remove student method")

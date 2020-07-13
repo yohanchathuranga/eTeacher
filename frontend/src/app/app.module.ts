@@ -61,6 +61,8 @@ import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-fo
 import { AdminProfileComponent } from './Pages/Admin/admin-profile/admin-profile.component';
 import { ViewUsersComponent } from './Pages/Admin/view-users/view-users.component';
 import { DeletedusersComponent } from './Pages/Admin/deletedusers/deletedusers.component';
+import { ViewForumsComponent } from './Pages/Admin/view-forums/view-forums.component';
+import { DeletedForumsComponent } from './Pages/Admin/deleted-forums/deleted-forums.component';
 
 
 
@@ -93,7 +95,9 @@ import { DeletedusersComponent } from './Pages/Admin/deletedusers/deletedusers.c
     CheckForumTypeDirective,
     AdminProfileComponent,
     ViewUsersComponent,
-    DeletedusersComponent
+    DeletedusersComponent,
+    ViewForumsComponent,
+    DeletedForumsComponent
   ],
   imports: [
     BrowserModule,

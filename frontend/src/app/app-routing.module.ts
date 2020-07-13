@@ -19,7 +19,8 @@ import { AdminProfileComponent } from './Pages/Admin/admin-profile/admin-profile
 import { TestingpagethreeComponent } from './Pages/testingpagethree/testingpagethree.component';
 import { ViewUsersComponent } from './Pages/Admin/view-users/view-users.component';
 import { DeletedusersComponent } from './Pages/Admin/deletedusers/deletedusers.component';
-
+import { ViewForumsComponent } from './Pages/Admin/view-forums/view-forums.component';
+import { DeletedForumsComponent } from './Pages/Admin/deleted-forums/deleted-forums.component';
 
 
 const routes: Routes =[
@@ -39,6 +40,8 @@ const routes: Routes =[
     { path: 'admin',      component: AdminProfileComponent },
     { path: 'admin/viewusers',  component: ViewUsersComponent},
     { path: 'admin/deletedusers',  component: DeletedusersComponent},
+    { path: 'admin/viewforums',  component: ViewForumsComponent},
+    { path: 'admin/deletedforums',  component: DeletedForumsComponent},
     // { path: 'testingpage',      component: TestingPageComponent }
     { path: 'forum',      component: TestingpagetwoComponent },
     { path: 'forum/:id',      component: ViewThreadComponent },

@@ -40,5 +40,29 @@ export class AdminService {
   removeStudentFlag(userId){
     return this.http.put<any>('http://localhost:3000/admin/changeStudentFlag', userId)
   }
+
+  getAllForums(){
+    return this.http.get<any>('http://localhost:3000/admin/getAllForums')
+  }
+
+  getDelForums(){
+    return this.http.get<any>('http://localhost:3000/admin/getDelForums')
+  }
+
+  setDeletedForum(forum){
+    return this.http.post<any>('http://localhost:3000/admin/setDelForum',forum)
+  }
+
+  delAvaiForum(forumId){
+    return this.http.delete<any>('http://localhost:3000/admin/delAvaiForum' + '/' + forumId)
+  }
+
+  setRecoverForum(forum){
+    return this.http.post<any>('http://localhost:3000/admin/setRecForum',forum)
+  }
+
+  recoverForum(forumId){
+    return this.http.delete<any>('http://localhost:3000/admin/recoverForum' + '/' + forumId)
+  }
   
 }

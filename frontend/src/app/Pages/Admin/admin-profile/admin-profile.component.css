@@ -80,3 +80,18 @@ a label {
   border: 1px solid #4dd0e1;
   box-shadow: 0 0 0 1px #4dd0e1;
 }
+
+.navitemadmin {
+  display: inline-block;
+  width: 200px; 
+  height: 50px;
+  text-align: center;
+  border: gray;
+  border-radius: 10px;
+  background-color: #fd4608;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  right: 440px;
+  margin: 20px;
+}
