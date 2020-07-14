@@ -41,6 +41,7 @@ export class ViewForumsComponent implements OnInit {
         console.log(err);
       }
     )
+    window.location.reload();
   }
 
 }

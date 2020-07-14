@@ -1,0 +1,22 @@
+<div class="column" style="width: 80%;">
+    <h4>Bookings</h4>
+</div>
+<div class="column" style="width: 20%;">
+    <!-- <button class="navitemsp" routerLink="/admin/deletedusers">Deleted Users</button> -->
+    <button class="navitemadmin" routerLink="/admin" style="right: 225px;">Admin</button>
+</div>
+<!-- <button (click)="getUsersAdmin()">press</button> -->
+    <ul class="message-list">
+        <li class="user-message" *ngFor="let booking of bookings">
+        <section class="user-message-sender">
+            <span class="user-id-sender">Date : {{booking.date}}</span>
+            <span class="user-id-sender">Start : {{booking.start}}</span>
+            <span class="user-id-sender">End : {{booking.end}}</span>
+            <span class="user-id-sender">StudentId : {{booking.studentid}}</span>
+            <span class="user-id-sender">TeacherId : {{booking.teacherid}}</span>
+            <span class="user-id-sender">Status : {{booking.status}}</span>
+            <span class="user-id-sender">Subject : {{booking.subject}}</span> 
+        </section>
+        
+        </li>
+    </ul>

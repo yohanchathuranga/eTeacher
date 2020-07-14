@@ -63,6 +63,11 @@ import { ViewUsersComponent } from './Pages/Admin/view-users/view-users.componen
 import { DeletedusersComponent } from './Pages/Admin/deletedusers/deletedusers.component';
 import { ViewForumsComponent } from './Pages/Admin/view-forums/view-forums.component';
 import { DeletedForumsComponent } from './Pages/Admin/deleted-forums/deleted-forums.component';
+import { AdminChartsComponent } from './Pages/Admin/admin-charts/admin-charts.component';
+import { ViewCommentsComponent } from './Pages/Admin/view-comments/view-comments.component';
+import { ViewBookingsComponent } from './Pages/Admin/view-bookings/view-bookings.component';
+import { ViewComplainsComponent } from './Pages/Admin/view-complains/view-complains.component';
+import { DeletedComplainsComponent } from './Pages/Admin/deleted-complains/deleted-complains.component';
 
 
 
@@ -97,7 +102,12 @@ import { DeletedForumsComponent } from './Pages/Admin/deleted-forums/deleted-for
     ViewUsersComponent,
     DeletedusersComponent,
     ViewForumsComponent,
-    DeletedForumsComponent
+    DeletedForumsComponent,
+    AdminChartsComponent,
+    ViewCommentsComponent,
+    ViewBookingsComponent,
+    ViewComplainsComponent,
+    DeletedComplainsComponent
   ],
   imports: [
     BrowserModule,

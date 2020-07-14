@@ -4,6 +4,10 @@ const DelUserToAdmin = require('../models/deluserstoadminModel')
 const UserToAdmin = require('../models/usertoadminModel')
 const ForumAdmin = require('../models/viewforumsModel')
 const DelforumAdmin = require('../models/delforumModel')
+// const CommentAdmin = require('../models/commentstoadminModel')
+const BookingAdmin = require('../models/booking')
+const ComplainAdmin = require('../models/complianstoadmin')
+const DelcomplainAdmin = require('../models/delcomadmin')
 const mongoose = require('mongoose')
 
 //get all the users
@@ -238,6 +242,141 @@ router.delete('/recoverForum/:id', (req, res) => {
 
 });
 
+// router.get('/getAllComments', (req, res) => {
+//     // console.log("this is the usertoadmin in get ")
+//     CommentAdmin.find().
+//     exec().
+//     then(doc => {
+//         console.log(doc);
+//         res.json(doc)
+//     }).
+//     catch(err => {
+//         console.log(err);
+//         res.json({
+//             error : err
+//         })
+//     })
+// })
+
+router.get('/getAllBookings', (req, res) => {
+    // console.log("this is the usertoadmin in get ")
+    BookingAdmin.find().
+    exec().
+    then(doc => {
+        // console.log(doc);
+        res.json(doc)
+    }).
+    catch(err => {
+        console.log(err);
+        res.json({
+            error : err
+        })
+    })
+})
+
+router.get('/getAllComplains', (req, res) => {
+    // console.log("this is the usertoadmin in get ")
+    ComplainAdmin.find().
+    exec().
+    then(doc => {
+        console.log(doc);
+        res.json(doc)
+    }).
+    catch(err => {
+        console.log(err);
+        res.json({
+            error : err
+        })
+    })
+})
+
+router.post('/setDeletedComplain', (req, res) => {
+
+    const deletedComplain = new DelcomplainAdmin({
+        complain : req.body.complain,
+        type : req.body.type,
+        owner : req.body.owner,
+    })
+    deletedComplain.save().then(data => {
+        res.json(data);
+        console.log(data)
+    }).catch(err => {
+        res.json({
+            message: err
+        })
+        console.log(err)
+    });
+
+});
+
+router.delete('/delAvaiComplain/:id', (req, res) => {
+
+    ComplainAdmin.remove({_id:req.params.id}).
+    exec().
+    then(doc => {
+        console.log(doc);
+        res.json(doc)
+    }).
+    catch(err => {
+        console.log(err);
+        res.json({
+            error : err
+        })
+    })
+
+});
+
+router.get('/getDelComplains', (req, res) => {
+    // console.log("this is the usertoadmin in get ")
+    DelcomplainAdmin.find().
+    exec().
+    then(doc => {
+        console.log(doc);
+        res.json(doc)
+    }).
+    catch(err => {
+        console.log(err);
+        res.json({
+            error : err
+        })
+    })
+})
+
+router.post('/setRecComplain', (req, res) => {
+
+    const recoveredUser = new ComplainAdmin({
+        complain : req.body.complain,
+        type : req.body.type,
+        owner : req.body.owner,
+    })
+    recoveredUser.save().then(data => {
+        res.json(data);
+        // console.log(data)
+    }).catch(err => {
+        res.json({
+            message: err
+        })
+        console.log(err)
+    });
+
+});
+
+router.delete('/recoverComplain/:id', (req, res) => {
+
+    DelcomplainAdmin.remove({_id:req.params.id}).
+    exec().
+    then(doc => {
+        // console.log(doc);
+        res.json(doc)
+    }).
+    catch(err => {
+        console.log(err);
+        res.json({
+            error : err
+        })
+    })
+
+});
 
 router.put('/changeTeacherFlag', (req, res) =>{
 

@@ -44,6 +44,7 @@ export class DeletedusersComponent implements OnInit {
         console.log(err);
       }
     )
+    window.location.reload();
   }
 
 }

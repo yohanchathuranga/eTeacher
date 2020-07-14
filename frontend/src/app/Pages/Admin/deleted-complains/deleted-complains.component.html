@@ -1,0 +1,28 @@
+<div class="column" style="width: 80%;">
+    <h4>Deleted Complains</h4>
+</div>
+<div class="column" style="width: 20%;">
+    <button class="navitemsp" routerLink="/admin/viewcomplains">Complains</button>
+    <button class="navitemadmin" routerLink="/admin" style="right: 225px;">Admin</button>
+</div>
+        <!-- <button (click)="getUsersAdmin()">press</button> -->
+            <ul class="message-list">
+                <li class="user-message" *ngFor="let complain of delComplains">
+                <section class="user-message-sender">
+                    <span class="user-id-sender">Complain : {{complain.complain}}</span>
+                    <span class="user-id-sender">User Type : {{complain.type}}</span>
+                    <span class="user-id-sender">Owner : {{complain.owner}}</span>
+                    <!-- <span class="user-message-content-sender" >{{user.name}}</span> -->
+                    <span>
+                        <section>
+                            <!-- <button class="navitemone" (click)="removeTeacher(user)" [disabled]="(user.teacherFlag==false || user.teacherFlag==NULL)">Remove Teacher</button>
+                            <button class="navitemtwo" (click)="removeStudent(user)" [disabled]="(user.studentFlag==false || user.studentFlag==NULL)">Remove Student</button> -->
+                            <button class="navitemthree" (click)="recoverComplain(complain)">Recover complain</button>
+                        </section>
+                    </span>
+                    
+                </section>
+                
+                </li>
+            </ul>
+            

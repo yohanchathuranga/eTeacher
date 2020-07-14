@@ -58,26 +58,8 @@ export class ViewUsersComponent implements OnInit {
         console.log(err);
       }
     )
+    window.location.reload();
   }
-
-  // removeUser(user){
-  //   this.admin.setDeletedUser(user).subscribe(
-  //     result => {
-  //       // console.log(result)
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   )
-  //   this.admin.delAvaiUser(user).subscribe(
-  //     result => {
-  //       // console.log(result)
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   )
-  // }
 
   removeStudent(user){
     console.log("This is the remove student method")

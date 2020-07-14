@@ -16,12 +16,32 @@ export class DeletedForumsComponent implements OnInit {
     this.admin.getDelForums().subscribe(
       result => {
         this.delForums = result
-        console.log(this.delForums);
+        // console.log(this.delForums);
       },
       err => {
         console.log(err);
       }
     )
+  }
+
+  recoverForum(forum){
+    this.admin.setRecoverForum(forum).subscribe(
+      result => {
+        console.log(result)
+      },
+      err => {
+        console.log(err);
+      }
+    )
+    this.admin.recoverForum(forum._id).subscribe(
+      result => {
+        // console.log(result)
+      },
+      err => {
+        console.log(err);
+      }
+    )
+    window.location.reload();
   }
 
 }

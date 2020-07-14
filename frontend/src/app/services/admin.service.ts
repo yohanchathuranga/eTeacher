@@ -64,5 +64,37 @@ export class AdminService {
   recoverForum(forumId){
     return this.http.delete<any>('http://localhost:3000/admin/recoverForum' + '/' + forumId)
   }
+
+  getAllComments(){
+    return this.http.get<any>('http://localhost:3000/admin/getAllComments')
+  }
+
+  getAllBookings(){
+    return this.http.get<any>('http://localhost:3000/admin/getAllBookings')
+  }
+
+  getAllComplains(){
+    return this.http.get<any>('http://localhost:3000/admin/getAllComplains')
+  }
+
+  setDeletedComplain(complain){
+    return this.http.post<any>('http://localhost:3000/admin/setDeletedComplain',complain)
+  }
+
+  delAvaiComplain(complainId){
+    return this.http.delete<any>('http://localhost:3000/admin/delAvaiComplain' + '/' + complainId)
+  }
+
+  getDelComplains(){
+    return this.http.get<any>('http://localhost:3000/admin/getDelComplains')
+  }
+
+  setRecoverComplain(complain){
+    return this.http.post<any>('http://localhost:3000/admin/setRecComplain',complain)
+  }
+
+  recoverComplain(complainId){
+    return this.http.delete<any>('http://localhost:3000/admin/recoverComplain' + '/' + complainId)
+  }
   
 }

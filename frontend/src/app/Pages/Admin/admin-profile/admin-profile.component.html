@@ -9,13 +9,18 @@
                     <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
-                    <h4 class="title">Admin<br /></h4>
-                    <br/>
+                    <h3 class="title">Admin<br /></h3>
                 </div>
                 <div class="user">
+                    <app-admin-charts></app-admin-charts>
+                    <br>
+                    <br>
                     <!-- <button type="button" class="btn btn-danger btn-round" (click)="getUsersAdmin()"><span class="fa-stack fa-lg"><i class="fa fa-user-circle fa-lg"></i></span>Users</button> -->
                     <button class="navitemadmin" routerLink="/admin/viewusers">Users</button>
                     <button class="navitemadmin" routerLink="/admin/viewforums">Forums</button>
+                    <!-- <button class="navitemadmin" routerLink="/admin/viewcomments">Comments</button> -->
+                    <button class="navitemadmin" routerLink="/admin/viewbookings">Bookings</button>
+                    <button class="navitemadmin" routerLink="/admin/viewcomplains">Complains</button>
                 </div>
             </div>
             <br/>

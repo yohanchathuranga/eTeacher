@@ -20,9 +20,9 @@
                     <!-- <span class="user-message-content-sender" >{{user.name}}</span> -->
                     <span>
                         <section>
-                            <button class="navitemone" (click)="removeUser(user)">Remove User</button>
-                            <button class="navitemtwo" (click)="removeStudent(user)" [disabled]="(user.studentFlag==false || user.studentFlag==NULL)">Remove Student</button>
-                            <button class="navitemthree" (click)="removeTeacher(user)" [disabled]="(user.teacherFlag==false || user.teacherFlag==NULL)">Remove Teacher</button>
+                            <!-- <button class="navitemone" (click)="removeTeacher(user)" [disabled]="(user.teacherFlag==false || user.teacherFlag==NULL)">Remove Teacher</button>
+                            <button class="navitemtwo" (click)="removeStudent(user)" [disabled]="(user.studentFlag==false || user.studentFlag==NULL)">Remove Student</button> -->
+                            <button class="navitemthree" (click)="removeUser(user)">Remove User</button>
                         </section>
                     </span>
                     
@@ -30,3 +30,4 @@
                 
                 </li>
             </ul>
+            

@@ -21,6 +21,10 @@ import { ViewUsersComponent } from './Pages/Admin/view-users/view-users.componen
 import { DeletedusersComponent } from './Pages/Admin/deletedusers/deletedusers.component';
 import { ViewForumsComponent } from './Pages/Admin/view-forums/view-forums.component';
 import { DeletedForumsComponent } from './Pages/Admin/deleted-forums/deleted-forums.component';
+import { ViewCommentsComponent } from './Pages/Admin/view-comments/view-comments.component';
+import { ViewBookingsComponent } from './Pages/Admin/view-bookings/view-bookings.component';
+import { ViewComplainsComponent } from './Pages/Admin/view-complains/view-complains.component';
+import { DeletedComplainsComponent } from './Pages/Admin/deleted-complains/deleted-complains.component';
 
 
 const routes: Routes =[
@@ -42,6 +46,10 @@ const routes: Routes =[
     { path: 'admin/deletedusers',  component: DeletedusersComponent},
     { path: 'admin/viewforums',  component: ViewForumsComponent},
     { path: 'admin/deletedforums',  component: DeletedForumsComponent},
+    { path: 'admin/viewcomments', component: ViewCommentsComponent},
+    { path: 'admin/viewbookings', component: ViewBookingsComponent},
+    { path: 'admin/viewcomplains', component: ViewComplainsComponent},
+    { path: 'admin/deletedcomplains', component: DeletedComplainsComponent},
     // { path: 'testingpage',      component: TestingPageComponent }
     { path: 'forum',      component: TestingpagetwoComponent },
     { path: 'forum/:id',      component: ViewThreadComponent },
