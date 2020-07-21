@@ -32,9 +32,37 @@
       
       
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <div class="form-inline my-2 my-lg-0" >
+      <input class="form-control mr-sm-2" type="text" [(ngModel)]="searchKey" placeholder="Search" #p="ngbPopover"  (keyup)="onKey($event,p)"  triggers="manual" [ngbPopover]="popContent" >
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
+     </div>
+    </div>
 </nav>
+
+<ng-template #popContent>
+ <h3><strong>Search Results</strong></h3>
+ <div class="scrol">
+  <mat-card>
+      <mat-card-subtitle>Teachers</mat-card-subtitle>
+      <!-- {{child}} -->
+      
+      <mat-card-content >   
+            <div class="container-fluid">
+             
+              <mat-list *ngFor="let prop of child | myfilter:searchKey">                 
+                <mat-list-item>{{prop.owner}} -<button type="button" class="btn btn-primary">view</button>
+                  <button  type="button" class="btn btn-success">massage</button></mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>             
+            </div>
+      </mat-card-content>
+      <ng-template [ngIf]="(child | myfilter:searchKey)?.length == 0">
+        <p>No items found!</p>
+      </ng-template>
+      
+  </mat-card>
+</div>
+    
+ 
+</ng-template>
+

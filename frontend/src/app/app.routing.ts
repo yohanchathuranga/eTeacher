@@ -19,12 +19,12 @@ const routes: Routes =[
     { path: 'landing',          component: LandingComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
     { path: 'testingpage',      component: TestingPageComponent },
-    { path: 'forum',      component: TestingpagetwoComponent }
+    { path: 'forum',      component: TestingpagetwoComponent },
 ];
-
+ 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,   
     BrowserModule,
     RouterModule.forRoot(routes,{
       useHash: true

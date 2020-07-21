@@ -65,11 +65,11 @@
 </mat-card>
 <br>
 </mat-dialog-content>
+  </div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-flat-button color="primary" type="submit"[mat-dialog-close]="true" (click) = "onSubmit()" [disabled]="!this.forumService.form.valid">Submit</button>
 </mat-dialog-actions>
-</div>
 <div *ngIf ="newForum">
   <mat-dialog-content class="mat-typography">
     <br>

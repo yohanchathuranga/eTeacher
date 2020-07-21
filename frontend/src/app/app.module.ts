@@ -59,6 +59,11 @@ import { MatInputModule} from '@angular/material/input';
 import { MyFilterPipe } from 'app/Pages/testingpagetwo/service/myFilter.pipe';
 import { CheckForumTypeDirective } from './Pages/testingpagetwo/service/check-forum-type.directive';
 import {MatMenuModule} from '@angular/material/menu';
+import {NgbPopoverModule}from '@ng-bootstrap/ng-bootstrap';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+
+
 
 
 
@@ -90,7 +95,7 @@ import {MatMenuModule} from '@angular/material/menu';
     BookingdetailteacherComponent,
     BookingdetailuserComponent,
     MyFilterPipe,
-    CheckForumTypeDirective
+    CheckForumTypeDirective,
   ],
   imports: [
     BrowserModule,
@@ -123,8 +128,11 @@ import {MatMenuModule} from '@angular/material/menu';
     ToastrModule.forRoot(),
     MatSnackBarModule,
     MatInputModule,
-    MatMenuModule
-   
+    MatMenuModule,
+    NgbPopoverModule,
+    MatDividerModule,
+    MatListModule
+    
   ],
   providers: [UserService,BookingService,{provide: module, useClass: UserService}],
   bootstrap: [AppComponent],
