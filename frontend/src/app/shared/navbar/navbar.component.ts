@@ -1,25 +1,29 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChildren} from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import * as $ from 'jquery';
 import * as moment from 'moment';
+
+import { FourmServiceService} from 'app/Pages/testingpagetwo/service/fourm-service.service';
+import {NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 import { Router } from '@angular/router'
 import {UserService} from '../../services/user.service' 
-
-
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss']
+    styleUrls: ['./navbar.component.scss'],
+   
 })
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
-    path='';
-
-    constructor(public location: Location, private element : ElementRef,private router: Router,private userService:UserService) {
-        this.sidebarVisible = false;
-        this.router.events.subscribe((val) => {
+    child : any;
+    searchKey: string;
+   path='';
+    constructor(public location: Location, private element : ElementRef, private router: Router,private userService:UserService, public forumService : FourmServiceService) {
+      
+      this.sidebarVisible = false;
+      this.router.events.subscribe((val) => {
       this.path = this.location.path();
     });
     }
@@ -27,7 +31,20 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        this.forumService.getAll().subscribe( res=>{
+            this.child = res;
+          });
+         
     }
+    onKey( event, p : NgbPopover): void {
+        console.log(event.target.value);
+        console.log(p)
+        if(event.target.value){
+            p.open();  
+        }else{
+            p.close();
+        }
+     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];

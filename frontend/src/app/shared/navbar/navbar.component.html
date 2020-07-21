@@ -3,42 +3,63 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-    <div class="navbar-collapse collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" routerLink="/newbooking">New Booking</a>
-            </li>
-            <li class="nav-item">
-                <!-- <div *ngIf="user.status=='Teacher'"> -->
-                    <a class="nav-link" href="#" routerLink="/teacherbooking">Teacher Booking</a>
-                <!-- </div>
-                <div *ngIf="user.status=='Student'"> -->
-                    <a class="nav-link" href="#" routerLink="/userbooking">User Booking</a>
-                <!-- </div> -->
-
-            </li>
-            <!-- <div *ngIf="!user"> -->
-            <li class="nav-item">
-                <a class="nav-link" href="#" routerLink="/login" >Logout</a>
-            </li>
-
-
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+  <div class="navbar-collapse collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/scheduler">Calandar</a>
+      </li>
+      <!-- <div *ngIf="!user"> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/register">Regiter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/login">Login</a>
+        </li>
+      
+      
+    </ul>
+    <div class="form-inline my-2 my-lg-0" >
+      <input class="form-control mr-sm-2" type="text" [(ngModel)]="searchKey" placeholder="Search" #p="ngbPopover"  (keyup)="onKey($event,p)"  triggers="manual" [ngbPopover]="popContent" >
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+     </div>
     </div>
 </nav>
+
+<ng-template #popContent>
+ <h3><strong>Search Results</strong></h3>
+ <div class="scrol">
+  <mat-card>
+      <mat-card-subtitle>Teachers</mat-card-subtitle>
+      <!-- {{child}} -->
+      
+      <mat-card-content >   
+            <div class="container-fluid">
+             
+              <mat-list *ngFor="let prop of child | myfilter:searchKey">                 
+                <mat-list-item>{{prop.owner}} -<button type="button" class="btn btn-primary">view</button>
+                  <button  type="button" class="btn btn-success">massage</button></mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>             
+            </div>
+      </mat-card-content>
+      <ng-template [ngIf]="(child | myfilter:searchKey)?.length == 0">
+        <p>No items found!</p>
+      </ng-template>
+      
+  </mat-card>
+</div>
+    
+ 
+</ng-template>

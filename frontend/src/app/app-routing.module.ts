@@ -36,7 +36,8 @@ const routes: Routes =[
     { path: 'forum',      component: TestingpagetwoComponent },
     { path: 'forum/:id',      component: ViewThreadComponent },
     { path: ':type' , component:ForumTypeComponent},
-    { path: ':type/:id', component: ViewThreadComponent}
+    { path: ':type/:id', component: ViewThreadComponent},
+
 
 ];
 

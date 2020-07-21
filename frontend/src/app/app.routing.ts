@@ -26,12 +26,11 @@ const routes: Routes =[
     { path: 'pages/chatpage', component: ChatPageComponent},
     { path: 'pages/testingUserPage', component : TestingUserPageComponent},
     { path: 'forum',      component: TestingpagetwoComponent }
-
 ];
-
+ 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,   
     BrowserModule,
     RouterModule.forRoot(routes,{
       useHash: true
