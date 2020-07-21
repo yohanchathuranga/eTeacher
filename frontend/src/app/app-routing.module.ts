@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SchedulerComponent } from './components/scheduler/scheduler.component';
+// import { SchedulerComponent } from './components/scheduler/scheduler.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -21,7 +21,7 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home',             component: ComponentsComponent},
-    { path: 'scheduler',        component: SchedulerComponent },
+    // { path: 'scheduler',        component: SchedulerComponent },
     { path: 'profile',     component: ProfileComponent },
     { path: 'newbooking',     component: NewbookingComponent },
     { path: 'teacherbooking',     component: TeacherbookingsComponent },
