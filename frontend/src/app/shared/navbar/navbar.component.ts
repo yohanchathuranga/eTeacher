@@ -2,8 +2,11 @@ import { Component, OnInit, ElementRef, ViewChildren} from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import * as $ from 'jquery';
 import * as moment from 'moment';
+
 import { FourmServiceService} from 'app/Pages/testingpagetwo/service/fourm-service.service';
 import {NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
+import { Router } from '@angular/router'
+import {UserService} from '../../services/user.service' 
 
 @Component({
     selector: 'app-navbar',
@@ -16,9 +19,13 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     child : any;
     searchKey: string;
-
-    constructor(public location: Location, private element : ElementRef, public forumService : FourmServiceService) {
-        this.sidebarVisible = false;
+   path='';
+    constructor(public location: Location, private element : ElementRef, private router: Router,private userService:UserService, public forumService : FourmServiceService) {
+      
+      this.sidebarVisible = false;
+      this.router.events.subscribe((val) => {
+      this.path = this.location.path();
+    });
     }
 
     ngOnInit() {
@@ -90,5 +97,11 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+
+    logoutUser(){
+    this.userService.logout();
+        this.router.navigate(['/login']);
+ 
     }
 }

@@ -12,9 +12,6 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     styleUrls: ['./app.component.scss']
 })
 
-// export class AppComponent {
-//     title = 'Sch';
-//   }
   
 export class AppComponent implements OnInit {
     private _router: Subscription;
