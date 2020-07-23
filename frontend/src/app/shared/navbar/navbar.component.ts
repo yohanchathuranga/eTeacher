@@ -2,12 +2,12 @@ import { Component, OnInit, ElementRef, ViewChildren} from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import * as $ from 'jquery';
 import * as moment from 'moment';
+
 import { FourmServiceService} from 'app/Pages/testingpagetwo/service/fourm-service.service';
 import {NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 import { Router } from '@angular/router'
 import {UserService} from '../../services/user.service' 
 import {SearchService } from 'app/services/search.service';
-
 
 
 @Component({
@@ -162,9 +162,10 @@ export class NavbarComponent implements OnInit {
         }
     }
 
-    // logoutUser(){
-    // this.userService.logout();
-    //     this.router.navigate(['/login']);
+
+    logoutUser(){
+    this.userService.logout();
+        this.router.navigate(['/login']);
  
-    // }
+    }
 }

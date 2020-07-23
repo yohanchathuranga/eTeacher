@@ -1,4 +1,4 @@
-import { Component, OnInit ,EventEmitter,Output} from '@angular/core';
+import { Component, OnInit , EventEmitter, Output} from '@angular/core';
 import { BookingService } from '../../../services/booking.service'
 import {Bookings} from '../../../models/bookings'
 import { EventInput } from '@fullcalendar/core';
@@ -17,7 +17,10 @@ import 'fullcalendar';
 export class UserbookingsComponent implements OnInit {
   bookings: Array<Bookings>
   public SelectBooking = new EventEmitter();
-  studentId:String;
+  studentId: String;
+  todaycon=0;
+  todaypen=0;
+
   conpage:number
   penpage:number
   conpageSize: number;
@@ -31,15 +34,15 @@ export class UserbookingsComponent implements OnInit {
   calendarVisible = true;
   calendarWeekends = true;
   calendarEvents: EventInput[]
-  
-  constructor(private bookingService:BookingService,) { }
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
+  @Output() SelectedBooking = new EventEmitter();
+  
+  constructor(private bookingService: BookingService,) { }
 
   ngOnInit(): void {
     const studentId="lasith"
     
     const date="2020-06-11"
-    const studentid="lasith"
     
 
     this.conpage=1 
@@ -52,11 +55,11 @@ export class UserbookingsComponent implements OnInit {
       var i;
       for (i = 0; i < this.bookings.length; i++) {
         if (this.bookings[i].status == "pending") {
-          this.bookings[i].color = '#24c4f0'
-          this.pendingsize+=1;
+          this.bookings[i].color = '#6180fa'
+          this.pendingsize += 1;
 
         } else if (this.bookings[i].status == "confirm") {
-          this.bookings[i].color = '#05f742'
+          this.bookings[i].color = '#ffee52'
           this.confirmsize+=1;
         }
         this.calendarEvents = res
@@ -68,14 +71,19 @@ export class UserbookingsComponent implements OnInit {
     let date1 = JSON.stringify(this.today)
     date1 = date1.slice(1, 11)
     this.bookingService.getBookingbyDateUser(date1,studentId).subscribe(res => {
-    console.log(res) 
-    this.bookingcount=Object.keys(res).length
-    console.log(this.bookingcount)
+      var j;
+      for (j = 0; j < Object.keys(res).length; j++) {
+        if (res[j].status == "pending") {
+          this.todaypen += 1;
+
+        } else if (res[j].status == "confirm") {
+          this.todaycon += 1;
+        }
+      }
     })
 
 
   }
-  @Output() SelectedBooking = new EventEmitter();
   updateBookingEvent(id){
     this.bookingService.updateBooking(id)
     .subscribe(res=>res);  

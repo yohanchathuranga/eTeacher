@@ -1,0 +1,72 @@
+<div class="App">
+    <aside class="sidebar left-sidebar">
+      <section>
+        <ul class="user-list">
+            <li style="padding-left: 30px;">{{ currentUser }}</li>
+        </ul>
+      </section>
+    </aside>
+  
+    <main class="chat-window">
+      <header class="chat-header">
+        <section *ngIf="chatName=='emptyChat'">
+            <h4>Welcome to eTeacher messages</h4>
+        </section>
+        <section *ngIf="chatName!='emptyChat'">
+          <h4>{{chatName}}</h4>
+        </section>
+      </header>
+      <!-- <section class="chat-session-guides" *ngIf="chatName=='emptyChat'">
+        <ol>
+          <li>Select the chat by clicking </li>
+          <li>Type the message</li>
+          <li>Hit enter or click <u>'Send'</u> button</li>
+        </ol>
+      </section> -->
+      <section class="chat-session" *ngIf="chatName!='emptyChat'">
+        <ul class="message-list">
+          <li class="user-message" *ngFor="let chatitems of chat | async">
+            <section class="user-message-sender" *ngIf="currentUser == chatitems.sender">
+                <span class="user-id-sender">{{ chatitems.sender }}</span>
+                <span class="user-message-content-sender">{{ chatitems.message }}</span>
+            </section>
+            <section class="user-message-reciever" *ngIf="currentUser != chatitems.sender">
+                <span class="user-id-reciever">{{ chatitems.sender }}</span>
+                <span class="user-message-content-reciever">{{ chatitems.message }}</span>
+            </section>
+          </li>
+        </ul>
+        
+            <!-- <pre *ngFor="let chatitems of chat | async">message : {{chatitems.message}} sender : {{chatitems.sender}}</pre> -->
+       
+      </section>
+      <footer class="chat-footer" *ngIf="chatName!='emptyChat'">
+        <form class="message-form" (ngSubmit)='onSubmit()'>
+          <label>
+            <input class="message-input" placeholder="Type a message......" type="text" name="message"
+              [(ngModel)]="itemValue" />
+          </label>
+          <button type="button" class="btn btn-outline-danger btn-round btn-sm" (click)=onSubmit()>Send</button>
+        </form>
+      </footer>
+    </main>
+  
+    <aside class="sidebar right-sidebar">
+        <section>
+            <h4 class="Chats">Chats</h4>
+        </section>
+        <section>
+          <ul class="room-list">
+            <li  style="margin-bottom: 25px;" *ngFor="let chatitems of chats | async">
+              <div class="room" *ngIf="chatitems.chatname!=null" (click)=changeTheSeacherdUser(chatitems.guestUser) routerLink="/pages/chatpage">
+                <span class="room-name">{{chatitems.chatname}}</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <!-- <section>
+            <p>these are the chats</p>
+        </section> -->
+        <button style="margin-top: 40px; margin-left: 20px; margin-right: 20px;" type="button" class="btn btn-default btn-round" routerLink="/pages/testingUserPage">My profile</button>
+    </aside>
+  </div>

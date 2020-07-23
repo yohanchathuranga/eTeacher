@@ -32,7 +32,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-app.use(cors());
+app.use(cors("Access-Control-Allow-Origin", "*"));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS')
