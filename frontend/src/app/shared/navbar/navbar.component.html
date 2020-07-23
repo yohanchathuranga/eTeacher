@@ -27,23 +27,50 @@
         <li class="nav-item">
           <a class="nav-link" href="#" routerLink="/login">Login</a>
         </li>
-      
+        <div class="container">
+         
+            <div class="row">
+              <div [formGroup]="this.searchService.searchInput" class="input-group">
+              <input class="form-control" type="text" formControlName = "search" [(ngModel)]="searchKey" placeholder="{{searchBar}}" #p="ngbPopover"  (keyup)="onKey($event,p)" 
+              triggers="manual" [ngbPopover]="popContent"/>
+              <div class="input-group-append">
+                <div ngbDropdown class="d-inline-block">
+                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle> </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <span><strong>What are you looking for?</strong></span>
+                    <hr>
+                    <button ngbDropdownItem (click)="teachers()">Teachers</button>
+                    <button ngbDropdownItem (click)="students()">Students</button>
+                    <button ngbDropdownItem (click)="forums(user)">Forums</button>
+                  </div>
+                </div>
+             </div>
+            </div>
+        
+    
+            </div>
+         </div>
       
     </ul>
-    <div class="form-inline my-2 my-lg-0" >
-      <input class="form-control mr-sm-2" type="text" [(ngModel)]="searchKey" placeholder="Search" #p="ngbPopover"  (keyup)="onKey($event,p)"  triggers="manual" [ngbPopover]="popContent" >
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-     </div>
     </div>
+
+ 
 </nav>
 
 <ng-template #popContent>
  <h3><strong>Search Results</strong></h3>
  <div class="scrol">
-  <mat-card>
+   <!-- all search results -->
+   <mat-card *ngIf="!tearcherOn && !studentOn && !forumOn">
+     <mat-card-title> Scroll and find results! </mat-card-title>
+     <mat-card-content>
+       Not implement yet
+     </mat-card-content>
+   </mat-card>
+
+  <!-- search results for teschers -->
+  <mat-card *ngIf="tearcherOn">
       <mat-card-subtitle>Teachers</mat-card-subtitle>
-      <!-- {{child}} -->
-      
       <mat-card-content >   
             <div class="container-fluid">
              
@@ -56,9 +83,40 @@
       </mat-card-content>
       <ng-template [ngIf]="(child | myfilter:searchKey)?.length == 0">
         <p>No items found!</p>
-      </ng-template>
-      
+      </ng-template>      
   </mat-card>
+  <!-- search results for forums  -->
+  <mat-card *ngIf="forumOn">
+    <mat-card-title>
+      Forums
+    </mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <div class="row" *ngFor="let prop of forumTypes | myForumfilter:searchKey">
+          <mat-list-item>{{prop.type}} -<button type="button" class="btn btn-primary" (click)="gotoForum(prop.type)" >view</button></mat-list-item>
+          <mat-divider></mat-divider>
+        </div>                         
+      </mat-list>
+      <ng-template [ngIf]=" (forumTypes | myForumfilter:searchKey)?.length == 0 " >
+        No forums find!
+      </ng-template>  
+    </mat-card-content>
+    <br>
+    <mat-card-title>Your Threads</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <div class="row" *ngFor="let prop of forumThreads | myThreadfilter:searchKey">
+          <mat-list-item> Thread title -{{prop.title}} -<button type="button" class="btn btn-primary" (click)="gotoThread(prop.type,prop._id)" >view</button></mat-list-item>
+          <mat-divider></mat-divider>
+        </div>                         
+      </mat-list>
+      <ng-template [ngIf]=" (forumThreads | myThreadfilter:searchKey)?.length == 0 " >
+        your threads not found!
+      </ng-template>  
+
+    </mat-card-content>
+  </mat-card>
+
 </div>
     
  

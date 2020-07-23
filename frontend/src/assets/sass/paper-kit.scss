@@ -86,5 +86,11 @@ $pk2-angular-theme: mat-light-theme($pk2-angular-primary, $pk2-angular-accent, $
 //     ;
 //   }
 .popover-body{
-    width: 400px;
+    width: 500px;
+    color: black;
+    background-color: lavender;
+    border-radius: none;
+}
+.popover{
+  font-weight: 600;
 }

@@ -71,8 +71,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {NgbPopoverModule}from '@ng-bootstrap/ng-bootstrap';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
-
-
+import{NgbDropdownModule}from '@ng-bootstrap/ng-bootstrap';
+import {SearchService}from 'app/services/search.service';
+import {MyThreadFilterPipe} from 'app/services/filters/myThreadFilter.pipe';
+import {MyForumFilterPipe} from 'app/services/filters/myForumFilter.pipe';
 
 
 
@@ -105,6 +107,8 @@ import {MatListModule} from '@angular/material/list';
     BookingdetailuserComponent,
     MyFilterPipe,
     CheckForumTypeDirective,
+    MyThreadFilterPipe,
+    MyForumFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -143,10 +147,11 @@ import {MatListModule} from '@angular/material/list';
     MatMenuModule,
     NgbPopoverModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    NgbDropdownModule
     
   ],
-  providers: [UserService, BookingService, { provide: module, useClass: UserService }],
+  providers: [UserService, BookingService,SearchService,{ provide: module, useClass: UserService }],
   bootstrap: [AppComponent],
   entryComponents: [
     CreateThreadComponent
