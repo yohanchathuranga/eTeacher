@@ -7,6 +7,8 @@ import { FourmServiceService} from 'app/Pages/testingpagetwo/service/fourm-servi
 import {NgbPopover } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 import { Router } from '@angular/router'
 import {UserService} from '../../services/user.service' 
+import {SearchService } from 'app/services/search.service';
+
 
 @Component({
     selector: 'app-navbar',
@@ -17,13 +19,23 @@ import {UserService} from '../../services/user.service'
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    user = "Banura Hettiarachchi"
     child : any;
-    searchKey: string;
-   path='';
-    constructor(public location: Location, private element : ElementRef, private router: Router,private userService:UserService, public forumService : FourmServiceService) {
-      
-      this.sidebarVisible = false;
-      this.router.events.subscribe((val) => {
+    path='';
+    searchControl = this.searchService.searchInput.controls;
+    searchKey = this.searchControl.search.value;
+    tearcherOn =false;
+    studentOn = false;
+    forumOn = false;
+    searchBar = "search...";
+    forumTypes : any;
+    forumThreads : any;
+
+    constructor(public location: Location, private element : ElementRef, private router: Router,
+        private userService:UserService, public forumService : FourmServiceService,
+        public searchService : SearchService) {    
+        this.sidebarVisible = false;
+        this.router.events.subscribe((val) => {
       this.path = this.location.path();
     });
     }
@@ -45,6 +57,57 @@ export class NavbarComponent implements OnInit {
             p.close();
         }
      }
+     teachers(){
+         this.searchService.searchInput.reset();
+         this.searchBar = "search teachers..."
+         this.tearcherOn = true;
+         this.forumOn = false;
+         this.studentOn = false
+
+     }
+     students(){
+        this.searchService.searchInput.reset();
+        this.tearcherOn = false;
+        this.forumOn = false;
+        this.studentOn = true;
+        this.searchBar = "search students...";
+     }
+     
+     forums(user : string){
+        this.searchService.searchInput.reset(); 
+        this.searchBar = "search forums...";
+        this.tearcherOn = false;
+        this.forumOn = true;
+        this.studentOn = false;
+
+        this.searchService.getAllFormTypes().subscribe((res)=>{
+            this.forumTypes = res;
+        })
+        this.searchService.getAllForums(user).subscribe((res)=>{
+            this.forumThreads = res;
+        })
+     }
+
+     gotoForum(type : string){
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+          };
+        this.router.navigate([type]);
+     }
+
+     gotoThread(type : string, threadId : string){
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+          };
+        this.router.navigate([type,threadId]);  
+     }
+
+
+
+
+
+
+
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];
@@ -98,6 +161,7 @@ export class NavbarComponent implements OnInit {
             return false;
         }
     }
+
 
     logoutUser(){
     this.userService.logout();

@@ -184,7 +184,18 @@ router.route('/type/:type')
         }
     })
 })
-
+router.route('/my/search/:user')
+.get((req,res)=>{
+    // console.log(req.params.type)
+    Forum.find({owner : req.params.user},'_id title type timeAgo timestamps owner views replies', (err,doc)=>{
+        if(!err){
+            res.send(doc)
+        }
+        else{
+            console.log('Error in retriving Threads :'+JSON.stringify(err,undefined,2))
+        }
+    });
+})
 
 
 

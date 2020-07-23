@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { HttpModule } from '@angular/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+
 import { RatingModule } from 'ng-starrating';
 // import {FlashMessagesModule} from 'flash-messages';
 
@@ -37,6 +38,7 @@ import { BookingService } from './services/booking.service';
 
 // import { ComponentsModule } from './components/components.module';
 import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
+
 import { MessagingPageComponent } from './Pages/messaging-page/messaging-page.component';
 import { ChatPageComponent } from './Pages/chat-page/chat-page.component';
 import { TestingUserPageComponent } from './Pages/testing-user-page/testing-user-page.component';
@@ -71,11 +73,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {NgbPopoverModule}from '@ng-bootstrap/ng-bootstrap';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
-
-
-
-
-
+import{NgbDropdownModule}from '@ng-bootstrap/ng-bootstrap';
+import {SearchService}from 'app/services/search.service';
+import {MyThreadFilterPipe} from 'app/services/filters/myThreadFilter.pipe';
+import {MyForumFilterPipe} from 'app/services/filters/myForumFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,7 @@ import {MatListModule} from '@angular/material/list';
     ViewThreadComponent,
     ReplyCommentComponent,
     ForumTypeComponent,
-    SchedulerComponent,
+    // SchedulerComponent,
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
@@ -105,6 +106,8 @@ import {MatListModule} from '@angular/material/list';
     BookingdetailuserComponent,
     MyFilterPipe,
     CheckForumTypeDirective,
+    MyThreadFilterPipe,
+    MyForumFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -143,10 +146,11 @@ import {MatListModule} from '@angular/material/list';
     MatMenuModule,
     NgbPopoverModule,
     MatDividerModule,
-    MatListModule
-
+    MatListModule,
+    NgbDropdownModule
+    
   ],
-  providers: [UserService, BookingService, { provide: module, useClass: UserService }],
+  providers: [UserService, BookingService,SearchService,{ provide: module, useClass: UserService }],
   bootstrap: [AppComponent],
   entryComponents: [
     CreateThreadComponent
