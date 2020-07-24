@@ -25,10 +25,11 @@ export class TestingpagetwoComponent implements OnInit {
  types = [];
  searchKey : string;
  flag = true;
- user = "teacher";
+ user = JSON.parse(localStorage.getItem('user'));
  newForum = false;
  newThread = false;
  allForumTypes : any;
+ 
 
 
 constructor(private forumService: FourmServiceService,
@@ -36,6 +37,7 @@ constructor(private forumService: FourmServiceService,
   private router : Router) { }
 
   ngOnInit(): void {
+    console.log(this.user.teacherFlag);
     this.getAllthreads();
     this.forumService.getallForumType().subscribe(res=>{
       this.allForumTypes = res

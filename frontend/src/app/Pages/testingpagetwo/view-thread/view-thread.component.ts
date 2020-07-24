@@ -29,8 +29,9 @@ getThread : any;
 timeArray =[];
 threadBody : string;
 // user = JSON.parse(localStorage.getItem('user'));
-owner = "Banura Hettiarachchi";
+user = JSON.parse(localStorage.getItem('user'));
 comments : any;
+commentsLength : any
 open = false;
 viewReply = false;
 replyCount = 0; 
@@ -64,7 +65,7 @@ getThreadDetails(threadId : string){
     this.getThread = res;
     console.log(this.getThread);
     this.timeAgo(this.getThread);
-    this.threadOwner = this.getThread.owner
+    this.threadOwner = this.getThread.owner._id
     this.threadBody = this.getThread.body;
     this.threadImage = this.getThread.image;
     this.status = this.getThread.status
@@ -149,7 +150,7 @@ editorConfig: AngularEditorConfig = {
 };                                
 
 setVoteDetails(){
-  this.forumService.getVoteDetails(this.threadId,this.owner).subscribe(res=>{
+  this.forumService.getVoteDetails(this.threadId,this.user.name).subscribe(res=>{
     this.voteDetails = res
     // console.log(res);
     if(this.voteDetails.length != 0){
@@ -172,7 +173,7 @@ setVoteDetails(){
 comment : Reply ={
     _id : "",
     threadId : "",
-    owner : this.owner,
+    owner : this.user.name,
     date : new Date,
     body : ""
   }
@@ -181,7 +182,7 @@ relodeCmt(){
   this. comment ={
     _id : "",
     threadId : "",
-    owner : this.owner,
+    owner : this.user.name,
     date : new Date,
     body : ""
   }
@@ -229,7 +230,7 @@ cancelUpdate(){
   this. comment ={
     _id : "",
     threadId : "",
-    owner : this.owner,
+    owner : this.user.name,
     date : new Date,
     body : ""
   }
@@ -239,7 +240,12 @@ cancelUpdate(){
 
 getComments(){
   this.forumService.getComments(this.threadId).subscribe(res=>{
+   
+    for(let i in res){
+      res[i].date = moment(res[i].date).fromNow();
+        }
     this.comments = res;
+    console.log(res)
   });    
 }
 
@@ -248,8 +254,8 @@ setReplyCount(){
     this.allsubReplys = res;
       this.subReplyCount = this.allsubReplys.length;
         this.forumService.getComments(this.threadId).subscribe(res=>{
-        this.comments = res;
-        this.replyCount = this.comments.length;
+        this.commentsLength = res;
+        this.replyCount = this.commentsLength.length;
     this.forumService.getThread(this.threadId).subscribe((res)=>{
       this.thread = res;
       this.thread.replies = 0;
@@ -280,7 +286,7 @@ voteUp(event: any){
     const voteUp : VoteDetails = {
       voteUp : true,
       voteDown : false,
-      owner : this.owner
+      owner : this.user.name
     }
     if(!this.vUp && !this.vDown){
       this.vUp = true;
@@ -304,6 +310,7 @@ voteUp(event: any){
     this.getThread = event;
     this.forumService.setVoteup(this.getThread).subscribe((res)=>{
       this.getThread = res;
+      // console.log(res);
     });
  }
 
@@ -311,7 +318,7 @@ voteDown(event: any){
   const voteDown : VoteDetails = {
     voteUp : false,
     voteDown : true,
-    owner : this.owner
+    owner : this.user.name
   }
   if(!this.vUp && !this.vDown){
     this.vUp = false;
@@ -403,7 +410,11 @@ deleteThread(id : string){
 refreshThread(threadId : string){
   this.getThreadDetails(threadId);
   this.threadUpdate = false
-
 }
+
+
+
+
+
 
 }

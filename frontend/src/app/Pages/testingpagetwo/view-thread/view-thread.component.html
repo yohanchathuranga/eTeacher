@@ -3,7 +3,8 @@
     <div class="row">
         <div class="col">
         <mat-card>
-            <span class="badge badge-pill badge-dark">Student</span>
+            <span *ngIf="getThread?.owner.teacherFlag" class="badge badge-pill badge-info">Teacher</span>
+            <span *ngIf="getThread?.owner.studentFlag"  class="badge badge-pill badge-dark">Student</span>
             <div class="float-md-right">
                 <button mat-icon-button color="primary" (click)="refreshThread(threadId)" title="Refresh" *ngIf="threadUpdate">
                     <mat-icon>refresh</mat-icon>
@@ -12,11 +13,11 @@
                     <mat-icon>expand_more</mat-icon>
                   </button>
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item  (click)="edit(threadId)" [disabled] = "threadOwner != owner" >
+                    <button mat-menu-item  (click)="edit(threadId)" [disabled] = "threadOwner != user.id" >
                       <mat-icon>edit</mat-icon>
                       <span>Edit</span>
                     </button>
-                    <button mat-menu-item   (click)="deleteThread(threadId)"  [disabled] = "threadOwner != owner">
+                    <button mat-menu-item   (click)="deleteThread(threadId)"  [disabled] = "threadOwner != user.id">
                       <mat-icon>delete</mat-icon>
                       <span>Delete</span>
                     </button>
@@ -26,7 +27,7 @@
             <mat-card-header>
                 <mat-card-title>
                     <img class="rounded-circle mr-3" height="30px" width="30px" alt="avatar"src=" http://localhost:4200/assets/img/faces/ayo-ogunseinde-2.jpg">
-                    <span style="color:rgb(84, 84, 219)">{{getThread?.owner}}</span> - <span>{{getThread?.timeAgo}}</span><br>
+                    <span style="color:rgb(84, 84, 219)">{{getThread?.owner.name}}</span> - <span>{{getThread?.timeAgo}}</span><br>
                 </mat-card-title>
                 <br>
                 <mat-card-subtitle>
@@ -49,24 +50,24 @@
             <button type="button" class="btn btn-primary" (click)="onChange()">
                <i class="fa fa-comment" aria-hidden="true"></i>{{!open ? 'Reply' : 'Hide'}}
               </button> 
-              <button  type="button" class="btn btn-primary" [disabled] = "vUp || threadOwner == owner"
+              <button  type="button" class="btn btn-primary" [disabled] = "vUp || threadOwner == user.id"
                (click)="voteUp(getThread)">
                <i class="fa fa-chevron-up" aria-hidden="true"></i>UpVote
               </button> 
-              <button  type="button" class="btn btn-primary" [disabled] = "vDown || threadOwner == owner"
+              <button  type="button" class="btn btn-primary" [disabled] = "vDown || threadOwner == user.id"
               (click)="voteDown(getThread)">
               <i class="fa fa-chevron-down" aria-hidden="true"></i>DownVote
               </button>
-              <button  type="button" class="btn btn-warning" *ngIf = "threadOwner == owner" (click)="changeStatus()" title=" this thread">
+              <button  type="button" class="btn btn-warning" *ngIf = "threadOwner == user.id" (click)="changeStatus()" title=" this thread">
               <i class="fa fa-window-close" aria-hidden="true"></i> Close
                 </button> 
         
                 </div>
                 <ng-template #elseBlock>
                     <div class="alert alert-info" style="text-align: center;" role="alert">
-                        This thread is closed by - {{threadOwner}}
+                        This thread is closed by - {{getThread?.owner.name}}
                       </div>
-                      <button  type="button" class="btn btn-primary" *ngIf = "threadOwner == owner" (click)="changeStatus()" title="open this thread">open Thread
+                      <button  type="button" class="btn btn-primary" *ngIf = "threadOwner == user.id" (click)="changeStatus()" title="open this thread">open Thread
                           </button> 
                   </ng-template>
              
@@ -107,9 +108,9 @@
 
         <button  type="button" class="btn btn-primary"  (click)="viewcReply = cmt._id; test(); getCommentId(cmt._id)"> {{viewReply && cmt._id == selectCommentId ? 'Hide' : 'Show'}}
         </button>
-        <button  type="button" class="btn btn-primary" (click)="editComment(cmt)" [disabled]="owner != cmt.owner" *ngIf="!status"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <button  type="button" class="btn btn-primary" (click)="editComment(cmt)" [disabled]="user.name != cmt.owner" *ngIf="!status"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
-        <button  type="button" class="btn btn-danger" (click)="deleteComment(cmt._id)" [disabled]="owner != cmt.owner" *ngIf="!status"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <button  type="button" class="btn btn-danger" (click)="deleteComment(cmt._id)" [disabled]="user.name != cmt.owner" *ngIf="!status"><i class="fa fa-trash" aria-hidden="true"></i></button>
     </div>
     </div>
           <!-- <div class="row"> -->

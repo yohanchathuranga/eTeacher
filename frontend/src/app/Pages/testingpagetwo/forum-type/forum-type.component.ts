@@ -27,7 +27,7 @@ searchKey : string;
 newForum = false;
 newThread = false;
 updateForum = false;
-user = "Banura Hettiarachchi";
+user = JSON.parse(localStorage.getItem('user'));
 thread : any;
 threadImg : string;
 forumDetails : any;
@@ -49,7 +49,7 @@ forumOwner :string;
         this.forumDetails = res;
         console.log(res)
         this.teachers = this.forumDetails[0].teachers;
-        this.forumOwner = this.forumDetails[0].forumOwner;
+        this.forumOwner = this.forumDetails[0].forumOwner.name;
       })
 
     })
@@ -153,10 +153,7 @@ editForum(forumtype : string){
           this.forumService.success("Successfully deleted Forum");
           this.router.navigate(['/' + 'forum']);
         })
-      });
- 
-     
-     
+      });     
     }
   }
  

@@ -32,16 +32,16 @@
             <div class="row">
               <div [formGroup]="this.searchService.searchInput" class="input-group">
               <input class="form-control" type="text" formControlName = "search" [(ngModel)]="searchKey" placeholder="{{searchBar}}" #p="ngbPopover"  (keyup)="onKey($event,p)" 
-              triggers="manual" [ngbPopover]="popContent"/>
+              triggers="manual" placement="bottom-right"   [autoClose]="'outside'"  [ngbPopover]="popContent"/>
               <div class="input-group-append">
                 <div ngbDropdown class="d-inline-block">
                   <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle> </button>
-                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="height: 200px; width: 175px;" >
                     <span><strong>What are you looking for?</strong></span>
                     <hr>
                     <button ngbDropdownItem (click)="teachers()">Teachers</button>
                     <button ngbDropdownItem (click)="students()">Students</button>
-                    <button ngbDropdownItem (click)="forums(user)">Forums</button>
+                    <button ngbDropdownItem (click)="forums(user.id)">Forums</button>
                   </div>
                 </div>
              </div>

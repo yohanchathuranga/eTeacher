@@ -3,6 +3,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { replyComment } from '../../models/replyComment';
 import  { FourmServiceService } from 'app/Pages/testingpagetwo/service/fourm-service.service';
 import {Forum} from 'app/Pages/testingpagetwo/models/forum-thread';
+import * as moment from 'moment';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ReplyCommentComponent implements OnInit {
   @Input('Data4') public status : boolean;
 
 
-user = "Dasun Lahi"
+user = JSON.parse(localStorage.getItem('user'));
 replyComments:any;
 thread : any
 replycount = 0;
@@ -108,7 +109,7 @@ rComment : replyComment={
   _id : "",
   parentCId : this.commentId,
   threadId : this.threadId,
-  owner : this.user ,
+  owner : this.user.name ,
   date : new Date,
   comment : ''
 }
@@ -118,7 +119,7 @@ refresh(){
     _id : "",
     parentCId : this.commentId,
     threadId : this.threadId,
-    owner : this.user ,
+    owner : this.user.name,
     date : new Date,
     comment : ''
   }
@@ -130,13 +131,13 @@ onComment(event : replyComment){
    _id : "",
     parentCId : this.commentId,
     threadId : this.threadId,
-    owner : this.user ,
+    owner : this.user.name ,
     date : new Date,
     comment : event.comment
   }
   // console.log(rComment)
   this.forumService.setReplyComment(rComment).subscribe(()=>{
-    this.refresh();
+    this.rComment.comment=''
     this.getReply();
     this.getAllSubreplys();
   })
@@ -159,6 +160,9 @@ cancelEdit(){
 
 getReply(){
   this.forumService.getReplyComments(this.commentId).subscribe((res)=>{
+    for(let i in res){
+      res[i].date = moment(res[i].date).fromNow();
+    }
     this.replyComments = res;
     this.length = this.replyComments.length;
   });

@@ -19,7 +19,7 @@ import {SearchService } from 'app/services/search.service';
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
-    user = "Banura Hettiarachchi"
+    user = JSON.parse(localStorage.getItem('user'))
     child : any;
     path='';
     searchControl = this.searchService.searchInput.controls;
