@@ -1,10 +1,9 @@
 <div [style.display]="alert ? 'block' : 'none'">
-    <h1>bbfb</h1>
-    <ngb-alert (close)="close(alert)">Password Incorrect</ngb-alert>
+    <ngb-alert (close)="close(alert)">Invalid Username or password</ngb-alert>
 
 </div>
 <div class="col-lg-4 col-md-6 mx-auto">
-    <div class="card card-register" style="text-align:center;">
+    <div class="card card-register" style="text-align:center;color: rgb(78, 78, 78);align-items: center;">
         <form (submit)="loginUser()" class="register-form">
             <fieldset>
                 <legend class="title mx-auto">Login</legend>
@@ -16,7 +15,7 @@
                           <i class="nc-icon nc-email-85"></i>
                         </span>
                         </div>
-                        <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="email">
+                        <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="email" required>
                     </div>
                 </div>
 
@@ -28,12 +27,14 @@
                           <i class="nc-icon nc-key-25"></i>
                         </span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password">
+                        <input [type]="hide ? 'password' : 'text'" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" minlength="6" required>&nbsp;
+                        <mat-icon matSuffix (click)="hide = !hide" [ngStyle]="{'color':'grey'}"> {{hide ? 'visibility_off' : 'visibility'}} </mat-icon>
                     </div>
                 </div>
 
                 <button type="submit" class="btn btn-danger btn-block btn-round">Login</button>
                 <a href="#" class="btn btn-link btn-danger" routerLink="/register">Register</a>
+                <small routerLink="/passwordreset">Forget Password</small>
             </fieldset>
         </form>
     </div>

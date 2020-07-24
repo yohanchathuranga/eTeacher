@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,FormGroup, FormControl, Validators} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http'
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RatingModule } from 'ng-starrating';
+import { environment } from '../environments/environment';
 // import {FlashMessagesModule} from 'flash-messages';
 
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { BookingdetailuserComponent } from './components/bookings/bookingdetailu
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PasswordresetComponent } from './components/password/passwordreset/passwordreset.component';
+import {UpdatepasswordComponent} from './components/password/updatepassword/updatepassword.component'
 import { UserService } from './services/user.service';
 import { BookingService } from './services/booking.service';
 
@@ -52,6 +55,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type.component';
 
@@ -82,6 +86,8 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     TeacherbookingsComponent,
     BookingdetailteacherComponent,
     BookingdetailuserComponent,
+    PasswordresetComponent,
+    UpdatepasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -90,8 +96,6 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     // FlashMessagesModule.forRoot() ,
     RouterModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
     FullCalendarModule,
     HttpModule,
     HttpClientModule,

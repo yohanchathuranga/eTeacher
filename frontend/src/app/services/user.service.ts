@@ -43,7 +43,20 @@ export class UserService {
     this.authtoken=token;
   }
   logout() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('tokenId');
+    this.authtoken = null;
+    this.user = null;
+    localStorage.clear(); 
+  }
+
+  resetPassword(user) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+    return this.http.post('http://localhost:3000/user/resetpassword', user, { headers: headers }).map(res => res.json());
+  }
+
+  updatePassword(user) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put('http://localhost:3000/user/updatepassword' + user.email, user, { headers: headers })
   }
 }

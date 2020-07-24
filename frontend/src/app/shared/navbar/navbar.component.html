@@ -1,4 +1,4 @@
-<nav *ngIf="path!=='/login' && path!=='/register'" class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav *ngIf="path!=='/login' && path!=='/register' && path!=='/passwordreset' && path!=='/updatepassword'" class="navbar navbar-expand-lg navbar-dark bg-primary">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,16 +22,16 @@
             </li>
             <li class="nav-item">
                 <!-- <div *ngIf="user.status=='Teacher'"> -->
-                    <a class="nav-link" href="#" routerLink="/teacherbooking">Teacher Booking</a>
+                <a class="nav-link" href="#" routerLink="/teacherbooking">Teacher Booking</a>
                 <!-- </div>
                 <div *ngIf="user.status=='Student'"> -->
-                    <a class="nav-link" href="#" routerLink="/userbooking">User Booking</a>
+                <a class="nav-link" href="#" routerLink="/userbooking">User Booking</a>
                 <!-- </div> -->
 
             </li>
             <!-- <div *ngIf="!user"> -->
             <li class="nav-item">
-                <a class="nav-link" href="#" routerLink="/login" >Logout</a>
+                <a class="nav-link" href="#" (click)="logoutUser()">Logout</a>
             </li>
 
 

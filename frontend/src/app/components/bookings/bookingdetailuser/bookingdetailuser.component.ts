@@ -80,6 +80,7 @@ export class BookingdetailuserComponent implements OnInit {
       date: this.date,
       start: this.start,
       endtime: this.endtime,
+      // subject:booking.subject,
       studentid: booking.studentid,
       teacherid: booking.teacherid,
       status: "pending" 
@@ -97,6 +98,7 @@ export class BookingdetailuserComponent implements OnInit {
       date: booking.date,
       start: booking.start,
       endtime: booking.endtime,
+      //subject:booking.subject,
       studentid: booking.studentid,
       teacherid: booking.teacherid,
       status: "cancelled" 

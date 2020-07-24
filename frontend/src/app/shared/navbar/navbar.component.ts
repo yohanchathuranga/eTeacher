@@ -3,7 +3,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import * as $ from 'jquery';
 import * as moment from 'moment';
 import { Router } from '@angular/router'
-import {UserService} from '../../services/user.service' 
+import { UserService } from '../../services/user.service';
 
 
 
@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
         // console.log(html);
-        this.toggleButton.classList.remove('toggled');
+        // this.toggleButton.classList.remove('toggled');
         this.sidebarVisible = false;
         html.classList.remove('nav-open');
     };
@@ -84,7 +84,7 @@ export class NavbarComponent implements OnInit {
 
     logoutUser(){
     this.userService.logout();
-        this.router.navigate(['/login']);
- 
+    this.router.navigate(['/login']);
+        return false;
     }
 }

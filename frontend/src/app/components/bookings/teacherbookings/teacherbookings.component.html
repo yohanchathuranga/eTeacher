@@ -38,10 +38,9 @@
                                 <th></th>
                             </tr>
                             <ng-container *ngFor="
-                let booking of bookings
-                  | slice
+                let booking of booking | slice
                     : (conpage - 1) * conpageSize
-                    : (conpage - 1) * conpageSize + conpageSize
+                    : ((conpage - 1) * conpageSize) + conpageSize
               ">
                                 <tr *ngIf="booking.status == 'confirm' ">
                                     <td>{{ booking.date }}</td>
@@ -73,7 +72,7 @@
                 let booking of bookings
                   | slice
                     : (penpage - 1) * penpageSize
-                    : (penpage - 1) * penpageSize + penpageSize
+                    : ((penpage - 1) * penpageSize) + penpageSize
               ">
                                 <tr *ngIf="booking.status == 'pending' ">
                                     <td>{{ booking.date }}</td>

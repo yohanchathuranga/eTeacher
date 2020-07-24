@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service' 
-import {Router} from '@angular/router'
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,9 @@ import {Router} from '@angular/router'
 export class LoginComponent implements OnInit {
   email: String;
   password: String;
-  alert: boolean=false;
+  alert: boolean = false;
+  hide = true;
+
 
   constructor(private userService:UserService, private router:Router) { }
 
@@ -29,7 +32,7 @@ export class LoginComponent implements OnInit {
         // this.flashMessages.show("You are Login",{cssClass:'alert-success', timeout:3000});
         this.router.navigate(['/home']);
       } else {
-        console.log("error")
+        console.log(res)
         this.alert = true;
         this.router.navigate(['/login']);
       }
@@ -37,11 +40,7 @@ export class LoginComponent implements OnInit {
 
   }
   close(alert) {
-  }
-
-  logoutUser(){
-      
-        this.router.navigate(['/login']);
+    this.alert = false;
   }
 
 }

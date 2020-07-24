@@ -40,8 +40,8 @@ export class UserbookingsComponent implements OnInit {
   constructor(private bookingService: BookingService,) { }
 
   ngOnInit(): void {
-    const studentId="lasith"
-    
+    let user=localStorage.getItem('user')
+    const studentId="lasith"      //user.id
     const date="2020-06-11"
     
 

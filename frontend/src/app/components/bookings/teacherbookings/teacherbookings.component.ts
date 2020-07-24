@@ -39,8 +39,9 @@ export class TeacherbookingsComponent implements OnInit {
   constructor(private bookingService:BookingService,) { }
 
   ngOnInit(): void {
+    let user=localStorage.getItem('user');
     this.bookings=[]
-    const teacherId="kasun"
+    const teacherId="kasun"     //user.id
     this.conpage = 1
     this.penpage = 1
     this.conpageSize = 10

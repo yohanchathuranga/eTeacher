@@ -8,7 +8,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ComponentsComponent } from './components/components.component';
 import {NewbookingComponent } from './components/bookings/newbooking/newbooking.component';
 import {TeacherbookingsComponent } from './components/bookings/teacherbookings/teacherbookings.component';
-import {UserbookingsComponent } from './components/bookings/userbookings/userbookings.component';
+import { UserbookingsComponent } from './components/bookings/userbookings/userbookings.component';
+import { PasswordresetComponent } from './components/password/passwordreset/passwordreset.component';
+import {UpdatepasswordComponent} from './components/password/updatepassword/updatepassword.component'
 import { LandingComponent } from './examples/landing/landing.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 // import { TestingPageComponent } from './Pages/testing-page/testing-page.component';
@@ -27,7 +29,9 @@ const routes: Routes =[
     { path: 'teacherbooking',     component: TeacherbookingsComponent },
     { path: 'userbooking',     component: UserbookingsComponent },
     { path: 'login',           component: LoginComponent },
-    { path: 'register',          component: RegisterComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'passwordreset', component: PasswordresetComponent },
+    { path: 'updatepassword', component: UpdatepasswordComponent },
     // { path: 'user-profile',     component: ProfileComponent },
     // { path: 'signup',           component: SignupComponent },
     // { path: 'landing',          component: LandingComponent },

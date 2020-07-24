@@ -23,6 +23,8 @@ import { UserbookingsComponent } from './bookings/userbookings/userbookings.comp
 import { TeacherbookingsComponent } from './bookings/teacherbookings/teacherbookings.component';
 import { BookingdetailteacherComponent } from './bookings/bookingdetailteacher/bookingdetailteacher.component';
 import { BookingdetailuserComponent } from './bookings/bookingdetailuser/bookingdetailuser.component';
+import { PasswordresetComponent } from './password/passwordreset/passwordreset.component';
+import { UpdatepasswordComponent } from './password/updatepassword/updatepassword.component';
 
 @NgModule({
     imports: [
@@ -50,7 +52,9 @@ import { BookingdetailuserComponent } from './bookings/bookingdetailuser/booking
         UserbookingsComponent,
         TeacherbookingsComponent,
         BookingdetailteacherComponent,
-        BookingdetailuserComponent
+        BookingdetailuserComponent,
+        PasswordresetComponent,
+        UpdatepasswordComponent
     ],
     entryComponents: [NgbdModalContent],
     exports:[ ComponentsComponent ]

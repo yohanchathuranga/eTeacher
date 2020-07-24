@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {NgxPaginationModule} from 'ngx-pagination'
 import { TeacherbookingsComponent } from './teacherbookings.component';
 
 describe('TeacherbookingsComponent', () => {
@@ -8,6 +8,9 @@ describe('TeacherbookingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        NgxPaginationModule
+      ],
       declarations: [ TeacherbookingsComponent ]
     })
     .compileComponents();

@@ -132,6 +132,7 @@ export class SchedulerComponent {
 
   handleDateClick(event) {
     let da=event.date
+    let user=localStorage.getItem('user');
     this.timebook = ((event.date).toTimeString()).split(' ')[0];
     const currdate: Date = new Date();
     if (currdate <= event.date) {  // back date validation
@@ -147,8 +148,9 @@ export class SchedulerComponent {
           date: date1,
           start: da,
           endtime: date2,
-          studentid: 'lasith',
-          teacherid: 'kasun',
+          //subject:teacher.subject,
+          studentid: 'lasith',    //user.id
+          teacherid: 'kasun',     //parameter value
           status: 'pending',
 
         }
@@ -159,6 +161,7 @@ export class SchedulerComponent {
           date: da,
           start: event.date,
           endtime: date2,
+          //subject:this.booking.subject,
           studentid: this.booking.studentid,
           teacherid: this.booking.teacherid,
           status: 'pending',
