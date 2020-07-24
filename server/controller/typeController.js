@@ -4,16 +4,18 @@ const router = express.Router();
 var {Forum} = require('../model/forumModel');
 var {Type} = require('../model/forumType');
 router.route('/:type')
-.get((req,res)=>{
+.get((req,res,next)=>{
     // console.log(req.params.type)
-    Forum.find({type : req.params.type},'title type timeAgo timestamps owner views replies', (err,doc)=>{
-        if(!err){
-            res.send(doc)
-        }
-        else{
+    Forum.find({type : req.params.type},'title type timeAgo timestamps owner views replies')
+    .populate('owner')
+    .then((threads)=>{
+        if(threads !=null){
+            res.send(threads)
+        }else{
             console.log('Error in retriving Threads :'+JSON.stringify(err,undefined,2))
         }
-    });
+    },(err)=>next(err))
+    .catch((err)=>next(err))
 })
 .delete((req,res)=>{
     Type.deleteOne({type : req.params.type},(err,result)=>{
@@ -44,7 +46,8 @@ router.route('/type/:id')
 })
 router.route('/forum/:type')
 .get((req,res,next)=>{
-    Type.find({'type': req.params.type})
+    Type.find({type: req.params.type})
+    .populate('forumOwner')
     .then((forum)=>{
         if(forum != null){
             res.sendStatus = 200;

@@ -11,7 +11,9 @@ router.post("/register", function (req, res) {
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        teacherFlag:false,
+        studentFlag:true
     });
 
     User.saveUser(newUser, function (err, user) {
@@ -48,7 +50,9 @@ router.post("/login", function (req, res) {
                         id: user._id,
                         name: user.name,
                         username: user.username,
-                        email: user.email
+                        email: user.email,
+                        teacherFlag:user.teacherFlag,
+                        studentFlag:user.studentFlag
                     }
                 })
             }

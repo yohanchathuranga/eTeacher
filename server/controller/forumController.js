@@ -58,15 +58,17 @@ router.route('/type')
     .catch((err) => next(err));
 });
 router.route('/:id')
-.get((req,res)=>{
-    Forum.findById(req.params.id,(err,doc)=>{
-        if(!err){
-            res.send(doc)
-        }
-        else{
+.get((req,res,next)=>{
+    Forum.findById(req.params.id)
+    .populate('owner')
+    .then((thread)=>{
+        if(thread!=null){
+            res.send(thread)
+        }else{
             console.log('Error in retriving Employees :'+JSON.stringify(err,undefined,2))
         }
-    });
+    },(err) => next(err))
+    .catch((err) => next(err));
 })
 .post((req,res)=>{
     Forum.findById(req.params.id)
@@ -81,7 +83,7 @@ router.route('/:id')
     },(err) => next(err))
     .catch((err) => next(err));
 })
-.put((req,res)=>{
+.put((req,res,next)=>{
     if(!objectId.isValid(req.params.id))
     return res.status(400).send('no recode with given id : ${req.params.id}');
     var emp = {
@@ -96,11 +98,25 @@ router.route('/:id')
         replies : req.body.replies,
         status : req.body.status
     };
-    Forum.findByIdAndUpdate(req.params.id,{$set:emp}, {new:true},(err,doc)=>{
-        if(!err){res.send(doc);}
-        else{console.log('Error in employee update :'+JSON.stringify(err,undefined,2))
-    }
-    });
+    Forum.findByIdAndUpdate(req.params.id,{$set:emp}, {new:true})
+    .populate('owner')
+    .then((thread)=>{
+        if(thread!=null){
+            res.sendStatus=200;
+            res.send(thread);
+        }else{
+            console.log('Error in thread update :'+JSON.stringify(err,undefined,2))
+        }
+    },err=>next(err))
+    .catch((err)=>next(err))
+    
+    
+    
+    // ,(err,doc)=>{
+    //     if(!err){res.send(doc);}
+    //     else{console.log('Error in employee update :'+JSON.stringify(err,undefined,2))
+    // }
+    // });
 })
 
 .delete((req,res,next)=>{
@@ -155,7 +171,7 @@ router.route('/:id/:voteOwner')
     .catch((err) => next(err));
 })
 router.route('/:id/vote/:voteId')
-
+ 
 .put((req,res ,next)=>{
     Forum.findById(req.params.id)
     .then((thread)=>{
