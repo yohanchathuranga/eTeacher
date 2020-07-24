@@ -15,11 +15,11 @@
                 <mat-icon>expand_more</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item  (click)="editComment(reply)" [disabled]="user != reply.owner">
+                <button mat-menu-item  (click)="editComment(reply)" [disabled]="user.name != reply.owner">
                   <mat-icon>edit</mat-icon>
                   <span>Edit</span>
                 </button>
-                <button mat-menu-item (click)="deleteComment(reply._id)"  [disabled]="user != reply.owner">
+                <button mat-menu-item (click)="deleteComment(reply._id)"  [disabled]="user.name != reply.owner">
                   <mat-icon>delete</mat-icon>
                   <span>Delete</span>
                 </button>

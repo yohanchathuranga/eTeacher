@@ -4,7 +4,7 @@ import {FourmServiceService} from '../service/fourm-service.service';
 import {Forum} from '../models/forum-thread';
 import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Types } from '../models/forumType';
 
 
@@ -15,30 +15,29 @@ import { Types } from '../models/forumType';
 })
 export class CreateThreadComponent implements OnInit {
 attempted = true;
-name = "Banura Hettiarachchi";
+user = JSON.parse(localStorage.getItem('user'));
 forumTypes:string[];
 type : string;
 formControls = this.forumService.form.controls;
 formControlsT = this.forumService.formType.controls;
 formControlsU = this.forumService.updateForm.controls;
 public threadList: any;
-// count : number;  
 flag = true;
 image: string = '';
 newForum = false;
 newThread = false;
 updateForum = false;
 toppingList: string[] = ['Rajitha Gayashan', 'Nipuna Sarachchandra', 'Pasindu Bhashitha', 'Sasika Nawarathna', 'Vihaga Shamal', 'Tharindu Madhusanka'];
-user = 'Rajitha Gayashan'
 tag = ''
 updateThread : any;
 
 constructor( public forumService : FourmServiceService, 
      private matdialogRef:MatDialogRef<CreateThreadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public route : ActivatedRoute) {}
+    public route : ActivatedRoute, private router : Router) {}
 
 ngOnInit(): void {
+
     try{
       console.log(this.data)
       this.type = this.data.type;
@@ -81,7 +80,7 @@ onSubmit(){
     image : this.image,
     timestamps: new Date(),
     views: 0,
-    owner:this.name,
+    owner:this.user.id,
     timeAgo:'',
     replies:0,
     votes:0,
@@ -124,7 +123,8 @@ newType(){
     this.forumService.setType(type).subscribe(res=>{
     // console.log(res)
      this.forumService.formType.reset();
-     this.forumService.success("New Forum Type Successfully created!")
+     this.forumService.success("New Forum Type Successfully created!");
+     window.location.reload();
 })
     
     this.matdialogRef.afterClosed().subscribe(result => {  
@@ -145,7 +145,8 @@ updateF(){
     this.forumService.updateForum(this.formControlsU._id.value, updatedForum).subscribe(res=>{
     // console.log(res)
      this.forumService.updateForm.reset();
-     this.forumService.success("Forum is Successfully updated!")
+     this.forumService.success("Forum is Successfully updated!");
+     window.location.reload();
 })
     
     this.matdialogRef.afterClosed().subscribe(result => {  

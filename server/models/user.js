@@ -28,6 +28,8 @@ const userSchema = new schema({
     username: { type: String, require: true },
     email: { type: String, require: true },
     password: { type: String, require: true },
+    teacherFlag:Boolean,
+    studentFlag:Boolean
 
 
 });

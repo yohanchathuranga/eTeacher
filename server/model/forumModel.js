@@ -14,7 +14,10 @@ const Forum = mongoose.model('Forum',{
     timestamps: Date,
     views: Number,
     replies: Number,
-    owner : String,
+    owner : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'User'
+    },
     timeAgo: String,
     votes : Number,
     voteDetails : [Vote],
