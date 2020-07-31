@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule,FormGroup, FormControl, Validators} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+
 import { AppRoutingModule } from './app-routing.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { HttpModule } from '@angular/http';
@@ -87,7 +88,11 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     BookingdetailteacherComponent,
     BookingdetailuserComponent,
     PasswordresetComponent,
-    UpdatepasswordComponent
+    UpdatepasswordComponent,
+    MyFilterPipe,
+    CheckForumTypeDirective,
+    MyThreadFilterPipe,
+    MyForumFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -96,6 +101,8 @@ import { ForumTypeComponent } from './Pages/testingpagetwo/forum-type/forum-type
     // FlashMessagesModule.forRoot() ,
     RouterModule,
     AppRoutingModule,
+    //     AngularFireModule.initializeApp(environment.firebase),
+    //     AngularFireDatabaseModule,
     FullCalendarModule,
     HttpModule,
     HttpClientModule,
