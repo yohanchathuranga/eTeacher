@@ -2,12 +2,12 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const cors = require('cors')
-const bodyParser=require('body-parser')
+const bodyParser=require('body-parser');
 var forumController = require('./controller/forumController');
 var cmtThreadController = require('./controller/cmtThreadController');
 var replycController = require('./controller/replycController');
 var typeController = require('./controller/typeController');
-const app = express()
+var app = express()
 const path = require('path');
 const passport = require('passport');
 
