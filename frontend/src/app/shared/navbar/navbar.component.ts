@@ -4,7 +4,7 @@ import * as $ from 'jquery';
 import * as moment from 'moment';
 import { Router } from '@angular/router'
 import { UserService } from '../../services/user.service';
-
+import {SearchService } from 'app/services/search.service';
 
 
 @Component({
