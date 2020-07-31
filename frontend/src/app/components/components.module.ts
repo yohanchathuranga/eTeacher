@@ -25,6 +25,10 @@ import { BookingdetailteacherComponent } from './bookings/bookingdetailteacher/b
 import { BookingdetailuserComponent } from './bookings/bookingdetailuser/bookingdetailuser.component';
 import { PasswordresetComponent } from './password/passwordreset/passwordreset.component';
 import { UpdatepasswordComponent } from './password/updatepassword/updatepassword.component';
+import { StudentViewComponent } from './Profiles/student-view/student-view.component';
+import { TeacherViewComponent } from './Profiles/teacher-view/teacher-view.component';
+import { StudentAccComponent } from './Profiles/student-acc/student-acc.component';
+import { TeacherAccComponent } from './Profiles/teacher-acc/teacher-acc.component';
 
 @NgModule({
     imports: [
@@ -54,7 +58,11 @@ import { UpdatepasswordComponent } from './password/updatepassword/updatepasswor
         BookingdetailteacherComponent,
         BookingdetailuserComponent,
         PasswordresetComponent,
-        UpdatepasswordComponent
+        UpdatepasswordComponent,
+        StudentViewComponent,
+        TeacherViewComponent,
+        StudentAccComponent,
+        TeacherAccComponent
     ],
     entryComponents: [NgbdModalContent],
     exports:[ ComponentsComponent ]
